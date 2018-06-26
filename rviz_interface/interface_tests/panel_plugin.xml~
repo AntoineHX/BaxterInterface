@@ -1,0 +1,8 @@
+<library path="lib/interface_tests">
+  <class type="interface_tests::TestPanel"
+         base_class_type="rviz::Panel">
+    <description>
+     	A panel test.
+    </description>
+  </class>
+</library>

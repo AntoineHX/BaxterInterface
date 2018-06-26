@@ -1,0 +1,9 @@
+<library path="lib/librviz_interface">
+  <class name="Rviz Interface Panel"
+	 type="rviz_interface::InterfacePanel"
+         base_class_type="rviz::Panel">
+    <description>
+     	A panel for an Rviz Interface.
+    </description>
+  </class>
+</library>
