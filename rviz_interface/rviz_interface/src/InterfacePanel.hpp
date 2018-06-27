@@ -50,8 +50,8 @@ public:
   // Now we declare overrides of rviz::Panel functions for saving and
   // loading data from the config file.  Here the data is the
   // topic name.
-  virtual void load( const rviz::Config& config );
-  virtual void save( rviz::Config config ) const;
+  // virtual void load( const rviz::Config& config );
+  // virtual void save( rviz::Config config ) const;
 
   // Next come a couple of public Qt slots.
 public Q_SLOTS:
@@ -76,7 +76,7 @@ protected:
   QCheckBox* _objective_type_editor;
 
   // The current name of the output topic.
-  QString _max_error;
+  // QString _max_error;
 
   // The ROS publisher for the command velocity.
   ros::Publisher _config_publisher;

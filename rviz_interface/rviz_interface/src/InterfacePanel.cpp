@@ -104,23 +104,23 @@ void InterfacePanel::updateType(int state)
 // Save all configuration data from this panel to the given
 // Config object.  It is important here that you call save()
 // on the parent class so the class id and panel name get saved.
-void InterfacePanel::save( rviz::Config config ) const
-{
-  rviz::Panel::save( config );
-  config.mapSetValue( "Error", _max_error );
-}
+// void InterfacePanel::save( rviz::Config config ) const
+// {
+//   rviz::Panel::save( config );
+//   config.mapSetValue( "Error", _max_error );
+// }
 
-// Load all configuration data for this panel from the given Config object.
-void InterfacePanel::load( const rviz::Config& config )
-{
-  rviz::Panel::load( config );
-  QString error;
-  if( config.mapGetString( "Error", &error ))
-  {
-    _max_error_editor->setText( error );
-    updateError();
-  }
-}
+// // Load all configuration data for this panel from the given Config object.
+// void InterfacePanel::load( const rviz::Config& config )
+// {
+//   rviz::Panel::load( config );
+//   QString error;
+//   if( config.mapGetString( "Error", &error ))
+//   {
+//     _max_error_editor->setText( error );
+//     updateError();
+//   }
+// }
 
 } // end namespace
 
