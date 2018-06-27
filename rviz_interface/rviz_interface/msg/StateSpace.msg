@@ -19,8 +19,8 @@ uint8 STATE_BOOL=3
 
 uint8 state_type
 
-#State Space dimension : must be equal to the sum of all the data dimensions.
-#uint8 dimension
+#Objective type: boolean (true : Juste bouger l'objet)
+uint8 objective_type
 
 #Maximum distance error allowed arround the objective
 float32 max_error

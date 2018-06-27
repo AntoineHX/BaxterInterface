@@ -5,6 +5,7 @@ unsigned int InteractiveObject::nextObjectID = 1;
 InteractiveObject::InteractiveObject(ros::Publisher* objective_pub, interactive_markers::InteractiveMarkerServer* server, const std::string& name, unsigned int type, unsigned int shape = Marker::CUBE, const tf::Vector3& position = tf::Vector3(0,0,0)) : _name(name), _type(type), _server(server), _objective_pub(objective_pub)
 {
 	_objectID = nextObjectID++;
+	_state.name = name;
 	_state.state_type=type;
 	_state.max_error = 0; //Default error
 
@@ -54,22 +55,36 @@ void InteractiveObject::processFeedback( const InteractiveMarkerFeedbackConstPtr
 	//// SEND OBJECTIVE ////
 	if(feedback->event_type == InteractiveMarkerFeedback::BUTTON_CLICK)
 	{
-		_state.name = _name;
+		rviz_interface::StateSpace msg;
+		msg.name = _state.name;
+		msg.state_type = _state.state_type;
+		msg.objective_type = _state.objective_type;
+		msg.max_error = _state.max_error;
 
 		//Ajout des informations de position
-		_state.real_data.push_back(feedback->pose.position.x);
-		_state.real_data.push_back(feedback->pose.position.y);
-		_state.real_data.push_back(feedback->pose.position.z);
-		_state.real_data.push_back(feedback->pose.orientation.w);
-		_state.real_data.push_back(feedback->pose.orientation.x);
-		_state.real_data.push_back(feedback->pose.orientation.y);
-		_state.real_data.push_back(feedback->pose.orientation.z);
+		msg.real_data.push_back(feedback->pose.position.x);
+		msg.real_data.push_back(feedback->pose.position.y);
+		msg.real_data.push_back(feedback->pose.position.z);
+		msg.real_data.push_back(feedback->pose.orientation.w);
+		msg.real_data.push_back(feedback->pose.orientation.x);
+		msg.real_data.push_back(feedback->pose.orientation.y);
+		msg.real_data.push_back(feedback->pose.orientation.z);
+
+		//Ajout des inforamtions supplémentaires
+		for(unsigned int i=0;i<_state.real_data.size();i++)
+		{
+			msg.real_data.push_back(_state.real_data[i]);
+		}
+		for(unsigned int i=0;i<_state.discrete_data.size();i++)
+		{
+			msg.discrete_data.push_back(_state.discrete_data[i]);
+		}
 
 		//Publication de l'objectif
-		_objective_pub->publish(_state);
+		_objective_pub->publish(msg);
 
 		//Problème d'ajout continue de data
-		_state.real_data.clear(); //Attention peut poser problème pour ajouter des infos supplémentaires (nécessité de les rajouter à chaque feedback)
+		//_state.real_data.clear(); //Attention peut poser problème pour ajouter des infos supplémentaires (nécessité de les rajouter à chaque feedback)
 	}
 }
 

@@ -19,21 +19,22 @@ InterfacePanel::InterfacePanel( QWidget* parent ): rviz::Panel( parent )
 {
   // Next we lay out the "output topic" text entry field using a
   // QLabel and a QLineEdit in a QHBoxLayout.
-  QHBoxLayout* topic_layout = new QHBoxLayout;
-  topic_layout->addWidget( new QLabel( "Max Error:" ));
-  max_error_editor = new QLineEdit;
+  QHBoxLayout* error_layout = new QHBoxLayout;
+  error_layout->addWidget( new QLabel( "Max Error:" ));
+  _max_error_editor = new QLineEdit;
   // max_error_editor->setValidator( new QDoubleValidator(0,MAX_ERROR,1000,max_error_editor)); // Ne gère pas les exceptions tout seul (retourne QValidator::Intermediate pour les valeurs hors bornes)
-  topic_layout->addWidget( max_error_editor );
-  setLayout( topic_layout );
+  error_layout->addWidget( _max_error_editor );
+  //setLayout( error_layout );
 
   // Then create the control widget.
   // drive_widget_ = new DriveWidget;
 
-  // // Lay out the topic field above the control widget.
-  // QVBoxLayout* layout = new QVBoxLayout;
-  // layout->addLayout( topic_layout );
-  // layout->addWidget( drive_widget_ );
-  // setLayout( layout );
+  // Lay out the topic field above the control widget.
+  QVBoxLayout* layout = new QVBoxLayout;
+  _objective_type_editor = new QCheckBox( "Precise Objective" );
+  layout->addWidget( _objective_type_editor );
+  layout->addLayout( error_layout );
+  setLayout( layout );
 
   // Create a timer for sending the output.  Motor controllers want to
   // be reassured frequently that they are doing the right thing, so
@@ -47,7 +48,8 @@ InterfacePanel::InterfacePanel( QWidget* parent ): rviz::Panel( parent )
   // QTimer* output_timer = new QTimer( this );
 
   // Next we make signal/slot connections.
-  connect( max_error_editor, SIGNAL( editingFinished() ), this, SLOT( updateError() ));
+  connect( _max_error_editor, SIGNAL( editingFinished() ), this, SLOT( updateError() ));
+  connect( _objective_type_editor, SIGNAL( stateChanged(int) ), this, SLOT( updateType(int) ));
   // connect( output_timer, SIGNAL( timeout() ), this, SLOT( sendVel() ));
 
   // Start the timer.
@@ -55,8 +57,15 @@ InterfacePanel::InterfacePanel( QWidget* parent ): rviz::Panel( parent )
 
   // Make the control widget start disabled, since we don't start with an output topic.
   // drive_widget_->setEnabled( false );
+  _max_error_editor->setEnabled( false );
 
-  _config_publisher = nh_.advertise<rviz_interface::InterfaceConfig>( "/RvizInterface/interface_config", 1 );
+  _config_publisher = _nh.advertise<rviz_interface::InterfaceConfig>( "/RvizInterface/interface_config", 1 );
+}
+
+InterfacePanel::~InterfacePanel()
+{
+  delete _max_error_editor;
+  delete _objective_type_editor;
 }
 
 // Read the topic name from the QLineEdit and call setTopic() with the
@@ -65,19 +74,32 @@ InterfacePanel::InterfacePanel( QWidget* parent ): rviz::Panel( parent )
 // away.
 void InterfacePanel::updateError()
 {
-  //setTopic( max_error_editor->text() );
-  setError(max_error_editor->text());
-}
+  current_config.max_error = _max_error_editor->text().toDouble();
 
-void InterfacePanel::setError( const QString& error )
-{
   if( ros::ok() && _config_publisher )
   {
-    rviz_interface::InterfaceConfig new_config;
-    new_config.max_error = error.toDouble();
-    _config_publisher.publish( new_config );
+    _config_publisher.publish( current_config );
   }
 }
+
+void InterfacePanel::updateType(int state)
+{
+  current_config.objective_type = state;
+  if( ros::ok() && _config_publisher )
+  {
+    _config_publisher.publish( current_config );
+  }
+  _max_error_editor->setEnabled( state ); //Active l'editeur d'erreur si state>0 (ie Objectif précis)
+}
+
+// void InterfacePanel::setError( const QString& error )
+// {
+//   current_config.max_error = error.toDouble();
+//   if( ros::ok() && _config_publisher )
+//   {
+//     _config_publisher.publish( current_config );
+//   }
+// }
 
 // Save all configuration data from this panel to the given
 // Config object.  It is important here that you call save()
@@ -85,7 +107,7 @@ void InterfacePanel::setError( const QString& error )
 void InterfacePanel::save( rviz::Config config ) const
 {
   rviz::Panel::save( config );
-  config.mapSetValue( "Error", output_topic_ );
+  config.mapSetValue( "Error", _max_error );
 }
 
 // Load all configuration data for this panel from the given Config object.
@@ -95,7 +117,7 @@ void InterfacePanel::load( const rviz::Config& config )
   QString error;
   if( config.mapGetString( "Error", &error ))
   {
-    max_error_editor->setText( error );
+    _max_error_editor->setText( error );
     updateError();
   }
 }

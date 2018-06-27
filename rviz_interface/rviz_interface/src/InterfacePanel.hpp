@@ -12,6 +12,7 @@
 #include <QPainter>
 #include <QLineEdit>
 // #include <QDoubleValidator>
+#include <QCheckBox>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -44,6 +45,7 @@ public:
   // someone using the class for something else to pass in a parent
   // widget as they normally would with Qt.
   InterfacePanel( QWidget* parent = 0 );
+  ~InterfacePanel();
 
   // Now we declare overrides of rviz::Panel functions for saving and
   // loading data from the config file.  Here the data is the
@@ -54,28 +56,33 @@ public:
   // Next come a couple of public Qt slots.
 public Q_SLOTS:
 
-	void setError( const QString& error );
+	// void setError( const QString& error );
 
   // Here we declare some internal slots.
 protected Q_SLOTS:
 
 
   void updateError();
+  void updateType(int state);
+
 
   // Then we finish up with protected member variables.
 protected:
 
+  rviz_interface::InterfaceConfig current_config;
+
   // One-line text editor for entering the outgoing ROS topic name.
-  QLineEdit* max_error_editor;
+  QLineEdit* _max_error_editor;
+  QCheckBox* _objective_type_editor;
 
   // The current name of the output topic.
-  QString output_topic_;
+  QString _max_error;
 
   // The ROS publisher for the command velocity.
   ros::Publisher _config_publisher;
 
   // The ROS node handle.
-  ros::NodeHandle nh_;
+  ros::NodeHandle _nh;
 
   // The latest velocity values from the drive widget.
   // float linear_velocity_;

@@ -29,6 +29,7 @@ void RvizInterface::configCallback(const rviz_interface::InterfaceConfig & new_c
 {
 	for(unsigned int i=0;i<_objects.size();i++)
 	{
+		_objects[i]->state().objective_type = new_config.objective_type;
 		_objects[i]->state().max_error = new_config.max_error;
 	}
 }
