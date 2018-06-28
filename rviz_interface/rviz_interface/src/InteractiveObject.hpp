@@ -43,7 +43,6 @@ public:
 	// void setVisualizationPublisher(ros::Publisher* visualization_pub){ _visualization_pub=visualization_pub;}
 	void setErrorArea(double error);
 
-
 	//std::vector<visualization_msgs::InteractiveMarker>& markers(){ return _int_markers;}
 	InteractiveMarker& marker(){ return _int_marker;}
 	rviz_interface::StateSpace& state(){ return _state;}
