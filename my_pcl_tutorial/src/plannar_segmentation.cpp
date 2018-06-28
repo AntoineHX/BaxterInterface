@@ -9,6 +9,7 @@
 #include <pcl/sample_consensus/model_types.h>
 #include <pcl/segmentation/sac_segmentation.h>
 
+#include <pcl/filters/extract_indices.h>
 
 ros::Publisher pub;
 
@@ -44,10 +45,22 @@ cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
   //Créations de l'output
   pcl::PointCloud<pcl::PointXYZ>::Ptr pcl_output(new pcl::PointCloud<pcl::PointXYZ>);
 
-  for (size_t i = 0; i < inliers->indices.size (); ++i)
-  {
-    pcl_output->points.push_back( cloud->points[inliers->indices[i]]);
-  }
+  //Extraction du plan (inliners)
+  // for (size_t i = 0; i < inliers->indices.size (); ++i)
+  // {
+  //   pcl_output->points.push_back( cloud->points[inliers->indices[i]]);
+
+  // }
+
+  //Extraction de l'objet (outliners) 
+  //Attention bruit !
+  pcl::ExtractIndices<pcl::PointXYZ> extract;
+  extract.setInputCloud(cloud);
+  extract.setIndices(inliers);
+  extract.setNegative(true);
+  extract.filter(*pcl_output);
+
+
   pcl::toPCLPointCloud2(*pcl_output,pcl_pc2);
   pcl_conversions::fromPCL(pcl_pc2, output);
 
