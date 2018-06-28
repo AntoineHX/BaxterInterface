@@ -15,7 +15,9 @@ class RvizInterface
 protected:
 	ros::NodeHandle _n; 
 	ros::Publisher _objective_pub;
+	ros::Publisher _visualization_pub;
 	ros::Subscriber _config_sub;
+	
 	interactive_markers::InteractiveMarkerServer _server;
 
 	std::vector<InteractiveObject*> _objects;
