@@ -32,6 +32,7 @@ void InteractiveObject::createInteractiveMarker(Marker& marker, const tf::Vector
 	_int_marker.name = _name; //ATTENTION !
 	_int_marker.description = _name;
 	tf::pointTFToMsg(position, _int_marker.pose.position);
+	_int_marker.scale = (marker.scale.x + marker.scale.y + marker.scale.z)/3 ;
 
 	// create a non-interactive control which contains the box
 	InteractiveMarkerControl interactive_container;
@@ -53,7 +54,7 @@ void InteractiveObject::createInteractiveMarker(Marker& marker, const tf::Vector
 void InteractiveObject::processFeedback( const InteractiveMarkerFeedbackConstPtr &feedback )
 {
 	_followObject = false; //Objet manipulé -> on les libèrent
-	
+
 	//// Update Visual markers ////
 	// if(_showVisuals)
 	// {
