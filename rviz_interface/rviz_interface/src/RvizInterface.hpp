@@ -17,6 +17,7 @@ protected:
 	ros::Publisher _objective_pub;
 	ros::Publisher _visualization_pub;
 	ros::Subscriber _config_sub;
+	ros::Subscriber _position_sub;
 	
 	interactive_markers::InteractiveMarkerServer _server;
 
@@ -27,6 +28,7 @@ public:
 	~RvizInterface();
 
 	void configCallback(const rviz_interface::InterfaceConfig & new_config);
+	void positionCallback(const geometry_msgs::PointStamped & new_center);
 };
 
 #endif

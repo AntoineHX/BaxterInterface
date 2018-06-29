@@ -16,6 +16,7 @@ protected:
 	std::string _name;
 	unsigned int _type;
 	bool _showVisuals;
+	bool _followObject;
 	//std::vector<visualization_msgs::InteractiveMarker> _int_markers;
 	InteractiveMarker _int_marker;
 	// std::vector<Marker> _visual_markers;
@@ -43,9 +44,13 @@ public:
 	// void setVisualizationPublisher(ros::Publisher* visualization_pub){ _visualization_pub=visualization_pub;}
 	void setErrorArea(double error);
 
+	void moveTo(const tf::Vector3& new_pos);
+
 	//std::vector<visualization_msgs::InteractiveMarker>& markers(){ return _int_markers;}
 	InteractiveMarker& marker(){ return _int_marker;}
 	rviz_interface::StateSpace& state(){ return _state;}
+	bool isFollowing() const{ return _followObject;}
+	void follow(){ _followObject = true;}
 };
 
 #endif

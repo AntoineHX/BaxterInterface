@@ -9,3 +9,6 @@ uint8 objective_type
 #Maximum distance error allowed arround the objective
 float32 max_error
 
+#Follow Object: boolean (true : les marqueur suivent les objets)
+uint8 follow_object
+

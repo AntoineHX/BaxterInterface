@@ -106,7 +106,7 @@ cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
   center_msg.header.frame_id = input->header.frame_id;
   // ROS_INFO_STREAM("Center clioyf : "<<pcl_output->points[0]._PointXYZ::data[0]<<" / "<<pcl_output->points[0]._PointXYZ::data[1]<<" / "<<pcl_output->points[0]._PointXYZ::data[2]);
   // ROS_INFO_STREAM("barycentre : "<<barycentre(1,1)<<" / "<<barycentre(2,1)<<" / "<<barycentre(3,1)<<" / "<< barycentre(4,1));
-  ROS_INFO_STREAM("Center : "<<center_msg.point.x<<" / "<<center_msg.point.y<<" / "<<center_msg.point.z);
+  // ROS_INFO_STREAM("Center : "<<center_msg.point.x<<" / "<<center_msg.point.y<<" / "<<center_msg.point.z);
 
   //Envoie du nuage de points
   pcl::toPCLPointCloud2(*pcl_output,pcl_pc2);

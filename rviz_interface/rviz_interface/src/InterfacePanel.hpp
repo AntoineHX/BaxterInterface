@@ -13,6 +13,7 @@
 #include <QLineEdit>
 // #include <QDoubleValidator>
 #include <QCheckBox>
+#include <QPushButton>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -64,6 +65,7 @@ protected Q_SLOTS:
 
   void updateError();
   void updateType(int state);
+  void handleResetButton();
 
 
   // Then we finish up with protected member variables.
@@ -74,6 +76,7 @@ protected:
   // One-line text editor for entering the outgoing ROS topic name.
   QLineEdit* _max_error_editor;
   QCheckBox* _objective_type_editor;
+  QPushButton* _reset_button;
 
   // The current name of the output topic.
   // QString _max_error;

@@ -32,6 +32,9 @@ InterfacePanel::InterfacePanel( QWidget* parent ): rviz::Panel( parent )
   // Lay out the topic field above the control widget.
   QVBoxLayout* layout = new QVBoxLayout;
   _objective_type_editor = new QCheckBox( "Precise Objective" );
+  _reset_button = new QPushButton("Reset", this);
+
+  layout->addWidget( _reset_button );
   layout->addWidget( _objective_type_editor );
   layout->addLayout( error_layout );
   setLayout( layout );
@@ -50,6 +53,7 @@ InterfacePanel::InterfacePanel( QWidget* parent ): rviz::Panel( parent )
   // Next we make signal/slot connections.
   connect( _max_error_editor, SIGNAL( editingFinished() ), this, SLOT( updateError() ));
   connect( _objective_type_editor, SIGNAL( stateChanged(int) ), this, SLOT( updateType(int) ));
+  connect(_reset_button, SIGNAL (released()), this, SLOT (handleResetButton()));
   // connect( output_timer, SIGNAL( timeout() ), this, SLOT( sendVel() ));
 
   // Start the timer.
@@ -90,6 +94,16 @@ void InterfacePanel::updateType(int state)
     _config_publisher.publish( current_config );
   }
   _max_error_editor->setEnabled( state ); //Active l'editeur d'erreur si state>0 (ie Objectif précis)
+}
+
+void InterfacePanel::handleResetButton()
+{
+  current_config.follow_object = true;
+  if( ros::ok() && _config_publisher )
+  {
+    _config_publisher.publish( current_config );
+  }
+  current_config.follow_object = false;
 }
 
 // void InterfacePanel::setError( const QString& error )

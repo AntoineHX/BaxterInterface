@@ -2,7 +2,7 @@
 
 unsigned int InteractiveObject::nextObjectID = 1;
 
-InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServer* server, const std::string& name, unsigned int type, unsigned int shape = Marker::CUBE, const tf::Vector3& position = tf::Vector3(0,0,0)) : _name(name), _type(type), _server(server), _showVisuals(true)
+InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServer* server, const std::string& name, unsigned int type, unsigned int shape = Marker::CUBE, const tf::Vector3& position = tf::Vector3(0,0,0)) : _name(name), _type(type), _server(server), _showVisuals(true), _followObject(true)
 {
 	_objectID = nextObjectID++;
 	_state.name = name;
@@ -11,9 +11,9 @@ InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServe
 
 	Marker marker;
 	marker.type = shape;
-	marker.scale.x = 0.45;
-	marker.scale.y = 0.45;
-	marker.scale.z = 0.45;
+	marker.scale.x = 0.1;
+	marker.scale.y = 0.1;
+	marker.scale.z = 0.1;
 	marker.color.r = 0.5;
 	marker.color.g = 0.5;
 	marker.color.b = 0.5;
@@ -52,6 +52,8 @@ void InteractiveObject::createInteractiveMarker(Marker& marker, const tf::Vector
 
 void InteractiveObject::processFeedback( const InteractiveMarkerFeedbackConstPtr &feedback )
 {
+	_followObject = false; //Objet manipulé -> on les libèrent
+	
 	//// Update Visual markers ////
 	// if(_showVisuals)
 	// {
@@ -277,4 +279,11 @@ void InteractiveObject::setErrorArea(double error)
 	_showVisuals = true;
 
 	_state.max_error = error;
+}
+
+void InteractiveObject::moveTo(const tf::Vector3& new_pos)
+{
+	tf::pointTFToMsg(new_pos, _int_marker.pose.position);
+	_server->insert(_int_marker);
+	_server->applyChanges();
 }
