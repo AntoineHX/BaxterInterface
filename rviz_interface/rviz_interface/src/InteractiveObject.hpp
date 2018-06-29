@@ -20,12 +20,13 @@ protected:
 	//std::vector<visualization_msgs::InteractiveMarker> _int_markers;
 	InteractiveMarker _int_marker;
 	// std::vector<Marker> _visual_markers;
-	InteractiveMarkerControl visual_container;
+	Marker _error_marker;
 
 	interactive_markers::InteractiveMarkerServer* _server;
 	rviz_interface::StateSpace _state;
 
 	ros::Publisher* _objective_pub;
+	ros::Publisher* _visual_pub;
 
 public:
 	InteractiveObject(interactive_markers::InteractiveMarkerServer* server, const std::string& name, unsigned int type, unsigned int shape, const tf::Vector3& position);
@@ -39,18 +40,20 @@ public:
 	void add3DOFcontrol();
 
 	void addVisuals();
+	void updateVisuals();
 
 	void setObjectivePublisher(ros::Publisher* objective_pub){ _objective_pub=objective_pub;}
-	// void setVisualizationPublisher(ros::Publisher* visualization_pub){ _visualization_pub=visualization_pub;}
+	void setVisualizationPublisher(ros::Publisher* visualization_pub){ _visual_pub=visualization_pub;}
 	void setErrorArea(double error);
 
 	void moveTo(const tf::Vector3& new_pos);
 
-	//std::vector<visualization_msgs::InteractiveMarker>& markers(){ return _int_markers;}
-	InteractiveMarker& marker(){ return _int_marker;}
+	InteractiveMarker& int_marker(){ return _int_marker;}
+	Marker& err_marker(){ return _error_marker;}
 	rviz_interface::StateSpace& state(){ return _state;}
 	bool isFollowing() const{ return _followObject;}
-	void follow(){ _followObject = true;}
+	void follow(bool follow = true){ _followObject = follow;}
+	void showVisuals(bool showVisuals = true){ _showVisuals=showVisuals; updateVisuals();}
 };
 
 #endif

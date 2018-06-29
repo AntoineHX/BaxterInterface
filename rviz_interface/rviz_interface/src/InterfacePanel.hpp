@@ -65,6 +65,7 @@ protected Q_SLOTS:
 
   void updateError();
   void updateType(int state);
+  void updateVisuals(int state);
   void handleResetButton();
 
 
@@ -76,6 +77,7 @@ protected:
   // One-line text editor for entering the outgoing ROS topic name.
   QLineEdit* _max_error_editor;
   QCheckBox* _objective_type_editor;
+  QCheckBox* _show_visuals_editor;
   QPushButton* _reset_button;
 
   // The current name of the output topic.

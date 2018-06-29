@@ -27,7 +27,7 @@ InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServe
 void InteractiveObject::createInteractiveMarker(Marker& marker, const tf::Vector3& position = tf::Vector3(0,0,0))
 {
 	//// Création d'un marker interactif ////
-	_int_marker.header.frame_id = "/map";
+	_int_marker.header.frame_id = "/map"; //Par défaut
 	_int_marker.header.stamp=ros::Time::now();
 	_int_marker.name = _name; //ATTENTION !
 	_int_marker.description = _name;
@@ -55,30 +55,12 @@ void InteractiveObject::processFeedback( const InteractiveMarkerFeedbackConstPtr
 {
 	_followObject = false; //Objet manipulé -> on les libèrent
 
-	//// Update Visual markers ////
-	// if(_showVisuals)
-	// {
-	// 	//Màj des visuels
-	// 	for(unsigned int i=0; i<visual_container.markers.size();i++)
-	// 	{
-	// 		visual_container.markers[i].pose = feedback->pose;
-	// 	}
-	// 	//Ajout du container
-	// 	ROS_INFO_STREAM("Name : "<<_int_marker.controls.back().name<<" / Size : "<<_int_marker.controls.size());
-	// 	if(_int_marker.controls.back().name=="visual") 
-	// 	{
-	// 		_int_marker.controls.back()=visual_container; //Modification du container deja present
-	// 	}
-	// 	else
-	// 	{
-	// 		_int_marker.controls.push_back( visual_container ); //Ajout
-	// 	}
-	// }
+	_int_marker.pose = feedback->pose; //Màj du marqueur interne
 
 	if(feedback->event_type == InteractiveMarkerFeedback::BUTTON_CLICK )
 	{
 		// Send objective
-		if(_objective_pub && feedback->control_name == "control")
+		if(ros::ok() && _objective_pub && feedback->control_name == "control")
 		{
 			rviz_interface::StateSpace msg;
 			msg.name = _state.name;
@@ -108,52 +90,35 @@ void InteractiveObject::processFeedback( const InteractiveMarkerFeedbackConstPtr
 			//Publication de l'objectif
 			_objective_pub->publish(msg);
 		}
-		// Hide visuals
-		// if(feedback->control_name == "visual")
-		// {
-		// 	_int_marker.controls.pop_back();
-		// 	_server->insert(_int_marker);
-		// 	_server->applyChanges();
-		// 	_showVisuals = false;
-		// }
 	}	
+	updateVisuals();
 }
 
-//Attention a faire en dernier ! visual container doit etre le dernier control
 void InteractiveObject::addVisuals()
 {
-	//Create the error area
-	// InteractiveMarkerControl visual_container;
-	visual_container.name = "visual";
-	visual_container.interaction_mode = InteractiveMarkerControl::BUTTON; //Click on visual effect to make them disappear
-
-	Marker error_marker;
 	// Set the frame ID and timestamp.  See the TF tutorials for information on these.
-    // error_marker.header.frame_id = "/map";
-    // error_marker.header.stamp = ros::Time::now();
+    _error_marker.header.frame_id = _int_marker.header.frame_id;
+    _error_marker.header.stamp = ros::Time::now();
 
-    // // Set the namespace and id for this marker.  This serves to create a unique ID
-    // // Any marker sent with the same namespace and id will overwrite the old one
-    // error_marker.ns = _name;
-    // error_marker.id = 0;
-	error_marker.type = visualization_msgs::Marker::SPHERE;
-	error_marker.scale.x = 1;
-	error_marker.scale.y = 1;
-	error_marker.scale.z = 1;
-	error_marker.color.r = 0.5;
-	error_marker.color.g = 0.5;
-	error_marker.color.b = 0.5;
-	error_marker.color.a = 0.5;
-	error_marker.pose = _int_marker.pose;
+    // Set the namespace and id for this marker.  This serves to create a unique ID
+    // Any marker sent with the same namespace and id will overwrite the old one
+    _error_marker.ns = _name;
+    _error_marker.id = 0;
+	_error_marker.type = visualization_msgs::Marker::SPHERE;
+	_error_marker.scale.x = _int_marker.scale;
+	_error_marker.scale.y = _int_marker.scale;
+	_error_marker.scale.z = _int_marker.scale;
+	_error_marker.color.r = 1;
+	_error_marker.color.g = 0.5;
+	_error_marker.color.b = 0.5;
+	_error_marker.color.a = 0.5;
+	_error_marker.pose = _int_marker.pose;
 
-	// _visual_markers.push_back(error_marker);
-
-	visual_container.markers.push_back( error_marker );
-
-	_int_marker.controls.push_back( visual_container );
-
-	_server->insert(_int_marker);
-	_server->applyChanges();
+	//Publie le marker si possible
+	if( ros::ok() && _visual_pub )
+	{
+		_visual_pub->publish(_error_marker);
+	}
 }
 
 void InteractiveObject::addButtoncontrol()
@@ -280,6 +245,8 @@ void InteractiveObject::setErrorArea(double error)
 	_showVisuals = true;
 
 	_state.max_error = error;
+
+	updateVisuals();
 }
 
 void InteractiveObject::moveTo(const tf::Vector3& new_pos)
@@ -287,4 +254,32 @@ void InteractiveObject::moveTo(const tf::Vector3& new_pos)
 	tf::pointTFToMsg(new_pos, _int_marker.pose.position);
 	_server->insert(_int_marker);
 	_server->applyChanges();
+
+	updateVisuals();
+}
+
+void InteractiveObject::updateVisuals()
+{
+	// ROS_INFO_STREAM("Update visuals");
+	if(!_showVisuals)
+	{
+		// ROS_INFO_STREAM("Suppresion des visuels");
+		_error_marker.action = 2; //Suppresion du marker
+	}
+	else
+	{
+		_error_marker.action = 0; //Ajout/modification du marker
+
+		_error_marker.scale.x = _state.max_error;
+		_error_marker.scale.y = _state.max_error;
+		_error_marker.scale.z = _state.max_error;
+
+		_error_marker.pose = _int_marker.pose;
+	}
+
+	//Publie le marker si possible
+	if( ros::ok() && _visual_pub )
+	{
+		_visual_pub->publish(_error_marker);
+	}
 }

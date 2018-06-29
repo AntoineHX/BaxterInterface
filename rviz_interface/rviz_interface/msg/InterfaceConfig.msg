@@ -12,3 +12,6 @@ float32 max_error
 #Follow Object: boolean (true : les marqueur suivent les objets)
 uint8 follow_object
 
+#Show Visuals: Affichage d'infos supplémentaires (zone d'erreur)
+uint8 show_visuals
+

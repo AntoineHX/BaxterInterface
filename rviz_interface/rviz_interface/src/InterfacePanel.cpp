@@ -32,11 +32,13 @@ InterfacePanel::InterfacePanel( QWidget* parent ): rviz::Panel( parent )
   // Lay out the topic field above the control widget.
   QVBoxLayout* layout = new QVBoxLayout;
   _objective_type_editor = new QCheckBox( "Precise Objective" );
+  _show_visuals_editor = new QCheckBox( "Show Visuals" );
   _reset_button = new QPushButton("Reset", this);
 
   layout->addWidget( _reset_button );
   layout->addWidget( _objective_type_editor );
   layout->addLayout( error_layout );
+  layout->addWidget( _show_visuals_editor );
   setLayout( layout );
 
   // Create a timer for sending the output.  Motor controllers want to
@@ -54,6 +56,7 @@ InterfacePanel::InterfacePanel( QWidget* parent ): rviz::Panel( parent )
   connect( _max_error_editor, SIGNAL( editingFinished() ), this, SLOT( updateError() ));
   connect( _objective_type_editor, SIGNAL( stateChanged(int) ), this, SLOT( updateType(int) ));
   connect(_reset_button, SIGNAL (released()), this, SLOT (handleResetButton()));
+  connect( _show_visuals_editor, SIGNAL( stateChanged(int) ), this, SLOT( updateVisuals(int) ));
   // connect( output_timer, SIGNAL( timeout() ), this, SLOT( sendVel() ));
 
   // Start the timer.
@@ -89,11 +92,28 @@ void InterfacePanel::updateError()
 void InterfacePanel::updateType(int state)
 {
   current_config.objective_type = state;
+
+  _max_error_editor->setEnabled( state ); //Active l'editeur d'erreur si state>0 (ie Objectif précis)
+  if(! state) //Pas d'objectif précis
+  {
+    _show_visuals_editor->setCheckState( Qt::Unchecked ); //Affichage de la zone d'erreur inutile
+    current_config.show_visuals = 0;
+  }
+
+  //Publication si possible
   if( ros::ok() && _config_publisher )
   {
     _config_publisher.publish( current_config );
   }
-  _max_error_editor->setEnabled( state ); //Active l'editeur d'erreur si state>0 (ie Objectif précis)
+}
+
+void InterfacePanel::updateVisuals(int state)
+{
+  current_config.show_visuals = state;
+  if( ros::ok() && _config_publisher )
+  {
+    _config_publisher.publish( current_config );
+  }
 }
 
 void InterfacePanel::handleResetButton()
