@@ -2,6 +2,7 @@
 
 unsigned int InteractiveObject::nextObjectID = 1;
 
+//Constructeur
 InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServer* server, const std::string& name, unsigned int type, unsigned int shape = Marker::CUBE, const tf::Vector3& position = tf::Vector3(0,0,0)) : _name(name), _type(type), _server(server), _showVisuals(true), _followObject(true)
 {
 	_objectID = nextObjectID++;
@@ -11,9 +12,9 @@ InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServe
 
 	Marker marker;
 	marker.type = shape;
-	marker.scale.x = 0.1;
-	marker.scale.y = 0.1;
-	marker.scale.z = 0.1;
+	marker.scale.x = 0.07;
+	marker.scale.y = 0.07;
+	marker.scale.z = 0.07;
 	marker.color.r = 0.5;
 	marker.color.g = 0.5;
 	marker.color.b = 0.5;
@@ -23,7 +24,7 @@ InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServe
 	addButtoncontrol();
 }
 
- //Name must be unique
+ //Construit un InteractiveMarker
 void InteractiveObject::createInteractiveMarker(Marker& marker, const tf::Vector3& position = tf::Vector3(0,0,0))
 {
 	//// Création d'un marker interactif ////
@@ -51,6 +52,7 @@ void InteractiveObject::createInteractiveMarker(Marker& marker, const tf::Vector
 	_server->applyChanges();
 }
 
+//Fonction callback du serveur d' InteractiveMarker
 void InteractiveObject::processFeedback( const InteractiveMarkerFeedbackConstPtr &feedback )
 {
 	_followObject = false; //Objet manipulé -> on les libèrent
@@ -94,33 +96,7 @@ void InteractiveObject::processFeedback( const InteractiveMarkerFeedbackConstPtr
 	updateVisuals();
 }
 
-void InteractiveObject::addVisuals()
-{
-	// Set the frame ID and timestamp.  See the TF tutorials for information on these.
-    _error_marker.header.frame_id = _int_marker.header.frame_id;
-    _error_marker.header.stamp = ros::Time::now();
-
-    // Set the namespace and id for this marker.  This serves to create a unique ID
-    // Any marker sent with the same namespace and id will overwrite the old one
-    _error_marker.ns = _name;
-    _error_marker.id = 0;
-	_error_marker.type = visualization_msgs::Marker::SPHERE;
-	_error_marker.scale.x = _int_marker.scale;
-	_error_marker.scale.y = _int_marker.scale;
-	_error_marker.scale.z = _int_marker.scale;
-	_error_marker.color.r = 1;
-	_error_marker.color.g = 0.5;
-	_error_marker.color.b = 0.5;
-	_error_marker.color.a = 0.5;
-	_error_marker.pose = _int_marker.pose;
-
-	//Publie le marker si possible
-	if( ros::ok() && _visual_pub )
-	{
-		_visual_pub->publish(_error_marker);
-	}
-}
-
+//Ajoute une fonction bouton
 void InteractiveObject::addButtoncontrol()
 {
 	//// Ajout d'interactions ////
@@ -137,7 +113,7 @@ void InteractiveObject::addButtoncontrol()
 	_server->applyChanges();
 }
 
-//6DOF + Boutton
+//Ajoute des controle pour 6DOF
 void InteractiveObject::add6DOFcontrol()
 {
 	//// Ajout d'interactions ////
@@ -193,7 +169,7 @@ void InteractiveObject::add6DOFcontrol()
 	_server->applyChanges();
 }
 
-//3DOF + Boutton
+//Ajoute des controle pour 3DOF
 void InteractiveObject::add3DOFcontrol()
 {
 	//// Ajout d'interactions ////
@@ -240,6 +216,7 @@ void InteractiveObject::add3DOFcontrol()
 	_server->applyChanges();
 }
 
+//Met à jour la zone d'erreur
 void InteractiveObject::setErrorArea(double error)
 {
 	_showVisuals = true;
@@ -249,6 +226,7 @@ void InteractiveObject::setErrorArea(double error)
 	updateVisuals();
 }
 
+//Déplace le marker à une position donnée
 void InteractiveObject::moveTo(const tf::Vector3& new_pos)
 {
 	tf::pointTFToMsg(new_pos, _int_marker.pose.position);
@@ -258,6 +236,35 @@ void InteractiveObject::moveTo(const tf::Vector3& new_pos)
 	updateVisuals();
 }
 
+//Ajoute des infos visuelles (Zone d'erreur)
+void InteractiveObject::addVisuals()
+{
+	// Set the frame ID and timestamp.  See the TF tutorials for information on these.
+    _error_marker.header.frame_id = _int_marker.header.frame_id;
+    _error_marker.header.stamp = ros::Time::now();
+
+    // Set the namespace and id for this marker.  This serves to create a unique ID
+    // Any marker sent with the same namespace and id will overwrite the old one
+    _error_marker.ns = _name;
+    _error_marker.id = 0;
+	_error_marker.type = visualization_msgs::Marker::SPHERE;
+	_error_marker.scale.x = _int_marker.scale;
+	_error_marker.scale.y = _int_marker.scale;
+	_error_marker.scale.z = _int_marker.scale;
+	_error_marker.color.r = 1;
+	_error_marker.color.g = 0.5;
+	_error_marker.color.b = 0.5;
+	_error_marker.color.a = 0.5;
+	_error_marker.pose = _int_marker.pose;
+
+	//Publie le marker si possible
+	if( ros::ok() && _visual_pub )
+	{
+		_visual_pub->publish(_error_marker);
+	}
+}
+
+//Rafraichis les infos visuelles
 void InteractiveObject::updateVisuals()
 {
 	// ROS_INFO_STREAM("Update visuals");

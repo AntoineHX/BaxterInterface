@@ -1,5 +1,6 @@
 #include "RvizInterface.hpp"
 
+//Constructeur
 RvizInterface::RvizInterface(): _server("RvizInterface")
 {
 	//Topic you want to publish
@@ -24,6 +25,7 @@ RvizInterface::RvizInterface(): _server("RvizInterface")
 	}
 }
 
+//Destructeur
 RvizInterface::~RvizInterface()
 {
 	for(unsigned int i=0;i<_objects.size();i++)
@@ -32,6 +34,7 @@ RvizInterface::~RvizInterface()
 	}
 }
 
+//Fonction Callback du panel Rviz gérant les configurations
 void RvizInterface::configCallback(const rviz_interface::InterfaceConfig & new_config)
 {
 	for(unsigned int i=0;i<_objects.size();i++)
@@ -47,6 +50,7 @@ void RvizInterface::configCallback(const rviz_interface::InterfaceConfig & new_c
 	}
 }
 
+//Fonction callback gérant la position de l'objet
 //PROVISOIRE : Pour un seul objet avec test PCL
 void RvizInterface::positionCallback(const geometry_msgs::PointStamped & new_center)
 {
