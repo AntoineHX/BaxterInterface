@@ -113,7 +113,7 @@ void InteractiveObject::addButtoncontrol()
 	_server->applyChanges();
 }
 
-//Ajoute des controle pour 6DOF
+//Ajoute des controle pour 6DOF (Déplacement dans l'espace)
 void InteractiveObject::add6DOFcontrol()
 {
 	//// Ajout d'interactions ////
@@ -169,7 +169,7 @@ void InteractiveObject::add6DOFcontrol()
 	_server->applyChanges();
 }
 
-//Ajoute des controle pour 3DOF
+//Ajoute des controle pour 3DOF (Déplacement dans le plan x/z)
 void InteractiveObject::add3DOFcontrol()
 {
 	//// Ajout d'interactions ////
@@ -206,6 +206,34 @@ void InteractiveObject::add3DOFcontrol()
 	//Ajout des controles associées
 	marker_control.name = "move_z";
 	marker_control.interaction_mode = InteractiveMarkerControl::MOVE_AXIS;
+	_int_marker.controls.push_back(marker_control);
+
+	// add the interactive marker to our collection &
+	// tell the server to call processFeedback() when feedback arrives for it
+	_server->insert(_int_marker);
+
+	// 'commit' changes and send to all clients
+	_server->applyChanges();
+}
+
+//Ajoute des controle pour 3DOF (Déplacement dans le plan)
+void InteractiveObject::add3DOFcontrol(const tf::Vector3& normal)
+{
+	//// Ajout d'interactions ////
+	InteractiveMarkerControl marker_control;
+
+	//_int_marker.controls[0].name= "2D";
+
+	marker_control.orientation_mode = InteractiveMarkerControl::FIXED;
+
+	//Orientation du vecteur
+	marker_control.orientation.w = 1;
+	marker_control.orientation.x = normal.x();
+	marker_control.orientation.y = normal.y();
+	marker_control.orientation.z = normal.z();
+	//Ajout des controles associées
+	marker_control.name = "move_plane";
+	marker_control.interaction_mode = InteractiveMarkerControl::MOVE_ROTATE;
 	_int_marker.controls.push_back(marker_control);
 
 	// add the interactive marker to our collection &

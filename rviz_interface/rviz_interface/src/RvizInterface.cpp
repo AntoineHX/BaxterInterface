@@ -13,6 +13,7 @@ RvizInterface::RvizInterface(): _server("RvizInterface")
 
 	_objects.push_back(new InteractiveObject(&_server, "Test", (int) rviz_interface::StateSpace::STATE_3D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
 	_objects[0]->add6DOFcontrol();
+	// _objects[0]->add3DOFcontrol(tf::Vector3(0.5,0.5,0));
 
 	// _objects.push_back(new InteractiveObject(&_server, "Test 2", (int) rviz_interface::StateSpace::STATE_2D, (int) visualization_msgs::Marker::CUBE, tf::Vector3(3,3,0)));
 	// _objects[1]->add3DOFcontrol();

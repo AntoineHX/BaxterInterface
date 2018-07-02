@@ -42,8 +42,10 @@ public:
 	void addButtoncontrol();
 	//Ajoute des controle pour 6DOF (Déplacement dans l'espace)
 	void add6DOFcontrol();
-	//Ajoute des controle pour 3DOF (Déplacement dans le plan)
+	//Ajoute des controle pour 3DOF (Déplacement dans le plan x/z)
 	void add3DOFcontrol();
+	//Ajoute des controle pour 3DOF (Déplacement dans le plan)
+	void add3DOFcontrol(const tf::Vector3& normal);
 
 	//Ajoute des infos visuelles (Zone d'erreur)
 	void addVisuals();
