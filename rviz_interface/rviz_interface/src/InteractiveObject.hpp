@@ -59,6 +59,7 @@ public:
 	void moveTo(const tf::Vector3& new_pos);
 
 	//Accesseurs
+	const std::string& name() const{ return _name;}
 	void setObjectivePublisher(ros::Publisher* objective_pub){ _objective_pub=objective_pub;}
 	void setVisualizationPublisher(ros::Publisher* visualization_pub){ _visual_pub=visualization_pub;}
 	InteractiveMarker& int_marker(){ return _int_marker;}

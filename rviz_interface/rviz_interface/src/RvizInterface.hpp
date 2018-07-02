@@ -10,6 +10,8 @@
 
 #include <rviz_interface/InterfaceConfig.h>
 
+#include <rviz_interface/NamedPoint.h>
+
 class RvizInterface
 {
 protected:
@@ -38,7 +40,7 @@ public:
 
 	//Fonction callback gérant la position de l'objet
 	//PROVISOIRE : Pour un seul objet avec test PCL
-	void positionCallback(const geometry_msgs::PointStamped & new_center);
+	void positionCallback(const rviz_interface::NamedPoint & new_center);
 };
 
 #endif

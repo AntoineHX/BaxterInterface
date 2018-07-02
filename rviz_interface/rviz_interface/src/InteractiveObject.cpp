@@ -28,8 +28,9 @@ InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServe
 void InteractiveObject::createInteractiveMarker(Marker& marker, const tf::Vector3& position = tf::Vector3(0,0,0))
 {
 	//// Création d'un marker interactif ////
-	_int_marker.header.frame_id = "/map"; //Par défaut
-	_int_marker.header.stamp=ros::Time::now();
+	// _int_marker.header.frame_id = "/map"; //Par défaut
+	_int_marker.header.frame_id = "/camera_rgb_optical_frame";
+	_int_marker.header.stamp= ros::Time::now();
 	_int_marker.name = _name; //ATTENTION !
 	_int_marker.description = _name;
 	tf::pointTFToMsg(position, _int_marker.pose.position);
