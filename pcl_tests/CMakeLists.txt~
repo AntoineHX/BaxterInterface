@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(my_pcl_tutorial)
+project(my_pcl_tests)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -135,8 +135,8 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/my_pcl_tutorial_node.cpp)
-add_executable(example src/plannar_segmentation.cpp)
-target_link_libraries(example ${catkin_LIBRARIES})
+add_executable(plannar_seg src/plannar_segmentation.cpp)
+target_link_libraries(plannar_seg ${catkin_LIBRARIES})
 
 
 ## Rename C++ executable without prefix
