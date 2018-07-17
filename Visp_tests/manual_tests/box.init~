@@ -1,0 +1,6 @@
+5                  # Number of points
+0     0      0     # Point 0
+0.200 0      0     # Point 3
+0.200 0.120  0
+0     0.120  0     # Point 7
+0     0.120 -0.080
