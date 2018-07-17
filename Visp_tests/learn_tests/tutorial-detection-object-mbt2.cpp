@@ -9,9 +9,19 @@
 #include <visp3/vision/vpKeyPoint.h>
 
 //Options
-#define IMATCHING
+// #define IMATCHING
 #define HYBRID_MATCHING
 #define VAR_TRESH
+
+#ifdef HYBRID_MATCHING
+    enum State
+    {
+      WAITING_FOR_INITIALIZATION,
+      TRACKING,
+      LOST,
+      UNCERTAIN
+    };
+#endif
 
 #if (VISP_HAVE_OPENCV_VERSION >= 0x020400)
 void learnCube(const vpImage<unsigned char> &I, vpMbGenericTracker &tracker, vpKeyPoint &keypoint_learning, int id)
@@ -49,6 +59,7 @@ void learnCube(const vpImage<unsigned char> &I, vpMbGenericTracker &tracker, vpK
 }
 #endif
 
+#ifdef VAR_TRESH
 //Compute cummulative variance of a list of vector. 
 double varVector(std::list< vpArray2D<double> > vector_list)
 {
@@ -90,6 +101,34 @@ double varVector(std::list< vpArray2D<double> > vector_list)
   }
   return var[0]+var[1]+var[2];
 }
+#endif
+
+#ifdef HYBRID_MATCHING
+float computeConfidenceLevel(std::list<State> states)
+{
+  float res = 0;
+
+  for (std::list<State>::iterator it=states.begin(); it != states.end(); ++it)
+  {
+    switch(*it)
+    {
+      case TRACKING:
+        res += 1;
+        break;
+      case UNCERTAIN:
+        res += 0.5;
+        break;
+      case LOST:
+        res -=1;
+      case WAITING_FOR_INITIALIZATION:
+        break;
+    }
+  }
+  res = res/states.size();
+
+  return res;
+}
+#endif
 
 int main(int argc, char **argv)
 {
@@ -301,9 +340,9 @@ int main(int argc, char **argv)
     // g.close();
 
     //! [Save learning data]
-    keypoint_learning.saveLearningData("book_learning_data.bin", true); //BUG ? chargement des data bloqué si on enregistre pas les images
+    keypoint_learning.saveLearningData("book_learning_data.bin", true, false);
     //! [Save learning data]
-    // std::cout<<"Saved"<<std::endl;
+
     /*
      * Start the part of the code dedicated to detection and localization
      */
@@ -319,11 +358,9 @@ int main(int argc, char **argv)
     }
 #endif
     //! [Init keypoint detection]
-    // std::cout<<"Load"<<std::endl;
     //! [Load teabox learning data]
     keypoint_detection.loadLearningData("book_learning_data.bin", true);
     //! [Load teabox learning data]
-    // std::cout<<"Loaded"<<std::endl;
 
 #ifdef IMATCHING
     //! [Create image matching]
@@ -336,10 +373,6 @@ int main(int argc, char **argv)
     vpVideoReader g;
     g.setFileName(videoname);
     g.open(I);
-
-    // std::cout<<"Reading : "<<videoname<<std::endl;
-    // std::string testName[] = {"train_image_000.png", "train_image_002.png", "train_image_003.png", "train_image_004.png", "train_image_005.png"};
-    // vpImageIo::read(I, testName[0]);
 
 #if defined VISP_HAVE_X11
     vpDisplayX display2;
@@ -357,7 +390,6 @@ int main(int argc, char **argv)
     vpDisplay::setTitle(I, "Cube detection and localization");
 
 ///// TEST ////
-// vpRect* rect_roi = NULL;
 // if(rect_roi==NULL)
 //   rect_roi = new vpRect();
 // double time=0, nb=0;
@@ -367,7 +399,7 @@ int main(int argc, char **argv)
     //Var Treshold
     std::list< vpArray2D<double> > translation_mem;
     std::list< vpArray2D<double> > rotation_mem;
-    unsigned int mem_length = 15;
+    unsigned int var_mem_length = 15;
     double tvar_treshold = 0.3;
     double rvar_treshold = 0.5;
     double tvar, rvar;
@@ -375,9 +407,13 @@ int main(int argc, char **argv)
   #endif
 
   #ifdef HYBRID_MATCHING
-    bool lost = true;
-    bool init =false;
+    vpRect* rect_roi = new vpRect();
+    State track_state = WAITING_FOR_INITIALIZATION;
+    std::list<State> state_mem;
+    unsigned int state_mem_length = 10;
   #endif
+
+
 ///////////////
 
     double error;
@@ -394,7 +430,7 @@ int main(int argc, char **argv)
 
       vpDisplay::display(IMatching);
     #endif
-      vpDisplay::displayText(I, 10, 10, "Detection and localization in process...", vpColor::red);
+      // vpDisplay::displayText(I, 10, 10, "Detection and localization in process...", vpColor::red);
 
       double elapsedTime;
 
@@ -410,19 +446,19 @@ int main(int argc, char **argv)
         translation_mem.push_front(cMo.getTranslationVector());
         rotation_mem.push_front(cMo.getThetaUVector());
       
-        if(translation_mem.size()==mem_length)
+        if(translation_mem.size()==var_mem_length)
         {
           // tvar = varVector(translation_mem);
           // std::cout<<"Var trans : "<<tvar<<std::endl;
           translation_mem.pop_back();
         }
-        if(rotation_mem.size()==mem_length)
+        if(rotation_mem.size()==var_mem_length)
         {
           // rvar=varVector(rotation_mem);
           // std::cout<<"Var rot : "<<rvar<<std::endl;
           rotation_mem.pop_back();
         }
-        
+
         tvar = varVector(translation_mem);
         rvar=varVector(rotation_mem);
         if(tvar < tvar_treshold && rvar < rvar_treshold)
@@ -431,12 +467,11 @@ int main(int argc, char **argv)
       #endif
 
       #ifdef HYBRID_MATCHING
-        //Init ou Reinit du tracker après perte
-        if(lost || !init)
+        //Init ou Reinit du tracker après perte ou après incertitude
+        if(track_state != TRACKING || (tvar<0.1 && rvar<0.1))
         {
           tracker.initFromPose(I,cMo);
-          lost = false;
-          init =true;
+          track_state = TRACKING;
         }
       #endif
         //! [Tracker set pose]
@@ -480,9 +515,47 @@ int main(int argc, char **argv)
         {
           std::cout<<"Object detection uncertain in frame : "<<g.getFrameIndex()<<std::endl;
 
-#ifdef HYBRID_MATCHING
-          lost = true;
-#endif
+        #ifdef HYBRID_MATCHING
+          //Tentative d'améliorationde la détédction avec ROI
+          if(track_state == TRACKING || track_state == UNCERTAIN) //Tracker initialisé
+          {
+            std::vector<vpImagePoint> roi;
+            for(unsigned int i=0; i<tracker.getNbPolygon();i++)
+            {
+                std::vector<vpImagePoint> temp = tracker.getPolygon(i)->getRoi(cam);
+                roi.insert(roi.end(), temp.begin(), temp.end());
+            }
+            delete rect_roi;
+            rect_roi = new vpRect(roi);
+
+            if (keypoint_detection.matchPoint(I, cam, cMo, error, elapsedTime,NULL,*rect_roi))
+            {
+              //Remplace previous result
+              translation_mem.pop_front();
+              rotation_mem.pop_front();
+              translation_mem.push_front(cMo.getTranslationVector());
+              rotation_mem.push_front(cMo.getThetaUVector());
+
+              tvar = varVector(translation_mem);
+              rvar=varVector(rotation_mem);
+              if(tvar < tvar_treshold && rvar < rvar_treshold)
+              {
+                std::cout<<"Object detection improved : "<<g.getFrameIndex()<<std::endl;
+                vpDisplay::displayFrame(I, cMo, cam, 0.05, vpColor::none, 3);
+                track_state = TRACKING;
+              }
+              else 
+              {
+                track_state = UNCERTAIN;
+              }
+            }
+          }
+        #endif
+
+// #ifdef HYBRID_MATCHING
+//           // lost = true;
+//           uncertain = true;
+// #endif
         }
 #endif
 
@@ -547,12 +620,14 @@ int main(int argc, char **argv)
       {
         std::cout<<"Object Lost in frame : "<<g.getFrameIndex()<<std::endl;
       #ifdef HYBRID_MATCHING
-        lost = true;
+        // lost = true;
+        // uncertain = true;
+        track_state = UNCERTAIN;
       #endif
       }
 
     #ifdef HYBRID_MATCHING
-      if(init) //Tracker intialisé
+      if(track_state == TRACKING || track_state == UNCERTAIN) //Tracker intialisé
       {
         try
         {
@@ -561,12 +636,26 @@ int main(int argc, char **argv)
         }
         catch(...)
         {
-          lost = true;
+          // lost = true;
+          track_state = LOST;
           std::cout<<"Tracker : Object Lost in frame : "<<g.getFrameIndex()<<std::endl;
         }
       
-        tracker.getPose(cMo);
-        tracker.display(I, cMo, cam, vpColor::blue, 4);
+        if(track_state !=LOST)
+        { 
+          tracker.getPose(cMo);
+          tracker.display(I, cMo, cam, vpColor::blue, 4);
+        }
+      }
+      state_mem.push_front(track_state);
+      if(state_mem.size()==state_mem_length)
+      {
+        std::stringstream title2;
+        title2 << "Confidence level :"<<computeConfidenceLevel(state_mem);
+        // vpDisplay::displayText(I, 10, 10, "Confidence Level : "+std::to_string(computeConfidenceLevel(state_mem)), vpColor::red); //C++11
+        vpDisplay::displayText(I, 10, 10, title2.str().c_str(), vpColor::red);
+        // std::cout<<"Confidence level :"<<computeConfidenceLevel(state_mem)<<std::endl;
+        state_mem.pop_back();
       }
     #endif
 
