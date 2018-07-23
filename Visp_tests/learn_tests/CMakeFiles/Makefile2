@@ -53,38 +53,38 @@ CMAKE_SOURCE_DIR = /home/harle/catkin_ws/src/BaxterInterface/Visp_tests/learn_te
 CMAKE_BINARY_DIR = /home/harle/catkin_ws/src/BaxterInterface/Visp_tests/learn_tests
 
 #=============================================================================
-# Target rules for target CMakeFiles/detection_multi_tracker.dir
+# Target rules for target CMakeFiles/detection_limited_info.dir
 
 # All Build rule for target.
-CMakeFiles/detection_multi_tracker.dir/all:
-	$(MAKE) -f CMakeFiles/detection_multi_tracker.dir/build.make CMakeFiles/detection_multi_tracker.dir/depend
-	$(MAKE) -f CMakeFiles/detection_multi_tracker.dir/build.make CMakeFiles/detection_multi_tracker.dir/build
+CMakeFiles/detection_limited_info.dir/all:
+	$(MAKE) -f CMakeFiles/detection_limited_info.dir/build.make CMakeFiles/detection_limited_info.dir/depend
+	$(MAKE) -f CMakeFiles/detection_limited_info.dir/build.make CMakeFiles/detection_limited_info.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/Visp_tests/learn_tests/CMakeFiles  1
-	@echo "Built target detection_multi_tracker"
-.PHONY : CMakeFiles/detection_multi_tracker.dir/all
+	@echo "Built target detection_limited_info"
+.PHONY : CMakeFiles/detection_limited_info.dir/all
 
 # Include target in all.
-all: CMakeFiles/detection_multi_tracker.dir/all
+all: CMakeFiles/detection_limited_info.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/detection_multi_tracker.dir/rule: cmake_check_build_system
+CMakeFiles/detection_limited_info.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/harle/catkin_ws/src/BaxterInterface/Visp_tests/learn_tests/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/detection_multi_tracker.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/detection_limited_info.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/harle/catkin_ws/src/BaxterInterface/Visp_tests/learn_tests/CMakeFiles 0
-.PHONY : CMakeFiles/detection_multi_tracker.dir/rule
+.PHONY : CMakeFiles/detection_limited_info.dir/rule
 
 # Convenience name for target.
-detection_multi_tracker: CMakeFiles/detection_multi_tracker.dir/rule
-.PHONY : detection_multi_tracker
+detection_limited_info: CMakeFiles/detection_limited_info.dir/rule
+.PHONY : detection_limited_info
 
 # clean rule for target.
-CMakeFiles/detection_multi_tracker.dir/clean:
-	$(MAKE) -f CMakeFiles/detection_multi_tracker.dir/build.make CMakeFiles/detection_multi_tracker.dir/clean
-.PHONY : CMakeFiles/detection_multi_tracker.dir/clean
+CMakeFiles/detection_limited_info.dir/clean:
+	$(MAKE) -f CMakeFiles/detection_limited_info.dir/build.make CMakeFiles/detection_limited_info.dir/clean
+.PHONY : CMakeFiles/detection_limited_info.dir/clean
 
 # clean rule for target.
-clean: CMakeFiles/detection_multi_tracker.dir/clean
+clean: CMakeFiles/detection_limited_info.dir/clean
 .PHONY : clean
 
 #=============================================================================

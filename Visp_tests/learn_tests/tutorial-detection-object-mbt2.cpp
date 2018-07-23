@@ -19,7 +19,7 @@
       WAITING_FOR_INITIALIZATION,
       TRACKING,
       LOST,
-      UNCERTAIN
+      UNCERTAIN //=Tracking OK / Matching FAIL
     };
 #endif
 
@@ -340,7 +340,11 @@ int main(int argc, char **argv)
     // g.close();
 
     //! [Save learning data]
+    #ifdef IMATCHING
+    keypoint_learning.saveLearningData("book_learning_data.bin", true, true); //+sauvegarde des images d'entrainement pour l'affichage
+    #else
     keypoint_learning.saveLearningData("book_learning_data.bin", true, false);
+    #endif
     //! [Save learning data]
 
     /*
@@ -399,7 +403,7 @@ int main(int argc, char **argv)
     //Var Treshold
     std::list< vpArray2D<double> > translation_mem;
     std::list< vpArray2D<double> > rotation_mem;
-    unsigned int var_mem_length = 15;
+    unsigned int var_mem_length = 15; // + = stabilité / - = rapidité
     double tvar_treshold = 0.3;
     double rvar_treshold = 0.5;
     double tvar, rvar;
@@ -549,13 +553,13 @@ int main(int argc, char **argv)
                 track_state = UNCERTAIN;
               }
             }
+            //BoF BOF
+            // else if( track_state = WAITING_FOR_INITIALIZATION )
+            // {
+            //   track_state = UNCERTAIN;
+            // }
           }
         #endif
-
-// #ifdef HYBRID_MATCHING
-//           // lost = true;
-//           uncertain = true;
-// #endif
         }
 #endif
 
@@ -620,8 +624,6 @@ int main(int argc, char **argv)
       {
         std::cout<<"Object Lost in frame : "<<g.getFrameIndex()<<std::endl;
       #ifdef HYBRID_MATCHING
-        // lost = true;
-        // uncertain = true;
         track_state = UNCERTAIN;
       #endif
       }
@@ -636,7 +638,6 @@ int main(int argc, char **argv)
         }
         catch(...)
         {
-          // lost = true;
           track_state = LOST;
           std::cout<<"Tracker : Object Lost in frame : "<<g.getFrameIndex()<<std::endl;
         }

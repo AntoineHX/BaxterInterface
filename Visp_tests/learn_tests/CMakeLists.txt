@@ -7,7 +7,8 @@ find_package(VISP REQUIRED visp_core visp_vision visp_mbt visp_io visp_gui)
 # set the list of source files
 set(tutorial_cpp
   tutorial-detection-object-mbt2.cpp
-	detection_multi_tracker.cpp
+	#detection_multi_tracker.cpp
+	detection_limited_info.cpp
 )
 
 

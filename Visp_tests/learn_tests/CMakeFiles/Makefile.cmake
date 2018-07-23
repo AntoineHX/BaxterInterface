@@ -43,6 +43,6 @@ SET(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 SET(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/detection_multi_tracker.dir/DependInfo.cmake"
+  "CMakeFiles/detection_limited_info.dir/DependInfo.cmake"
   "CMakeFiles/tutorial-detection-object-mbt2.dir/DependInfo.cmake"
   )

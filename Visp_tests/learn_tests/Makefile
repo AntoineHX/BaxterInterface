@@ -99,17 +99,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named detection_multi_tracker
+# Target rules for targets named detection_limited_info
 
 # Build rule for target.
-detection_multi_tracker: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 detection_multi_tracker
-.PHONY : detection_multi_tracker
+detection_limited_info: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 detection_limited_info
+.PHONY : detection_limited_info
 
 # fast build rule for target.
-detection_multi_tracker/fast:
-	$(MAKE) -f CMakeFiles/detection_multi_tracker.dir/build.make CMakeFiles/detection_multi_tracker.dir/build
-.PHONY : detection_multi_tracker/fast
+detection_limited_info/fast:
+	$(MAKE) -f CMakeFiles/detection_limited_info.dir/build.make CMakeFiles/detection_limited_info.dir/build
+.PHONY : detection_limited_info/fast
 
 #=============================================================================
 # Target rules for targets named tutorial-detection-object-mbt2
@@ -124,29 +124,29 @@ tutorial-detection-object-mbt2/fast:
 	$(MAKE) -f CMakeFiles/tutorial-detection-object-mbt2.dir/build.make CMakeFiles/tutorial-detection-object-mbt2.dir/build
 .PHONY : tutorial-detection-object-mbt2/fast
 
-detection_multi_tracker.o: detection_multi_tracker.cpp.o
-.PHONY : detection_multi_tracker.o
+detection_limited_info.o: detection_limited_info.cpp.o
+.PHONY : detection_limited_info.o
 
 # target to build an object file
-detection_multi_tracker.cpp.o:
-	$(MAKE) -f CMakeFiles/detection_multi_tracker.dir/build.make CMakeFiles/detection_multi_tracker.dir/detection_multi_tracker.cpp.o
-.PHONY : detection_multi_tracker.cpp.o
+detection_limited_info.cpp.o:
+	$(MAKE) -f CMakeFiles/detection_limited_info.dir/build.make CMakeFiles/detection_limited_info.dir/detection_limited_info.cpp.o
+.PHONY : detection_limited_info.cpp.o
 
-detection_multi_tracker.i: detection_multi_tracker.cpp.i
-.PHONY : detection_multi_tracker.i
+detection_limited_info.i: detection_limited_info.cpp.i
+.PHONY : detection_limited_info.i
 
 # target to preprocess a source file
-detection_multi_tracker.cpp.i:
-	$(MAKE) -f CMakeFiles/detection_multi_tracker.dir/build.make CMakeFiles/detection_multi_tracker.dir/detection_multi_tracker.cpp.i
-.PHONY : detection_multi_tracker.cpp.i
+detection_limited_info.cpp.i:
+	$(MAKE) -f CMakeFiles/detection_limited_info.dir/build.make CMakeFiles/detection_limited_info.dir/detection_limited_info.cpp.i
+.PHONY : detection_limited_info.cpp.i
 
-detection_multi_tracker.s: detection_multi_tracker.cpp.s
-.PHONY : detection_multi_tracker.s
+detection_limited_info.s: detection_limited_info.cpp.s
+.PHONY : detection_limited_info.s
 
 # target to generate assembly for a file
-detection_multi_tracker.cpp.s:
-	$(MAKE) -f CMakeFiles/detection_multi_tracker.dir/build.make CMakeFiles/detection_multi_tracker.dir/detection_multi_tracker.cpp.s
-.PHONY : detection_multi_tracker.cpp.s
+detection_limited_info.cpp.s:
+	$(MAKE) -f CMakeFiles/detection_limited_info.dir/build.make CMakeFiles/detection_limited_info.dir/detection_limited_info.cpp.s
+.PHONY : detection_limited_info.cpp.s
 
 tutorial-detection-object-mbt2.o: tutorial-detection-object-mbt2.cpp.o
 .PHONY : tutorial-detection-object-mbt2.o
@@ -178,13 +178,13 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... detection_multi_tracker"
+	@echo "... detection_limited_info"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... tutorial-detection-object-mbt2"
-	@echo "... detection_multi_tracker.o"
-	@echo "... detection_multi_tracker.i"
-	@echo "... detection_multi_tracker.s"
+	@echo "... detection_limited_info.o"
+	@echo "... detection_limited_info.i"
+	@echo "... detection_limited_info.s"
 	@echo "... tutorial-detection-object-mbt2.o"
 	@echo "... tutorial-detection-object-mbt2.i"
 	@echo "... tutorial-detection-object-mbt2.s"
