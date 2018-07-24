@@ -1,14 +1,14 @@
 #include "ASIFT_matcher.hpp"
 
-ASIFT_matcher::ASIFT_matcher()
+ASIFT_matcher::ASIFT_matcher(): _verb(0), _nb_refs(0), _resize_imgs(false)
 {
 	default_sift_parameters(_siftParam);
 }
 
-ASIFT_matcher::~ASIFT_matcher()
-{
+// ASIFT_matcher::~ASIFT_matcher()
+// {
 
-}
+// }
 
 bool ASIFT_matcher::addReference(const char* image, int num_tilts = 1)
 {
@@ -31,7 +31,7 @@ bool ASIFT_matcher::addReference(const char* image, int num_tilts = 1)
 	int wS1=0, hS1=0;
 	vector<float> ipixels1_zoom;
 
-	if(resize_imgs)
+	if(_resize_imgs)
 	{
 		cout << "WARNING: The input image is resized to " << wS << "x" << hS << " for ASIFT. " << endl 
 		<< "         But the results will be normalized to the original image size." << endl << endl;
@@ -98,7 +98,8 @@ bool ASIFT_matcher::addReference(const char* image, int num_tilts = 1)
 
 
 	///// Compute ASIFT keypoints
-	vector< vector< keypointslist > > keys;
+	asift_keypoints keys;
+	// vector< vector< keypointslist > >* keys = new vector< vector< keypointslist > >;
 	int num_keys = 0;
 
 	time_t tstart, tend;
@@ -119,7 +120,7 @@ bool ASIFT_matcher::addReference(const char* image, int num_tilts = 1)
 	_nb_refs++;
 
 	cout<<"Reference built in "<< difftime(tend, tstart) << " seconds." << endl;
-	cout<<"		"<< num_keys <<" ASIFT keypoints found in "<< image << endl;
+	cout<<"	"<< num_keys <<" ASIFT keypoints found in "<< image << endl;
 
 	return true;
 }
@@ -151,7 +152,7 @@ bool ASIFT_matcher::match(const char* image, int num_tilts = 1)
 	int wS1=0, hS1=0;
 	vector<float> ipixels1_zoom;
 
-	if(resize_imgs)
+	if(_resize_imgs)
 	{
 		cout << "WARNING: The input image is resized to " << wS << "x" << hS << " for ASIFT. " << endl 
 		<< "         But the results will be normalized to the original image size." << endl << endl;
@@ -212,7 +213,7 @@ bool ASIFT_matcher::match(const char* image, int num_tilts = 1)
 	}
 
 	///// Compute ASIFT keypoints
-	vector< vector< keypointslist > > keys;
+	asift_keypoints keys;
 	int num_keys = 0;
 
 	time_t tstart, tend;
@@ -221,20 +222,30 @@ bool ASIFT_matcher::match(const char* image, int num_tilts = 1)
 	num_keys = compute_asift_keypoints(ipixels1_zoom, wS1, hS1, num_tilts, _verb, keys, _siftParam);
 
 	tend = time(0);
-	cout << "Keypoints computation accomplished in " << difftime(tend, tstart) << " seconds." << endl;
+	cout<< "Keypoints computation accomplished in " << difftime(tend, tstart) << " seconds." << endl;
+	cout<<"	"<< num_keys <<" ASIFT keypoints found in "<< image << endl;
 
 	//// Match ASIFT keypoints
-	int num_matchings;
-	matchingslist matchings;	
 
-	_num_matchings.clear();
-	_matchings.clear();
+	int num_matchings;
 
 	for(unsigned int i = 0; i<_nb_refs;i++)
 	{
+		matchingslist matchings;
+
 		cout << "Matching the keypoints..." << endl;
 		tstart = time(0);
-		num_matchings = compute_asift_matches(num_tilts, _num_tilts[i], wS1, hS1, _size_refs[i].first, _size_refs[i].second, _verb, keys, _keys[i], matchings, _siftParam);
+		try
+		{
+			num_matchings = compute_asift_matches(num_tilts, _num_tilts[i], wS1, hS1, _size_refs[i].first, _size_refs[i].second, _verb, keys, _keys[i], matchings, _siftParam);
+		}
+		catch(const bad_alloc& ba)
+		{
+			cerr<<"ERROR: ASIFT_matcher::match - ";
+			cerr << ba.what() << endl;
+		}
+		// cout<< _keys[i].size()<< " " << _keys[i][0].size() <<" "<< _keys[i][0][0].size()<<endl;
+
 		tend = time(0);
 		cout << "Keypoints matching accomplished in " << difftime(tend, tstart) << " seconds." << endl;
 
@@ -243,4 +254,33 @@ bool ASIFT_matcher::match(const char* image, int num_tilts = 1)
 	}
 
 	return true;
+}
+
+void ASIFT_matcher::print() const
+{
+	for(unsigned int i=0; i< _keys.size();i++)
+	{
+		cout<<"Ref size:"<<i<<" - size :"<<_keys[i].size()<<endl;
+		for(unsigned int j=0; j<_keys[i].size();j++)
+		{
+			cout<<"	"<<j<<" - size :"<<_keys[i][j].size()<<endl;
+			for(unsigned int k=0; k<_keys[i][j].size();k++)
+			{
+				cout<<"		"<<k<<" - size :"<<_keys[i][j][k].size()<<endl;
+				float sx=0,sy=0,ss=0,sa=0, sv=0;
+				for(unsigned int l=0; l<_keys[i][j][k].size();l++)
+				{
+					sx+=_keys[i][j][k][l].x;
+					sy+=_keys[i][j][k][l].y;
+					ss+=_keys[i][j][k][l].scale;
+					sa+=_keys[i][j][k][l].angle;
+					for(unsigned int v=0;v<VecLength;v++)
+					{
+						sv+=_keys[i][j][k][l].vec[v];
+					}
+				}
+				cout<<" 		"<<sx<<"-"<<sy<<"-"<<ss<<"-"<<sa<<"-"<<sv<<endl;
+			}
+		}
+	}
 }

@@ -1,29 +1,23 @@
 #include "ASIFT_matcher.hpp"
 
-int main(int argc, char **argv)
+int main()//int argc, char **argv)
 {			
 	
-    if ((argc != 8) && (argc != 9)) {
-        std::cerr << " ******************************************************************************* " << std::endl
-				  << " ***************************  ASIFT image matching  **************************** " << std::endl
-				  << " ******************************************************************************* " << std::endl
-				  << "Usage: " << argv[0] << " imgIn1.png imgIn2.png imgOutVert.png imgOutHori.png " << std::endl
-										  << "           matchings.txt keys1.txt keys2.txt [Resize option: 0/1] " << std::endl
-									      << "- imgIn1.png, imgIn2.png: input images (in PNG format). " << std::endl
-										  << "- imgOutVert.png, imgOutHori.png: output images (vertical/horizontal concatenated, " << std::endl
-				                          << "  in PNG format.) The detected matchings are connected by write lines." << std::endl
-										  << "- matchings.txt: coordinates of matched points (col1, row1, col2, row2). " << std::endl
-										  << "- keys1.txt keys2.txt: ASIFT keypoints of the two images." << std::endl
-										  << "- [optional 0/1]. 1: input images resize to 800x600 (default). 0: no resize. " << std::endl 
-   				  << " ******************************************************************************* " << std::endl
-				  << " *********************  Jean-Michel Morel, Guoshen Yu, 2010 ******************** " << std::endl
-				  << " ******************************************************************************* " << std::endl;
-        return 1;
-    }
+	std::string refData[] = {
+      "book_training/train_image_000.png", 
+      "book_training/train_image_001.png", 
+      "book_training/train_image_002.png",
+  	  "book_training/train_image_003.png",
+  	  "adam1.png",
+  	  "train_image_003.png"};
 	
     ASIFT_matcher matcher;
-    matcher.addReference(argv[1], 1);
-    matcher.match(argv[2], 1);
+    matcher.setResizeImg(true);
+    matcher.addReference(refData[0].c_str(), 1);
+    matcher.addReference(refData[1].c_str(), 2);
+    matcher.addReference(refData[2].c_str(), 3);
+    // matcher.print();
+    matcher.match(refData[5].c_str(), 4);
 
 	
 	

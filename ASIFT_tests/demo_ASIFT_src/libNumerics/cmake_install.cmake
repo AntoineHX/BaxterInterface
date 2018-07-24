@@ -1,4 +1,4 @@
-# Install script for directory: /home/harle/catkin_ws/src/demo_ASIFT_src/libNumerics
+# Install script for directory: /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libNumerics
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)

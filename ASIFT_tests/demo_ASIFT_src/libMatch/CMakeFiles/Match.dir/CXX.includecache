@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/harle/catkin_ws/src/demo_ASIFT_src/libMatch/match.cpp
+/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libMatch/match.cpp
 match.h
-/home/harle/catkin_ws/src/demo_ASIFT_src/libMatch/match.h
+/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libMatch/match.h
 fstream
 -
 sstream
 -
 
-/home/harle/catkin_ws/src/demo_ASIFT_src/libMatch/match.h
+/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libMatch/match.h
 vector
 -
 

@@ -23,7 +23,7 @@ IF(MSVC)
 ENDIF(MSVC)
 
 IF(CMAKE_COMPILER_IS_GNUCXX)
-  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-strict-aliasing")
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wno-strict-aliasing")
   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wextra -Wno-write-strings")
   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated -ansi")
   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -ftree-vectorize -funroll-loops")
@@ -47,7 +47,8 @@ include_directories(.
 					
 					
 add_executable(demo_ASIFT demo_ASIFT.cpp ${ASIFT_srcs})
+TARGET_LINK_LIBRARIES(demo_ASIFT png zlib Match Numerics)
 
 add_executable(test_ASIFT test_ASIFT.cpp ASIFT_matcher.cpp ${ASIFT_srcs})
+TARGET_LINK_LIBRARIES(test_ASIFT png zlib Match Numerics)
 
-TARGET_LINK_LIBRARIES(demo_ASIFT png zlib Match Numerics)

@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/harle/catkin_ws/src/demo_ASIFT_src
+CMAKE_SOURCE_DIR = /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/harle/catkin_ws/src/demo_ASIFT_src
+CMAKE_BINARY_DIR = /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,14 +69,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(CMAKE_COMMAND) -E cmake_progress_start /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/CMakeFiles/progress.marks
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f CMakeFiles/Makefile2 io_png/libs/png/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles 0
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(CMAKE_COMMAND) -E cmake_progress_start /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/CMakeFiles/progress.marks
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f CMakeFiles/Makefile2 io_png/libs/png/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f CMakeFiles/Makefile2 io_png/libs/png/clean
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f CMakeFiles/Makefile2 io_png/libs/png/clean
 .PHONY : clean
 
 # The main clean target
@@ -85,22 +85,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f CMakeFiles/Makefile2 io_png/libs/png/preinstall
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f CMakeFiles/Makefile2 io_png/libs/png/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f CMakeFiles/Makefile2 io_png/libs/png/preinstall
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f CMakeFiles/Makefile2 io_png/libs/png/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 io_png/libs/png/CMakeFiles/png.dir/rule:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f CMakeFiles/Makefile2 io_png/libs/png/CMakeFiles/png.dir/rule
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f CMakeFiles/Makefile2 io_png/libs/png/CMakeFiles/png.dir/rule
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/rule
 
 # Convenience name for target.
@@ -109,7 +109,7 @@ png: io_png/libs/png/CMakeFiles/png.dir/rule
 
 # fast build rule for target.
 png/fast:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/build
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/build
 .PHONY : png/fast
 
 png.o: png.c.o
@@ -117,7 +117,7 @@ png.o: png.c.o
 
 # target to build an object file
 png.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/png.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/png.c.o
 .PHONY : png.c.o
 
 png.i: png.c.i
@@ -125,7 +125,7 @@ png.i: png.c.i
 
 # target to preprocess a source file
 png.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/png.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/png.c.i
 .PHONY : png.c.i
 
 png.s: png.c.s
@@ -133,7 +133,7 @@ png.s: png.c.s
 
 # target to generate assembly for a file
 png.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/png.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/png.c.s
 .PHONY : png.c.s
 
 pngerror.o: pngerror.c.o
@@ -141,7 +141,7 @@ pngerror.o: pngerror.c.o
 
 # target to build an object file
 pngerror.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngerror.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngerror.c.o
 .PHONY : pngerror.c.o
 
 pngerror.i: pngerror.c.i
@@ -149,7 +149,7 @@ pngerror.i: pngerror.c.i
 
 # target to preprocess a source file
 pngerror.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngerror.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngerror.c.i
 .PHONY : pngerror.c.i
 
 pngerror.s: pngerror.c.s
@@ -157,7 +157,7 @@ pngerror.s: pngerror.c.s
 
 # target to generate assembly for a file
 pngerror.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngerror.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngerror.c.s
 .PHONY : pngerror.c.s
 
 pnggccrd.o: pnggccrd.c.o
@@ -165,7 +165,7 @@ pnggccrd.o: pnggccrd.c.o
 
 # target to build an object file
 pnggccrd.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pnggccrd.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pnggccrd.c.o
 .PHONY : pnggccrd.c.o
 
 pnggccrd.i: pnggccrd.c.i
@@ -173,7 +173,7 @@ pnggccrd.i: pnggccrd.c.i
 
 # target to preprocess a source file
 pnggccrd.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pnggccrd.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pnggccrd.c.i
 .PHONY : pnggccrd.c.i
 
 pnggccrd.s: pnggccrd.c.s
@@ -181,7 +181,7 @@ pnggccrd.s: pnggccrd.c.s
 
 # target to generate assembly for a file
 pnggccrd.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pnggccrd.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pnggccrd.c.s
 .PHONY : pnggccrd.c.s
 
 pngget.o: pngget.c.o
@@ -189,7 +189,7 @@ pngget.o: pngget.c.o
 
 # target to build an object file
 pngget.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngget.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngget.c.o
 .PHONY : pngget.c.o
 
 pngget.i: pngget.c.i
@@ -197,7 +197,7 @@ pngget.i: pngget.c.i
 
 # target to preprocess a source file
 pngget.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngget.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngget.c.i
 .PHONY : pngget.c.i
 
 pngget.s: pngget.c.s
@@ -205,7 +205,7 @@ pngget.s: pngget.c.s
 
 # target to generate assembly for a file
 pngget.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngget.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngget.c.s
 .PHONY : pngget.c.s
 
 pngmem.o: pngmem.c.o
@@ -213,7 +213,7 @@ pngmem.o: pngmem.c.o
 
 # target to build an object file
 pngmem.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngmem.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngmem.c.o
 .PHONY : pngmem.c.o
 
 pngmem.i: pngmem.c.i
@@ -221,7 +221,7 @@ pngmem.i: pngmem.c.i
 
 # target to preprocess a source file
 pngmem.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngmem.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngmem.c.i
 .PHONY : pngmem.c.i
 
 pngmem.s: pngmem.c.s
@@ -229,7 +229,7 @@ pngmem.s: pngmem.c.s
 
 # target to generate assembly for a file
 pngmem.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngmem.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngmem.c.s
 .PHONY : pngmem.c.s
 
 pngpread.o: pngpread.c.o
@@ -237,7 +237,7 @@ pngpread.o: pngpread.c.o
 
 # target to build an object file
 pngpread.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngpread.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngpread.c.o
 .PHONY : pngpread.c.o
 
 pngpread.i: pngpread.c.i
@@ -245,7 +245,7 @@ pngpread.i: pngpread.c.i
 
 # target to preprocess a source file
 pngpread.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngpread.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngpread.c.i
 .PHONY : pngpread.c.i
 
 pngpread.s: pngpread.c.s
@@ -253,7 +253,7 @@ pngpread.s: pngpread.c.s
 
 # target to generate assembly for a file
 pngpread.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngpread.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngpread.c.s
 .PHONY : pngpread.c.s
 
 pngread.o: pngread.c.o
@@ -261,7 +261,7 @@ pngread.o: pngread.c.o
 
 # target to build an object file
 pngread.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngread.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngread.c.o
 .PHONY : pngread.c.o
 
 pngread.i: pngread.c.i
@@ -269,7 +269,7 @@ pngread.i: pngread.c.i
 
 # target to preprocess a source file
 pngread.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngread.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngread.c.i
 .PHONY : pngread.c.i
 
 pngread.s: pngread.c.s
@@ -277,7 +277,7 @@ pngread.s: pngread.c.s
 
 # target to generate assembly for a file
 pngread.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngread.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngread.c.s
 .PHONY : pngread.c.s
 
 pngrio.o: pngrio.c.o
@@ -285,7 +285,7 @@ pngrio.o: pngrio.c.o
 
 # target to build an object file
 pngrio.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrio.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrio.c.o
 .PHONY : pngrio.c.o
 
 pngrio.i: pngrio.c.i
@@ -293,7 +293,7 @@ pngrio.i: pngrio.c.i
 
 # target to preprocess a source file
 pngrio.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrio.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrio.c.i
 .PHONY : pngrio.c.i
 
 pngrio.s: pngrio.c.s
@@ -301,7 +301,7 @@ pngrio.s: pngrio.c.s
 
 # target to generate assembly for a file
 pngrio.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrio.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrio.c.s
 .PHONY : pngrio.c.s
 
 pngrtran.o: pngrtran.c.o
@@ -309,7 +309,7 @@ pngrtran.o: pngrtran.c.o
 
 # target to build an object file
 pngrtran.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrtran.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrtran.c.o
 .PHONY : pngrtran.c.o
 
 pngrtran.i: pngrtran.c.i
@@ -317,7 +317,7 @@ pngrtran.i: pngrtran.c.i
 
 # target to preprocess a source file
 pngrtran.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrtran.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrtran.c.i
 .PHONY : pngrtran.c.i
 
 pngrtran.s: pngrtran.c.s
@@ -325,7 +325,7 @@ pngrtran.s: pngrtran.c.s
 
 # target to generate assembly for a file
 pngrtran.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrtran.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrtran.c.s
 .PHONY : pngrtran.c.s
 
 pngrutil.o: pngrutil.c.o
@@ -333,7 +333,7 @@ pngrutil.o: pngrutil.c.o
 
 # target to build an object file
 pngrutil.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrutil.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrutil.c.o
 .PHONY : pngrutil.c.o
 
 pngrutil.i: pngrutil.c.i
@@ -341,7 +341,7 @@ pngrutil.i: pngrutil.c.i
 
 # target to preprocess a source file
 pngrutil.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrutil.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrutil.c.i
 .PHONY : pngrutil.c.i
 
 pngrutil.s: pngrutil.c.s
@@ -349,7 +349,7 @@ pngrutil.s: pngrutil.c.s
 
 # target to generate assembly for a file
 pngrutil.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrutil.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngrutil.c.s
 .PHONY : pngrutil.c.s
 
 pngset.o: pngset.c.o
@@ -357,7 +357,7 @@ pngset.o: pngset.c.o
 
 # target to build an object file
 pngset.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngset.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngset.c.o
 .PHONY : pngset.c.o
 
 pngset.i: pngset.c.i
@@ -365,7 +365,7 @@ pngset.i: pngset.c.i
 
 # target to preprocess a source file
 pngset.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngset.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngset.c.i
 .PHONY : pngset.c.i
 
 pngset.s: pngset.c.s
@@ -373,7 +373,7 @@ pngset.s: pngset.c.s
 
 # target to generate assembly for a file
 pngset.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngset.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngset.c.s
 .PHONY : pngset.c.s
 
 pngtrans.o: pngtrans.c.o
@@ -381,7 +381,7 @@ pngtrans.o: pngtrans.c.o
 
 # target to build an object file
 pngtrans.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngtrans.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngtrans.c.o
 .PHONY : pngtrans.c.o
 
 pngtrans.i: pngtrans.c.i
@@ -389,7 +389,7 @@ pngtrans.i: pngtrans.c.i
 
 # target to preprocess a source file
 pngtrans.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngtrans.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngtrans.c.i
 .PHONY : pngtrans.c.i
 
 pngtrans.s: pngtrans.c.s
@@ -397,7 +397,7 @@ pngtrans.s: pngtrans.c.s
 
 # target to generate assembly for a file
 pngtrans.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngtrans.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngtrans.c.s
 .PHONY : pngtrans.c.s
 
 pngvcrd.o: pngvcrd.c.o
@@ -405,7 +405,7 @@ pngvcrd.o: pngvcrd.c.o
 
 # target to build an object file
 pngvcrd.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngvcrd.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngvcrd.c.o
 .PHONY : pngvcrd.c.o
 
 pngvcrd.i: pngvcrd.c.i
@@ -413,7 +413,7 @@ pngvcrd.i: pngvcrd.c.i
 
 # target to preprocess a source file
 pngvcrd.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngvcrd.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngvcrd.c.i
 .PHONY : pngvcrd.c.i
 
 pngvcrd.s: pngvcrd.c.s
@@ -421,7 +421,7 @@ pngvcrd.s: pngvcrd.c.s
 
 # target to generate assembly for a file
 pngvcrd.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngvcrd.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngvcrd.c.s
 .PHONY : pngvcrd.c.s
 
 pngwio.o: pngwio.c.o
@@ -429,7 +429,7 @@ pngwio.o: pngwio.c.o
 
 # target to build an object file
 pngwio.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwio.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwio.c.o
 .PHONY : pngwio.c.o
 
 pngwio.i: pngwio.c.i
@@ -437,7 +437,7 @@ pngwio.i: pngwio.c.i
 
 # target to preprocess a source file
 pngwio.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwio.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwio.c.i
 .PHONY : pngwio.c.i
 
 pngwio.s: pngwio.c.s
@@ -445,7 +445,7 @@ pngwio.s: pngwio.c.s
 
 # target to generate assembly for a file
 pngwio.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwio.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwio.c.s
 .PHONY : pngwio.c.s
 
 pngwrite.o: pngwrite.c.o
@@ -453,7 +453,7 @@ pngwrite.o: pngwrite.c.o
 
 # target to build an object file
 pngwrite.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwrite.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwrite.c.o
 .PHONY : pngwrite.c.o
 
 pngwrite.i: pngwrite.c.i
@@ -461,7 +461,7 @@ pngwrite.i: pngwrite.c.i
 
 # target to preprocess a source file
 pngwrite.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwrite.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwrite.c.i
 .PHONY : pngwrite.c.i
 
 pngwrite.s: pngwrite.c.s
@@ -469,7 +469,7 @@ pngwrite.s: pngwrite.c.s
 
 # target to generate assembly for a file
 pngwrite.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwrite.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwrite.c.s
 .PHONY : pngwrite.c.s
 
 pngwtran.o: pngwtran.c.o
@@ -477,7 +477,7 @@ pngwtran.o: pngwtran.c.o
 
 # target to build an object file
 pngwtran.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwtran.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwtran.c.o
 .PHONY : pngwtran.c.o
 
 pngwtran.i: pngwtran.c.i
@@ -485,7 +485,7 @@ pngwtran.i: pngwtran.c.i
 
 # target to preprocess a source file
 pngwtran.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwtran.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwtran.c.i
 .PHONY : pngwtran.c.i
 
 pngwtran.s: pngwtran.c.s
@@ -493,7 +493,7 @@ pngwtran.s: pngwtran.c.s
 
 # target to generate assembly for a file
 pngwtran.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwtran.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwtran.c.s
 .PHONY : pngwtran.c.s
 
 pngwutil.o: pngwutil.c.o
@@ -501,7 +501,7 @@ pngwutil.o: pngwutil.c.o
 
 # target to build an object file
 pngwutil.c.o:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwutil.c.o
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwutil.c.o
 .PHONY : pngwutil.c.o
 
 pngwutil.i: pngwutil.c.i
@@ -509,7 +509,7 @@ pngwutil.i: pngwutil.c.i
 
 # target to preprocess a source file
 pngwutil.c.i:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwutil.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwutil.c.i
 .PHONY : pngwutil.c.i
 
 pngwutil.s: pngwutil.c.s
@@ -517,7 +517,7 @@ pngwutil.s: pngwutil.c.s
 
 # target to generate assembly for a file
 pngwutil.c.s:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwutil.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(MAKE) -f io_png/libs/png/CMakeFiles/png.dir/build.make io_png/libs/png/CMakeFiles/png.dir/pngwutil.c.s
 .PHONY : pngwutil.c.s
 
 # Help Target
@@ -591,6 +591,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

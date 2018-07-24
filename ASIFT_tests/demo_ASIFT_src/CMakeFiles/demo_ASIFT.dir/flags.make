@@ -3,11 +3,11 @@
 
 # compile C with /usr/bin/cc
 # compile CXX with /usr/bin/c++
-C_FLAGS = -I/home/harle/catkin_ws/src/demo_ASIFT_src/. -I/home/harle/catkin_ws/src/demo_ASIFT_src/./io_png -I/home/harle/catkin_ws/src/demo_ASIFT_src/./io_png/libs/png   
+C_FLAGS = -I/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/. -I/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/./io_png -I/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/./io_png/libs/png   
 
 C_DEFINES = 
 
-CXX_FLAGS =  -fopenmp -Wall -Wno-strict-aliasing -Wextra -Wno-write-strings -Wno-deprecated -ansi -O3 -ftree-vectorize -funroll-loops -I/home/harle/catkin_ws/src/demo_ASIFT_src/. -I/home/harle/catkin_ws/src/demo_ASIFT_src/./io_png -I/home/harle/catkin_ws/src/demo_ASIFT_src/./io_png/libs/png   
+CXX_FLAGS =  -fopenmp -Wall -Wno-strict-aliasing -Wextra -Wno-write-strings -Wno-deprecated -ansi -O3 -ftree-vectorize -funroll-loops -I/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/. -I/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/./io_png -I/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/./io_png/libs/png   
 
 CXX_DEFINES = 
 

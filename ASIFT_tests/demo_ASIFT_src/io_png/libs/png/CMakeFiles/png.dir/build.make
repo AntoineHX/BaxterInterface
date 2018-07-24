@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/harle/catkin_ws/src/demo_ASIFT_src
+CMAKE_SOURCE_DIR = /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/harle/catkin_ws/src/demo_ASIFT_src
+CMAKE_BINARY_DIR = /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src
 
 # Include any dependencies generated for this target.
 include io_png/libs/png/CMakeFiles/png.dir/depend.make
@@ -51,17 +51,17 @@ include io_png/libs/png/CMakeFiles/png.dir/flags.make
 
 io_png/libs/png/CMakeFiles/png.dir/pngget.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngget.c.o: io_png/libs/png/pngget.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngget.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngget.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngget.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngget.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngget.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngget.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngget.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngget.c > CMakeFiles/png.dir/pngget.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngget.c > CMakeFiles/png.dir/pngget.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngget.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngget.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngget.c -o CMakeFiles/png.dir/pngget.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngget.c -o CMakeFiles/png.dir/pngget.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngget.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngget.c.o.requires
@@ -74,17 +74,17 @@ io_png/libs/png/CMakeFiles/png.dir/pngget.c.o.provides.build: io_png/libs/png/CM
 
 io_png/libs/png/CMakeFiles/png.dir/pngrio.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngrio.c.o: io_png/libs/png/pngrio.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngrio.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngrio.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngrio.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngrio.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngrio.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngrio.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngrio.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngrio.c > CMakeFiles/png.dir/pngrio.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngrio.c > CMakeFiles/png.dir/pngrio.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngrio.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngrio.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngrio.c -o CMakeFiles/png.dir/pngrio.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngrio.c -o CMakeFiles/png.dir/pngrio.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngrio.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngrio.c.o.requires
@@ -97,17 +97,17 @@ io_png/libs/png/CMakeFiles/png.dir/pngrio.c.o.provides.build: io_png/libs/png/CM
 
 io_png/libs/png/CMakeFiles/png.dir/pngwrite.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngwrite.c.o: io_png/libs/png/pngwrite.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngwrite.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngwrite.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngwrite.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngwrite.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngwrite.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngwrite.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngwrite.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngwrite.c > CMakeFiles/png.dir/pngwrite.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngwrite.c > CMakeFiles/png.dir/pngwrite.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngwrite.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngwrite.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngwrite.c -o CMakeFiles/png.dir/pngwrite.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngwrite.c -o CMakeFiles/png.dir/pngwrite.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngwrite.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngwrite.c.o.requires
@@ -120,17 +120,17 @@ io_png/libs/png/CMakeFiles/png.dir/pngwrite.c.o.provides.build: io_png/libs/png/
 
 io_png/libs/png/CMakeFiles/png.dir/png.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/png.c.o: io_png/libs/png/png.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/png.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/png.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/png.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/png.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/png.c
 
 io_png/libs/png/CMakeFiles/png.dir/png.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/png.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/png.c > CMakeFiles/png.dir/png.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/png.c > CMakeFiles/png.dir/png.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/png.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/png.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/png.c -o CMakeFiles/png.dir/png.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/png.c -o CMakeFiles/png.dir/png.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/png.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/png.c.o.requires
@@ -143,17 +143,17 @@ io_png/libs/png/CMakeFiles/png.dir/png.c.o.provides.build: io_png/libs/png/CMake
 
 io_png/libs/png/CMakeFiles/png.dir/pngmem.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngmem.c.o: io_png/libs/png/pngmem.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngmem.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngmem.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngmem.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngmem.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngmem.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngmem.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngmem.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngmem.c > CMakeFiles/png.dir/pngmem.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngmem.c > CMakeFiles/png.dir/pngmem.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngmem.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngmem.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngmem.c -o CMakeFiles/png.dir/pngmem.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngmem.c -o CMakeFiles/png.dir/pngmem.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngmem.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngmem.c.o.requires
@@ -166,17 +166,17 @@ io_png/libs/png/CMakeFiles/png.dir/pngmem.c.o.provides.build: io_png/libs/png/CM
 
 io_png/libs/png/CMakeFiles/png.dir/pngrtran.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngrtran.c.o: io_png/libs/png/pngrtran.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngrtran.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngrtran.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngrtran.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngrtran.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngrtran.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngrtran.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngrtran.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngrtran.c > CMakeFiles/png.dir/pngrtran.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngrtran.c > CMakeFiles/png.dir/pngrtran.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngrtran.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngrtran.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngrtran.c -o CMakeFiles/png.dir/pngrtran.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngrtran.c -o CMakeFiles/png.dir/pngrtran.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngrtran.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngrtran.c.o.requires
@@ -189,17 +189,17 @@ io_png/libs/png/CMakeFiles/png.dir/pngrtran.c.o.provides.build: io_png/libs/png/
 
 io_png/libs/png/CMakeFiles/png.dir/pngtrans.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngtrans.c.o: io_png/libs/png/pngtrans.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngtrans.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngtrans.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngtrans.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngtrans.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngtrans.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngtrans.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngtrans.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngtrans.c > CMakeFiles/png.dir/pngtrans.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngtrans.c > CMakeFiles/png.dir/pngtrans.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngtrans.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngtrans.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngtrans.c -o CMakeFiles/png.dir/pngtrans.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngtrans.c -o CMakeFiles/png.dir/pngtrans.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngtrans.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngtrans.c.o.requires
@@ -212,17 +212,17 @@ io_png/libs/png/CMakeFiles/png.dir/pngtrans.c.o.provides.build: io_png/libs/png/
 
 io_png/libs/png/CMakeFiles/png.dir/pngwtran.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngwtran.c.o: io_png/libs/png/pngwtran.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngwtran.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngwtran.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngwtran.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngwtran.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngwtran.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngwtran.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngwtran.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngwtran.c > CMakeFiles/png.dir/pngwtran.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngwtran.c > CMakeFiles/png.dir/pngwtran.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngwtran.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngwtran.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngwtran.c -o CMakeFiles/png.dir/pngwtran.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngwtran.c -o CMakeFiles/png.dir/pngwtran.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngwtran.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngwtran.c.o.requires
@@ -235,17 +235,17 @@ io_png/libs/png/CMakeFiles/png.dir/pngwtran.c.o.provides.build: io_png/libs/png/
 
 io_png/libs/png/CMakeFiles/png.dir/pngerror.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngerror.c.o: io_png/libs/png/pngerror.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_9)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngerror.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngerror.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngerror.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngerror.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngerror.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngerror.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngerror.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngerror.c > CMakeFiles/png.dir/pngerror.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngerror.c > CMakeFiles/png.dir/pngerror.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngerror.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngerror.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngerror.c -o CMakeFiles/png.dir/pngerror.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngerror.c -o CMakeFiles/png.dir/pngerror.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngerror.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngerror.c.o.requires
@@ -258,17 +258,17 @@ io_png/libs/png/CMakeFiles/png.dir/pngerror.c.o.provides.build: io_png/libs/png/
 
 io_png/libs/png/CMakeFiles/png.dir/pngpread.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngpread.c.o: io_png/libs/png/pngpread.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_10)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_10)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngpread.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngpread.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngpread.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngpread.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngpread.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngpread.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngpread.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngpread.c > CMakeFiles/png.dir/pngpread.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngpread.c > CMakeFiles/png.dir/pngpread.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngpread.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngpread.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngpread.c -o CMakeFiles/png.dir/pngpread.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngpread.c -o CMakeFiles/png.dir/pngpread.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngpread.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngpread.c.o.requires
@@ -281,17 +281,17 @@ io_png/libs/png/CMakeFiles/png.dir/pngpread.c.o.provides.build: io_png/libs/png/
 
 io_png/libs/png/CMakeFiles/png.dir/pngrutil.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngrutil.c.o: io_png/libs/png/pngrutil.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_11)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_11)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngrutil.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngrutil.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngrutil.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngrutil.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngrutil.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngrutil.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngrutil.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngrutil.c > CMakeFiles/png.dir/pngrutil.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngrutil.c > CMakeFiles/png.dir/pngrutil.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngrutil.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngrutil.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngrutil.c -o CMakeFiles/png.dir/pngrutil.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngrutil.c -o CMakeFiles/png.dir/pngrutil.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngrutil.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngrutil.c.o.requires
@@ -304,17 +304,17 @@ io_png/libs/png/CMakeFiles/png.dir/pngrutil.c.o.provides.build: io_png/libs/png/
 
 io_png/libs/png/CMakeFiles/png.dir/pngvcrd.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngvcrd.c.o: io_png/libs/png/pngvcrd.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_12)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_12)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngvcrd.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngvcrd.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngvcrd.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngvcrd.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngvcrd.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngvcrd.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngvcrd.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngvcrd.c > CMakeFiles/png.dir/pngvcrd.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngvcrd.c > CMakeFiles/png.dir/pngvcrd.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngvcrd.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngvcrd.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngvcrd.c -o CMakeFiles/png.dir/pngvcrd.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngvcrd.c -o CMakeFiles/png.dir/pngvcrd.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngvcrd.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngvcrd.c.o.requires
@@ -327,17 +327,17 @@ io_png/libs/png/CMakeFiles/png.dir/pngvcrd.c.o.provides.build: io_png/libs/png/C
 
 io_png/libs/png/CMakeFiles/png.dir/pngwutil.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngwutil.c.o: io_png/libs/png/pngwutil.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_13)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_13)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngwutil.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngwutil.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngwutil.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngwutil.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngwutil.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngwutil.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngwutil.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngwutil.c > CMakeFiles/png.dir/pngwutil.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngwutil.c > CMakeFiles/png.dir/pngwutil.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngwutil.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngwutil.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngwutil.c -o CMakeFiles/png.dir/pngwutil.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngwutil.c -o CMakeFiles/png.dir/pngwutil.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngwutil.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngwutil.c.o.requires
@@ -350,17 +350,17 @@ io_png/libs/png/CMakeFiles/png.dir/pngwutil.c.o.provides.build: io_png/libs/png/
 
 io_png/libs/png/CMakeFiles/png.dir/pnggccrd.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pnggccrd.c.o: io_png/libs/png/pnggccrd.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_14)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_14)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pnggccrd.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pnggccrd.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pnggccrd.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pnggccrd.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pnggccrd.c
 
 io_png/libs/png/CMakeFiles/png.dir/pnggccrd.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pnggccrd.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pnggccrd.c > CMakeFiles/png.dir/pnggccrd.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pnggccrd.c > CMakeFiles/png.dir/pnggccrd.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pnggccrd.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pnggccrd.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pnggccrd.c -o CMakeFiles/png.dir/pnggccrd.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pnggccrd.c -o CMakeFiles/png.dir/pnggccrd.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pnggccrd.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pnggccrd.c.o.requires
@@ -373,17 +373,17 @@ io_png/libs/png/CMakeFiles/png.dir/pnggccrd.c.o.provides.build: io_png/libs/png/
 
 io_png/libs/png/CMakeFiles/png.dir/pngread.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngread.c.o: io_png/libs/png/pngread.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_15)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_15)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngread.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngread.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngread.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngread.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngread.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngread.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngread.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngread.c > CMakeFiles/png.dir/pngread.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngread.c > CMakeFiles/png.dir/pngread.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngread.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngread.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngread.c -o CMakeFiles/png.dir/pngread.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngread.c -o CMakeFiles/png.dir/pngread.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngread.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngread.c.o.requires
@@ -396,17 +396,17 @@ io_png/libs/png/CMakeFiles/png.dir/pngread.c.o.provides.build: io_png/libs/png/C
 
 io_png/libs/png/CMakeFiles/png.dir/pngset.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngset.c.o: io_png/libs/png/pngset.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_16)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_16)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngset.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngset.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngset.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngset.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngset.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngset.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngset.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngset.c > CMakeFiles/png.dir/pngset.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngset.c > CMakeFiles/png.dir/pngset.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngset.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngset.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngset.c -o CMakeFiles/png.dir/pngset.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngset.c -o CMakeFiles/png.dir/pngset.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngset.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngset.c.o.requires
@@ -419,17 +419,17 @@ io_png/libs/png/CMakeFiles/png.dir/pngset.c.o.provides.build: io_png/libs/png/CM
 
 io_png/libs/png/CMakeFiles/png.dir/pngwio.c.o: io_png/libs/png/CMakeFiles/png.dir/flags.make
 io_png/libs/png/CMakeFiles/png.dir/pngwio.c.o: io_png/libs/png/pngwio.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_17)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles $(CMAKE_PROGRESS_17)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object io_png/libs/png/CMakeFiles/png.dir/pngwio.c.o"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngwio.c.o   -c /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngwio.c
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/png.dir/pngwio.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngwio.c
 
 io_png/libs/png/CMakeFiles/png.dir/pngwio.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/png.dir/pngwio.c.i"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngwio.c > CMakeFiles/png.dir/pngwio.c.i
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngwio.c > CMakeFiles/png.dir/pngwio.c.i
 
 io_png/libs/png/CMakeFiles/png.dir/pngwio.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/png.dir/pngwio.c.s"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/pngwio.c -o CMakeFiles/png.dir/pngwio.c.s
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/pngwio.c -o CMakeFiles/png.dir/pngwio.c.s
 
 io_png/libs/png/CMakeFiles/png.dir/pngwio.c.o.requires:
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/pngwio.c.o.requires
@@ -483,8 +483,8 @@ io_png/libs/png/libpng.a: io_png/libs/png/CMakeFiles/png.dir/pngwio.c.o
 io_png/libs/png/libpng.a: io_png/libs/png/CMakeFiles/png.dir/build.make
 io_png/libs/png/libpng.a: io_png/libs/png/CMakeFiles/png.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking C static library libpng.a"
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && $(CMAKE_COMMAND) -P CMakeFiles/png.dir/cmake_clean_target.cmake
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/png.dir/link.txt --verbose=$(VERBOSE)
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && $(CMAKE_COMMAND) -P CMakeFiles/png.dir/cmake_clean_target.cmake
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/png.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 io_png/libs/png/CMakeFiles/png.dir/build: io_png/libs/png/libpng.a
@@ -510,10 +510,10 @@ io_png/libs/png/CMakeFiles/png.dir/requires: io_png/libs/png/CMakeFiles/png.dir/
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/requires
 
 io_png/libs/png/CMakeFiles/png.dir/clean:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png && $(CMAKE_COMMAND) -P CMakeFiles/png.dir/cmake_clean.cmake
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png && $(CMAKE_COMMAND) -P CMakeFiles/png.dir/cmake_clean.cmake
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/clean
 
 io_png/libs/png/CMakeFiles/png.dir/depend:
-	cd /home/harle/catkin_ws/src/demo_ASIFT_src && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/harle/catkin_ws/src/demo_ASIFT_src /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png /home/harle/catkin_ws/src/demo_ASIFT_src /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/libs/png/CMakeFiles/png.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/CMakeFiles/png.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : io_png/libs/png/CMakeFiles/png.dir/depend
 

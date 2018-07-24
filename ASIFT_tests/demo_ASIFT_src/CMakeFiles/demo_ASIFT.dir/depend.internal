@@ -6,93 +6,93 @@ CMakeFiles/demo_ASIFT.dir/io_png/io_png.c.o
  ./io_png/libs/png/pngconf.h
  ./io_png/libs/zlib/zconf.h
  ./io_png/libs/zlib/zlib.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/io_png.c
- /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/io_png.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/io_png.c
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/io_png.h
 CMakeFiles/demo_ASIFT.dir/compute_asift_keypoints.cpp.o
- /home/harle/catkin_ws/src/demo_ASIFT_src/compute_asift_keypoints.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/compute_asift_keypoints.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/demo_lib_sift.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/domain.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/filter.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/flimage.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/fproj.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/frot.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/library.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/numerics1.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/splines.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/compute_asift_keypoints.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/compute_asift_keypoints.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/demo_lib_sift.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/domain.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/filter.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/flimage.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/fproj.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/frot.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/library.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/numerics1.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/splines.h
 CMakeFiles/demo_ASIFT.dir/compute_asift_matches.cpp.o
- /home/harle/catkin_ws/src/demo_ASIFT_src/compute_asift_matches.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/compute_asift_matches.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/demo_lib_sift.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/domain.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/filter.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/flimage.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/fproj.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/frot.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/libMatch/match.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/libNumerics/matrix.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/libNumerics/matrix.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/libNumerics/numerics.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/libNumerics/vector.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/library.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/numerics1.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/orsa.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/splines.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/compute_asift_matches.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/compute_asift_matches.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/demo_lib_sift.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/domain.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/filter.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/flimage.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/fproj.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/frot.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libMatch/match.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libNumerics/matrix.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libNumerics/matrix.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libNumerics/numerics.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libNumerics/vector.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/library.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/numerics1.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/orsa.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/splines.h
 CMakeFiles/demo_ASIFT.dir/demo_ASIFT.cpp.o
- /home/harle/catkin_ws/src/demo_ASIFT_src/compute_asift_keypoints.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/compute_asift_matches.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/demo_ASIFT.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/demo_lib_sift.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/domain.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/filter.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/flimage.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/fproj.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/frot.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/io_png/io_png.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/library.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/numerics1.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/splines.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/compute_asift_keypoints.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/compute_asift_matches.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/demo_ASIFT.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/demo_lib_sift.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/domain.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/filter.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/flimage.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/fproj.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/frot.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/io_png.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/library.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/numerics1.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/splines.h
 CMakeFiles/demo_ASIFT.dir/demo_lib_sift.cpp.o
- /home/harle/catkin_ws/src/demo_ASIFT_src/demo_lib_sift.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/demo_lib_sift.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/domain.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/filter.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/flimage.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/library.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/numerics1.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/splines.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/demo_lib_sift.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/demo_lib_sift.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/domain.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/filter.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/flimage.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/library.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/numerics1.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/splines.h
 CMakeFiles/demo_ASIFT.dir/filter.cpp.o
- /home/harle/catkin_ws/src/demo_ASIFT_src/filter.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/filter.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/library.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/filter.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/filter.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/library.h
 CMakeFiles/demo_ASIFT.dir/flimage.cpp.o
- /home/harle/catkin_ws/src/demo_ASIFT_src/flimage.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/flimage.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/flimage.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/flimage.h
 CMakeFiles/demo_ASIFT.dir/fproj.cpp.o
- /home/harle/catkin_ws/src/demo_ASIFT_src/fproj.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/fproj.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/library.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/numerics1.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/splines.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/fproj.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/fproj.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/library.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/numerics1.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/splines.h
 CMakeFiles/demo_ASIFT.dir/frot.cpp.o
- /home/harle/catkin_ws/src/demo_ASIFT_src/frot.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/frot.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/library.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/frot.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/frot.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/library.h
 CMakeFiles/demo_ASIFT.dir/library.cpp.o
- /home/harle/catkin_ws/src/demo_ASIFT_src/library.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/library.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/library.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/library.h
 CMakeFiles/demo_ASIFT.dir/numerics1.cpp.o
- /home/harle/catkin_ws/src/demo_ASIFT_src/library.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/numerics1.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/numerics1.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/library.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/numerics1.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/numerics1.h
 CMakeFiles/demo_ASIFT.dir/orsa.cpp.o
- /home/harle/catkin_ws/src/demo_ASIFT_src/libMatch/match.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/libNumerics/matrix.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/libNumerics/matrix.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/libNumerics/numerics.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/libNumerics/vector.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/orsa.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/orsa.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libMatch/match.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libNumerics/matrix.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libNumerics/matrix.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libNumerics/numerics.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libNumerics/vector.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/orsa.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/orsa.h
  third_party/Eigen/Cholesky
  third_party/Eigen/Core
  third_party/Eigen/Eigen2Support
@@ -246,7 +246,7 @@ CMakeFiles/demo_ASIFT.dir/orsa.cpp.o
  third_party/Eigen/src/plugins/MatrixCwiseBinaryOps.h
  third_party/Eigen/src/plugins/MatrixCwiseUnaryOps.h
 CMakeFiles/demo_ASIFT.dir/splines.cpp.o
- /home/harle/catkin_ws/src/demo_ASIFT_src/library.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/numerics1.h
- /home/harle/catkin_ws/src/demo_ASIFT_src/splines.cpp
- /home/harle/catkin_ws/src/demo_ASIFT_src/splines.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/library.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/numerics1.h
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/splines.cpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/splines.h

@@ -311,3 +311,53 @@ int main() {
 #endif
 }
 
+Performing C SOURCE FILE Test OpenMP_FLAG_DETECTED succeded with the following output:
+Change Dir: /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec1469373996/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1469373996.dir/build.make CMakeFiles/cmTryCompileExec1469373996.dir/build
+make[1]: Entering directory `/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1469373996.dir/src.c.o
+/usr/bin/cc   -DOpenMP_FLAG_DETECTED -fopenmp   -o CMakeFiles/cmTryCompileExec1469373996.dir/src.c.o   -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTryCompileExec1469373996
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1469373996.dir/link.txt --verbose=1
+/usr/bin/cc   -DOpenMP_FLAG_DETECTED -fopenmp    CMakeFiles/cmTryCompileExec1469373996.dir/src.c.o  -o cmTryCompileExec1469373996 -rdynamic 
+make[1]: Leaving directory `/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+#include <omp.h>
+int main() {
+#ifdef _OPENMP
+  return 0;
+#else
+  breaks_on_purpose
+#endif
+}
+
+Performing C++ SOURCE FILE Test OpenMP_FLAG_DETECTED succeded with the following output:
+Change Dir: /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec747638856/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec747638856.dir/build.make CMakeFiles/cmTryCompileExec747638856.dir/build
+make[1]: Entering directory `/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec747638856.dir/src.cxx.o
+/usr/bin/c++    -DOpenMP_FLAG_DETECTED -fopenmp   -o CMakeFiles/cmTryCompileExec747638856.dir/src.cxx.o -c /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec747638856
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec747638856.dir/link.txt --verbose=1
+/usr/bin/c++    -DOpenMP_FLAG_DETECTED -fopenmp    CMakeFiles/cmTryCompileExec747638856.dir/src.cxx.o  -o cmTryCompileExec747638856 -rdynamic 
+make[1]: Leaving directory `/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+#include <omp.h>
+int main() {
+#ifdef _OPENMP
+  return 0;
+#else
+  breaks_on_purpose
+#endif
+}
+
