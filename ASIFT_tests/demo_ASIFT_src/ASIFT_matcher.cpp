@@ -10,7 +10,7 @@ ASIFT_matcher::ASIFT_matcher(): _verb(0), _nb_refs(0), _resize_imgs(false)
 
 // }
 
-bool ASIFT_matcher::addReference(const char* image, int num_tilts = 1)
+bool ASIFT_matcher::addReference(const char* image, unsigned int num_tilts)
 {
 	///// Read input
 	float * iarr1;
@@ -125,7 +125,7 @@ bool ASIFT_matcher::addReference(const char* image, int num_tilts = 1)
 	return true;
 }
 
-bool ASIFT_matcher::match(const char* image, int num_tilts = 1)
+bool ASIFT_matcher::match(const char* image, unsigned int num_tilts)
 {
 	if(_nb_refs<=0)
 	{
@@ -227,7 +227,7 @@ bool ASIFT_matcher::match(const char* image, int num_tilts = 1)
 
 	//// Match ASIFT keypoints
 
-	int num_matchings;
+	int num_matchings = 0;
 
 	for(unsigned int i = 0; i<_nb_refs;i++)
 	{
@@ -254,6 +254,104 @@ bool ASIFT_matcher::match(const char* image, int num_tilts = 1)
 	}
 
 	return true;
+}
+
+bool ASIFT_matcher::match(vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts)
+{
+	if(image.size()!=w*h)
+	{
+		cerr<<"Error : Input image size doesn't correspond with parameters"<<endl;
+		return false;
+	}
+
+	///// Compute ASIFT keypoints
+	asift_keypoints keys;
+	int num_keys = 0;
+
+	time_t tstart, tend;
+	tstart = time(0);
+
+	num_keys = compute_asift_keypoints(image, w, h, num_tilts, _verb, keys, _siftParam);
+
+	tend = time(0);
+	cout<< "Keypoints computation accomplished in " << difftime(tend, tstart) << " seconds." << endl;
+	cout<<"	"<< num_keys <<" ASIFT keypoints found in Input image"<< endl;
+
+	//// Match ASIFT keypoints
+
+	int num_matchings = 0;
+
+	for(unsigned int i = 0; i<_nb_refs;i++)
+	{
+		matchingslist matchings;
+
+		cout << "Matching the keypoints..." << endl;
+		tstart = time(0);
+		try
+		{
+			num_matchings = compute_asift_matches(num_tilts, _num_tilts[i], w, h, _size_refs[i].first, _size_refs[i].second, _verb, keys, _keys[i], matchings, _siftParam);
+		}
+		catch(const bad_alloc& ba)
+		{
+			cerr<<"ERROR: ASIFT_matcher::match - ";
+			cerr << ba.what() << endl;
+		}
+		// cout<< _keys[i].size()<< " " << _keys[i][0].size() <<" "<< _keys[i][0][0].size()<<endl;
+
+		tend = time(0);
+		cout << "Keypoints matching accomplished in " << difftime(tend, tstart) << " seconds." << endl;
+
+		_num_matchings.push_back(num_matchings);
+		_matchings.push_back(matchings);
+	}
+
+	return true;
+}
+
+void ASIFT_matcher::computeROI(int& x, int& y, unsigned int& h, unsigned int& w, int zoom) const
+{
+	if(getNbMatch()==0)
+	{
+		cerr<<"Error : cannot compute ROI without matchs"<<endl;
+		return;
+	}
+
+	pair<int,int> upLe, doRi; //UpLeft / DownRight
+	//Initialisation
+	for(unsigned int i=0;i<_matchings.size();i++)
+	{
+		if(getNbMatchs()[i]!=0)
+		{
+			upLe = make_pair(_matchings[i][0].first.x,_matchings[i][0].first.y);
+			doRi = make_pair(_matchings[i][0].first.x,_matchings[i][0].first.y);
+		}
+	}
+
+	//Compute ROI
+	for(unsigned int i=0;i<_matchings.size();i++)
+	{
+		for(unsigned int j=0;j<_matchings[i].size();j++)
+		{
+			keypoint kp = _matchings[i][j].first;
+			if(kp.x<upLe.first)
+				upLe.first = kp.x;
+			if(kp.y<upLe.second)
+				upLe.second=kp.y;
+			if(kp.x>doRi.first)
+				doRi.first=kp.x;
+			if(kp.y>doRi.second)
+				doRi.second=kp.y;
+		}
+	}
+	x=upLe.first; //Système de coordonée ? (devrait etre bon)
+	y=upLe.second;
+	h=doRi.second-y;
+	w=doRi.first-x;
+
+	// x=zoom*upLe.first; //Système de coordonée ? (devrait etre bon)
+	// y=zoom*upLe.second;
+	// h=zoom*(doRi.second-upLe.second);
+	// w=zoom*(doRi.first-upLe.first);
 }
 
 void ASIFT_matcher::print() const
@@ -283,4 +381,14 @@ void ASIFT_matcher::print() const
 			}
 		}
 	}
+}
+
+unsigned int ASIFT_matcher::getNbMatch() const
+{
+	unsigned int res = 0;
+	for (unsigned int i=0;i<_num_matchings.size();i++)
+	{
+		res+=_num_matchings[i];
+	} 
+	return res;
 }

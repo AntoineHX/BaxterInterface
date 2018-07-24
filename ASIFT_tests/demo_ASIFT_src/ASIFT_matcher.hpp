@@ -36,14 +36,17 @@ public:
 	ASIFT_matcher();
 	// virtual ~ASIFT_matcher();
 
-	bool addReference(const char* image, int num_tilts);
-	bool match(const char* image, int num_tilts);
+	bool addReference(const char* image, unsigned int num_tilts=1);
+	bool match(const char* image, unsigned int num_tilts =1);
+	bool match(vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1);
 	void print() const;
-	
+	void computeROI(int& x, int& y, unsigned int& h, unsigned int& w, int zoom =1) const;
+
 	void setResizeImg(bool resize_imgs){ _resize_imgs=resize_imgs;}
 
-	const vector < int >& getNbMatch()const{ return _num_matchings;}
-	const vector< matchingslist >& getMatch()const{ return _matchings;}
+	const vector < unsigned int >& getNbMatchs() const{ return _num_matchings;}
+	unsigned int getNbMatch() const;
+	const vector< matchingslist >& getMatch() const{ return _matchings;}
 
 protected:
 	//QUESCEQUESAI
@@ -61,7 +64,7 @@ protected:
 	vector< asift_keypoints > _keys;
 
 	//Matchs
-	vector < int > _num_matchings;
+	vector < unsigned int > _num_matchings;
 	vector< matchingslist > _matchings;
 
 	siftPar _siftParam;	
