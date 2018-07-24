@@ -106,7 +106,7 @@ int main(int argc, char **argv)
       "book_training/train_image_001.png"};
 	
     ASIFT_matcher matcher;
-    matcher.setResizeImg(true);
+    matcher.setResizeImg(flag_resize);
     matcher.addReference(refData[0].c_str(), 7);
     matcher.addReference(refData[1].c_str(), 7);
     // matcher.print();

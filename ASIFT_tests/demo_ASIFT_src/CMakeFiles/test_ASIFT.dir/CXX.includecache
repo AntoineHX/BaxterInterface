@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/ASIFT_matcher.cpp
-ASIFT_matcher.hpp
-/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/ASIFT_matcher.hpp
-
 /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/ASIFT_matcher.hpp
 stdio.h
 -
@@ -149,4 +145,8 @@ string.h
 /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/string.h
 vector
 -
+
+/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/test_ASIFT.cpp
+ASIFT_matcher.hpp
+/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/ASIFT_matcher.hpp
 
