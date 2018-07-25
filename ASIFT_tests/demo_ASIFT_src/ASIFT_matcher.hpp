@@ -39,12 +39,13 @@ public:
 	bool addReference(const char* image, unsigned int num_tilts=1);
 	bool match(const char* image, unsigned int num_tilts =1);
 	bool match(vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1);
-	void print() const;
-	void computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const;
+	void print() const; //Debugging function
+	bool computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const; //Compute the bounding rectangle of the keypoints
+	bool computeCenter(int& cx, int& cy) const;
+	bool distFilter(int threshold); //Filter keypoint which are far (Euclidian distance) from the center.
 
 	void setResizeImg(bool resize_imgs){ _resize_imgs=resize_imgs;}
 	void showDebug(bool showDebug){ _showDebug=showDebug;}
-
 	const vector < unsigned int >& getNbMatchs() const{ return _num_matchings;}
 	unsigned int getNbMatch() const;
 	const vector< matchingslist >& getMatch() const{ return _matchings;}

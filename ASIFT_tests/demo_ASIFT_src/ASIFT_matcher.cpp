@@ -308,12 +308,12 @@ bool ASIFT_matcher::match(vector<float>& image, unsigned int w, unsigned int h, 
 	return true;
 }
 
-void ASIFT_matcher::computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const
+bool ASIFT_matcher::computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const
 {
 	if(getNbMatch()==0)
 	{
 		cerr<<"Error : cannot compute ROI without matchs"<<endl;
-		return;
+		return false;
 	}
 
 	pair<int,int> upLe, doRi; //UpLeft / DownRight
@@ -348,12 +348,117 @@ void ASIFT_matcher::computeROI(int& x, int& y, unsigned int& h, unsigned int& w)
 	h=doRi.second-y;
 	w=doRi.first-x;
 
-	// x=zoom*upLe.first; //Système de coordonée ? (devrait etre bon)
-	// y=zoom*upLe.second;
-	// h=zoom*(doRi.second-upLe.second);
-	// w=zoom*(doRi.first-upLe.first);
+	return true;
 }
 
+bool ASIFT_matcher::computeCenter(int& cx, int& cy) const
+{
+	if(getNbMatch()==0)
+	{
+		cerr<<"Error : cannot compute Center without matchs"<<endl;
+		return false;
+	}
+
+	unsigned int total_kp =0;
+	cx=0;cy=0;
+	for(unsigned int i=0;i<_matchings.size();i++)
+	{
+		for(unsigned int j=0;j<_matchings[i].size();j++)
+		{
+			keypoint kp = _matchings[i][j].first;
+			cx+=kp.x;
+			cy+=kp.y;
+		}
+		total_kp += _matchings[i].size();
+	}
+	cx/=total_kp;
+	cy/=total_kp;
+
+	return true;
+}
+
+//Filter keypoint which are far (Euclidian distance) from the center.
+//Not optimized
+//threshold : 1-68%/2-95%/3-99%
+bool ASIFT_matcher::distFilter(int threshold=2)
+{
+	cout<<"filtering keypoint..."<<endl;
+	if(getNbMatch()==0)
+	{
+		cerr<<"Error : cannot filter points without matchs"<<endl;
+		return false;
+	}
+
+	//Compute standard deviation
+	int cx, cy;
+	unsigned int total_kp =0;
+	unsigned int euc_dist, dist_avg =0, dist_var=0, std_dev;
+	vector< vector< int > > kp_euc_dist;
+
+	if(computeCenter(cx,cy))
+	{
+		// cout<<"Center : "<<cx<<" / "<<cy<<endl;
+
+		//Compute means/average distance to center + euclidian distances to center for each keypoint
+		for(unsigned int i=0;i<_matchings.size();i++)
+		{
+			vector<int> temp_euc_dist;
+			for(unsigned int j=0;j<_matchings[i].size();j++)
+			{
+				keypoint kp = _matchings[i][j].first;
+				euc_dist =sqrt((kp.x-cx)*(kp.x-cx)+(kp.y-cy)+(kp.y-cy));
+				dist_avg+=euc_dist;
+				temp_euc_dist.push_back(euc_dist);
+			}
+			total_kp += _matchings[i].size();
+			kp_euc_dist.push_back(temp_euc_dist);
+		}
+		dist_avg/=total_kp;
+		// cout<<"Dist avg: "<<dist_avg<<endl;
+
+		//Compute variance
+		for(unsigned int i=0;i<_matchings.size();i++)
+		{
+			for(unsigned int j=0;j<_matchings[i].size();j++)
+			{
+				euc_dist =kp_euc_dist[i][j];
+				dist_var+=(euc_dist-dist_avg)*(euc_dist-dist_avg);
+			}
+		}
+		dist_var/=total_kp;
+
+		//Compute standard deviation
+		std_dev=sqrt(dist_var);
+		// cout<<"Standard Deviation : "<<std_dev<<endl;
+		
+		//Filter
+		vector< matchingslist > filtered_match;
+
+		for(unsigned int i=0;i<_matchings.size();i++)
+		{
+			matchingslist new_match;
+			for(unsigned int j=0;j<_matchings[i].size();j++)
+			{
+				euc_dist =kp_euc_dist[i][j];
+
+				if(euc_dist<dist_avg+threshold*std_dev)
+				{
+					new_match.push_back(_matchings[i][j]);
+				}
+			}
+			filtered_match.push_back(new_match);
+			_num_matchings[i]=new_match.size();
+		}
+
+		//Save filtered matchs
+		_matchings = filtered_match;
+
+		return true;
+	}
+	return false;
+}
+
+//Debugging function
 void ASIFT_matcher::print() const
 {
 	for(unsigned int i=0; i< _keys.size();i++)

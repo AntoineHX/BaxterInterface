@@ -2,13 +2,14 @@
 
 int main(int argc, char **argv)
 {			
-	if ((argc !=2) && (argc != 3) && (argc != 4)) {
+	if ((argc <2) || (argc > 5)) {
         std::cerr << " ******************************************************************************* " << std::endl
 				  << " ***************************  ASIFT image matching  **************************** " << std::endl
 				  << " ******************************************************************************* " << std::endl
-				  << "Usage: " << argv[0] << " imgIn.png [Tilt number option] [Resize option: 0/1] " << std::endl
+				  << "Usage: " << argv[0] << " imgIn.png [Tilt number option] [Filter option] [Resize option] " << std::endl
 									      << "- imgIn.png: input image (in PNG format). " << std::endl
-									      << "- [Tilt number option: 1..(32+ ?)] : 8: Recommended / 1: no tilt. " << std::endl 
+									      << "- [Tilt number option: 1..(32+ ?)] : 7: Recommended / 1: no tilt. " << std::endl
+									      << "- [Filter option: 0..3]. Standard deviation filter coeff (1-68%/2-95%/3-99%). 0: no filtering. " << std::endl 
 										  << "- [Resize option: 0/1]. 1: input images resize to 800x600 (default). 0: no resize. " << std::endl 
    				  << " ******************************************************************************* " << std::endl
 				  << " *********************  Jean-Michel Morel, Guoshen Yu, 2010 ******************** " << std::endl
@@ -36,12 +37,12 @@ int main(int argc, char **argv)
 	vector<float> ipixels1_zoom;	
 		
 	int flag_resize = 1;
-	if (argc == 4)
+	if (argc == 5)
 	{	
-		flag_resize = atoi(argv[3]);
+		flag_resize = atoi(argv[4]);
 	}
 	
-	if ((argc==2) || (argc == 3) || (flag_resize != 0))
+	if (flag_resize != 0)
 	{
 		cout << "WARNING: The input images is resized to " << wS << "x" << hS << " for ASIFT. " << endl 
 		<< "         But the results will be normalized to the original image size." << endl << endl;
@@ -101,24 +102,34 @@ int main(int argc, char **argv)
 		zoom1 = 1;
 	}
 
+
 	std::string refData[] = {
       "book_training/train_image_000.png", 
       "book_training/train_image_001.png"};
-	
+
     ASIFT_matcher matcher;
     matcher.setResizeImg(flag_resize);
 
     time_t tstart, tend;
 	tstart = time(0);
 
-    matcher.addReference(refData[0].c_str(), 8);
-    matcher.addReference(refData[1].c_str(), 8);
     // matcher.print();
     // matcher.match(refData[3].c_str(), 4);
     if(argc>2)
-    	matcher.match(ipixels1_zoom, wS1, hS1, atoi(argv[2]));
+    {
+		matcher.addReference(refData[0].c_str(), atoi(argv[2]));
+		matcher.addReference(refData[1].c_str(), atoi(argv[2]));
+		matcher.match(ipixels1_zoom, wS1, hS1, atoi(argv[2]));
+    }
 	else
+	{
+		matcher.addReference(refData[0].c_str(), 7);
+    	matcher.addReference(refData[1].c_str(), 7);
 		matcher.match(ipixels1_zoom, wS1, hS1);
+	}
+
+	if(argc>3 && atoi(argv[3])>0)
+		matcher.distFilter(atoi(argv[3]));
 
 	tend = time(0);
 
@@ -130,17 +141,13 @@ int main(int argc, char **argv)
     	cout<<"	"<<NbMatch[i]<<endl;
     }
 	
-	int x =0,y=0;
-	unsigned int h=1,w=1;
-	matcher.computeROI(x,y,h,w);
-	
+	int x,y,cx,cy;
+	unsigned int h,w;
 	
 	float *opixelsASIFT = new float[w1*h1];
 	/////////////////////////////////////////////////////////////////// Copy image to output
 	for(int j = 0; j < (int) h1; j++)
-		for(int i = 0; i < (int) w1; i++)  opixelsASIFT[j*w1+i] = ipixels1[j*w1+i];				
-	//////////////////////////////////////////////////////////////////// Draw ROI	
-	draw_square(opixelsASIFT, zoom1*x, zoom1*y, zoom1*w, zoom1*h, 255, w1, h1);
+		for(int i = 0; i < (int) w1; i++)  opixelsASIFT[j*w1+i] = ipixels1[j*w1+i];	
 
 	//////////////////////////////////////////////////////////////////// Draw matches
 	int point_size = 2;
@@ -152,6 +159,19 @@ int main(int argc, char **argv)
 			draw_square(opixelsASIFT, (int) (zoom1*ptrH->first.x), (int) (zoom1*ptrH->first.y), point_size, point_size, 255, w1, h1);
 		}
 	}
+
+	//////////////////////////////////////////////////////////////////// Draw ROI	
+	if(matcher.computeROI(x,y,h,w))
+		draw_square(opixelsASIFT, zoom1*x, zoom1*y, zoom1*w, zoom1*h, 255, w1, h1);
+	
+	//////////////////////////////////////////////////////////////////// Draw Center
+	if(matcher.computeCenter(cx,cy))
+	{
+		draw_square(opixelsASIFT, zoom1*(cx-6), zoom1*(cy-6), zoom1*12, zoom1*12, 160, w1, h1);
+		draw_line(opixelsASIFT, zoom1*cx, zoom1*(cy-6), zoom1*cx, zoom1*(cy+6), 255, w1, h1);
+		draw_line(opixelsASIFT, zoom1*(cx-6), zoom1*cy, zoom1*(cx+6), zoom1*cy, 255, w1, h1);
+	}
+
 	///////////////////////////////////////////////////////////////// Save imgOut	
 	write_png_f32("./results/res.png", opixelsASIFT, w1, h1, 1);
 	
