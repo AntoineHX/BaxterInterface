@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 				  << "Usage: " << argv[0] << " imgIn.png [Tilt number option] [Filter option] [Resize option] " << std::endl
 									      << "- imgIn.png: input image (in PNG format). " << std::endl
 									      << "- [Tilt number option: 1..(32+ ?)] : 7: Recommended / 1: no tilt. " << std::endl
-									      << "- [Filter option: 0..3]. Standard deviation filter coeff (1-68%/2-95%/3-99%). 0: no filtering. " << std::endl 
+									      << "- [Filter option: 0..3]. Standard deviation filter coeff (1-68%/2-95%/3-99%). 0: no filtering (default). " << std::endl 
 										  << "- [Resize option: 0/1]. 1: input images resize to 800x600 (default). 0: no resize. " << std::endl 
    				  << " ******************************************************************************* " << std::endl
 				  << " *********************  Jean-Michel Morel, Guoshen Yu, 2010 ******************** " << std::endl
@@ -107,26 +107,23 @@ int main(int argc, char **argv)
       "book_training/train_image_000.png", 
       "book_training/train_image_001.png"};
 
+    int tilt_ref = 7, tilt_input = 1;
+
+    if(argc>2)
+    {
+    	tilt_ref = atoi(argv[2]);
+    	tilt_input = atoi(argv[2]);
+    }
+
     ASIFT_matcher matcher;
     matcher.setResizeImg(flag_resize);
 
     time_t tstart, tend;
 	tstart = time(0);
 
-    // matcher.print();
-    // matcher.match(refData[3].c_str(), 4);
-    if(argc>2)
-    {
-		matcher.addReference(refData[0].c_str(), atoi(argv[2]));
-		matcher.addReference(refData[1].c_str(), atoi(argv[2]));
-		matcher.match(ipixels1_zoom, wS1, hS1, atoi(argv[2]));
-    }
-	else
-	{
-		matcher.addReference(refData[0].c_str(), 7);
-    	matcher.addReference(refData[1].c_str(), 7);
-		matcher.match(ipixels1_zoom, wS1, hS1);
-	}
+	matcher.addReference(refData[0].c_str(), tilt_ref);
+	matcher.addReference(refData[1].c_str(), tilt_ref);
+	matcher.match(ipixels1_zoom, wS1, hS1, tilt_input);
 
 	if(argc>3 && atoi(argv[3])>0)
 		matcher.distFilter(atoi(argv[3]));

@@ -1,6 +1,6 @@
 #include "ASIFT_matcher.hpp"
 
-ASIFT_matcher::ASIFT_matcher(): _showDebug(0), _nb_refs(0), _resize_imgs(false)
+ASIFT_matcher::ASIFT_matcher(): _nb_refs(0), _resize_imgs(false), _showDebug(false)
 {
 	default_sift_parameters(_siftParam);
 }
@@ -10,6 +10,7 @@ ASIFT_matcher::ASIFT_matcher(): _showDebug(0), _nb_refs(0), _resize_imgs(false)
 
 // }
 
+//Return true if successfull
 bool ASIFT_matcher::addReference(const char* image, unsigned int num_tilts)
 {
 	///// Read input
@@ -112,6 +113,7 @@ bool ASIFT_matcher::addReference(const char* image, unsigned int num_tilts)
 	//Save data
 	_im_refs.push_back(ipixels1_zoom);
 	_size_refs.push_back(make_pair(wS1,hS1));
+	_zoom_refs.push_back(zoom1);
 
 	_num_keys.push_back(num_keys);
 	_num_tilts.push_back(num_tilts);
@@ -125,6 +127,7 @@ bool ASIFT_matcher::addReference(const char* image, unsigned int num_tilts)
 	return true;
 }
 
+//Return true if successfull
 bool ASIFT_matcher::match(const char* image, unsigned int num_tilts)
 {
 	if(_nb_refs<=0)
@@ -256,6 +259,7 @@ bool ASIFT_matcher::match(const char* image, unsigned int num_tilts)
 	return true;
 }
 
+//Return true if successfull
 bool ASIFT_matcher::match(vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts)
 {
 	if(image.size()!=w*h)
@@ -308,6 +312,7 @@ bool ASIFT_matcher::match(vector<float>& image, unsigned int w, unsigned int h, 
 	return true;
 }
 
+//Return true if successfull
 bool ASIFT_matcher::computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const
 {
 	if(getNbMatch()==0)
@@ -351,6 +356,7 @@ bool ASIFT_matcher::computeROI(int& x, int& y, unsigned int& h, unsigned int& w)
 	return true;
 }
 
+//Return true if successfull
 bool ASIFT_matcher::computeCenter(int& cx, int& cy) const
 {
 	if(getNbMatch()==0)
@@ -380,6 +386,7 @@ bool ASIFT_matcher::computeCenter(int& cx, int& cy) const
 //Filter keypoint which are far (Euclidian distance) from the center.
 //Not optimized
 //threshold : 1-68%/2-95%/3-99%
+//Return true if successfull 
 bool ASIFT_matcher::distFilter(int threshold=2)
 {
 	cout<<"filtering keypoint..."<<endl;
@@ -430,7 +437,7 @@ bool ASIFT_matcher::distFilter(int threshold=2)
 		//Compute standard deviation
 		std_dev=sqrt(dist_var);
 		// cout<<"Standard Deviation : "<<std_dev<<endl;
-		
+
 		//Filter
 		vector< matchingslist > filtered_match;
 
@@ -441,7 +448,7 @@ bool ASIFT_matcher::distFilter(int threshold=2)
 			{
 				euc_dist =kp_euc_dist[i][j];
 
-				if(euc_dist<dist_avg+threshold*std_dev)
+				if(euc_dist<dist_avg+threshold*std_dev) //Filtering Condition
 				{
 					new_match.push_back(_matchings[i][j]);
 				}

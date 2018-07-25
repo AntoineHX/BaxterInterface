@@ -30,6 +30,7 @@ using namespace std;
 
 typedef vector< vector< keypointslist > > asift_keypoints;
 
+//ASIFT wrapper
 class ASIFT_matcher
 {
 public:
@@ -44,33 +45,41 @@ public:
 	bool computeCenter(int& cx, int& cy) const;
 	bool distFilter(int threshold); //Filter keypoint which are far (Euclidian distance) from the center.
 
-	void setResizeImg(bool resize_imgs){ _resize_imgs=resize_imgs;}
-	void showDebug(bool showDebug){ _showDebug=showDebug;}
+
+	unsigned int getNbRef() const{ return _nb_refs;}
+	const vector< vector< float > >& getRefImgs() const{ return _im_refs;}
+	const vector< pair<int,int> >& getSizeRef() const{ return _size_refs;}
+	const vector<float>& getZoomRef() const{ return _zoom_refs;}
 	const vector < unsigned int >& getNbMatchs() const{ return _num_matchings;}
 	unsigned int getNbMatch() const;
 	const vector< matchingslist >& getMatch() const{ return _matchings;}
 	vector< matchingslist >& getMatch(){ return _matchings;}
+	const siftPar& getSiftPar(){ return _siftParam;}
+	void setSiftPar(const siftPar &newSiftPar){ _siftParam = newSiftPar;}
+	void setResizeImg(bool resize_imgs){ _resize_imgs=resize_imgs;}
+	void showDebug(bool showDebug){ _showDebug=showDebug;}
 
 protected:
-	int _showDebug;// = 0;
 
 	//Reference Images
 	// vector< image > _im_refs;
-	unsigned int _nb_refs;// = 0;
-	vector< vector< float > > _im_refs;
+	unsigned int _nb_refs;// = 0; //Number of reference images
+	vector< vector< float > > _im_refs; //Reference images used for matching
 	vector< pair<int,int> > _size_refs; //Width/Height
+	vector<float> _zoom_refs; //Zoom coeffs
 
 	//ASIFT Keypoints
-	vector< int > _num_keys;
-	vector< int > _num_tilts; //Speed VS Precision
-	vector< asift_keypoints > _keys;
+	vector< int > _num_keys; //Number of keypoint/reference
+	vector< int > _num_tilts; //Number of tilts/reference (Speed VS Precision)
+	vector< asift_keypoints > _keys; //Keypoints
 
 	//Matchs
-	vector < unsigned int > _num_matchings;
-	vector< matchingslist > _matchings;
+	vector < unsigned int > _num_matchings; //Number of match/reference
+	vector< matchingslist > _matchings; //Matchs
 
-	siftPar _siftParam;	
+	siftPar _siftParam;	//SIFT parameters
 
 	//Flags
-	bool _resize_imgs;// = false;
+	bool _resize_imgs;// = false; //Resize images to IM_X/IM_Y ?
+	bool _showDebug;// = 0; //Show debugging messages ?
 };
