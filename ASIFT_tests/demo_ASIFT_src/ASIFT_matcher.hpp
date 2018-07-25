@@ -40,17 +40,18 @@ public:
 	bool match(const char* image, unsigned int num_tilts =1);
 	bool match(vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1);
 	void print() const;
-	void computeROI(int& x, int& y, unsigned int& h, unsigned int& w, int zoom =1) const;
+	void computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const;
 
 	void setResizeImg(bool resize_imgs){ _resize_imgs=resize_imgs;}
+	void showDebug(bool showDebug){ _showDebug=showDebug;}
 
 	const vector < unsigned int >& getNbMatchs() const{ return _num_matchings;}
 	unsigned int getNbMatch() const;
 	const vector< matchingslist >& getMatch() const{ return _matchings;}
+	vector< matchingslist >& getMatch(){ return _matchings;}
 
 protected:
-	//QUESCEQUESAI
-	int _verb;// = 0;
+	int _showDebug;// = 0;
 
 	//Reference Images
 	// vector< image > _im_refs;

@@ -1,6 +1,6 @@
 #include "ASIFT_matcher.hpp"
 
-ASIFT_matcher::ASIFT_matcher(): _verb(0), _nb_refs(0), _resize_imgs(false)
+ASIFT_matcher::ASIFT_matcher(): _showDebug(0), _nb_refs(0), _resize_imgs(false)
 {
 	default_sift_parameters(_siftParam);
 }
@@ -105,7 +105,7 @@ bool ASIFT_matcher::addReference(const char* image, unsigned int num_tilts)
 	time_t tstart, tend;
 	tstart = time(0);
 
-	num_keys = compute_asift_keypoints(ipixels1_zoom, wS1, hS1, num_tilts, _verb, keys, _siftParam);
+	num_keys = compute_asift_keypoints(ipixels1_zoom, wS1, hS1, num_tilts, _showDebug, keys, _siftParam);
 
 	tend = time(0);
 
@@ -219,7 +219,7 @@ bool ASIFT_matcher::match(const char* image, unsigned int num_tilts)
 	time_t tstart, tend;
 	tstart = time(0);
 
-	num_keys = compute_asift_keypoints(ipixels1_zoom, wS1, hS1, num_tilts, _verb, keys, _siftParam);
+	num_keys = compute_asift_keypoints(ipixels1_zoom, wS1, hS1, num_tilts, _showDebug, keys, _siftParam);
 
 	tend = time(0);
 	cout<< "Keypoints computation accomplished in " << difftime(tend, tstart) << " seconds." << endl;
@@ -237,7 +237,7 @@ bool ASIFT_matcher::match(const char* image, unsigned int num_tilts)
 		tstart = time(0);
 		try
 		{
-			num_matchings = compute_asift_matches(num_tilts, _num_tilts[i], wS1, hS1, _size_refs[i].first, _size_refs[i].second, _verb, keys, _keys[i], matchings, _siftParam);
+			num_matchings = compute_asift_matches(num_tilts, _num_tilts[i], wS1, hS1, _size_refs[i].first, _size_refs[i].second, _showDebug, keys, _keys[i], matchings, _siftParam);
 		}
 		catch(const bad_alloc& ba)
 		{
@@ -271,7 +271,7 @@ bool ASIFT_matcher::match(vector<float>& image, unsigned int w, unsigned int h, 
 	time_t tstart, tend;
 	tstart = time(0);
 
-	num_keys = compute_asift_keypoints(image, w, h, num_tilts, _verb, keys, _siftParam);
+	num_keys = compute_asift_keypoints(image, w, h, num_tilts, _showDebug, keys, _siftParam);
 
 	tend = time(0);
 	cout<< "Keypoints computation accomplished in " << difftime(tend, tstart) << " seconds." << endl;
@@ -289,7 +289,7 @@ bool ASIFT_matcher::match(vector<float>& image, unsigned int w, unsigned int h, 
 		tstart = time(0);
 		try
 		{
-			num_matchings = compute_asift_matches(num_tilts, _num_tilts[i], w, h, _size_refs[i].first, _size_refs[i].second, _verb, keys, _keys[i], matchings, _siftParam);
+			num_matchings = compute_asift_matches(num_tilts, _num_tilts[i], w, h, _size_refs[i].first, _size_refs[i].second, _showDebug, keys, _keys[i], matchings, _siftParam);
 		}
 		catch(const bad_alloc& ba)
 		{
@@ -308,7 +308,7 @@ bool ASIFT_matcher::match(vector<float>& image, unsigned int w, unsigned int h, 
 	return true;
 }
 
-void ASIFT_matcher::computeROI(int& x, int& y, unsigned int& h, unsigned int& w, int zoom) const
+void ASIFT_matcher::computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const
 {
 	if(getNbMatch()==0)
 	{
