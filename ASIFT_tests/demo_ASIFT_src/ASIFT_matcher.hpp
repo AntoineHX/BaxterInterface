@@ -38,8 +38,8 @@ public:
 	// virtual ~ASIFT_matcher();
 
 	bool addReference(const char* image, unsigned int num_tilts=1);
-	bool match(const char* image, unsigned int num_tilts =1);
-	bool match(vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1);
+	unsigned int match(const char* image, unsigned int num_tilts =1);
+	unsigned int match(vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1);
 	void print() const; //Debugging function
 	bool computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const; //Compute the bounding rectangle of the keypoints
 	bool computeCenter(int& cx, int& cy) const;
@@ -51,7 +51,7 @@ public:
 	const vector< pair<int,int> >& getSizeRef() const{ return _size_refs;}
 	const vector<float>& getZoomRef() const{ return _zoom_refs;}
 	const vector < unsigned int >& getNbMatchs() const{ return _num_matchings;}
-	unsigned int getNbMatch() const;
+	unsigned int getNbMatch() const{ return _total_num_matchings;}
 	const vector< matchingslist >& getMatch() const{ return _matchings;}
 	vector< matchingslist >& getMatch(){ return _matchings;}
 	const siftPar& getSiftPar(){ return _siftParam;}
@@ -74,6 +74,7 @@ protected:
 	vector< asift_keypoints > _keys; //Keypoints
 
 	//Matchs
+	unsigned int _total_num_matchings;
 	vector < unsigned int > _num_matchings; //Number of match/reference
 	vector< matchingslist > _matchings; //Matchs
 

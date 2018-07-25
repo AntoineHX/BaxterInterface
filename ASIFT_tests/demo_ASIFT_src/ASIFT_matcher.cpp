@@ -1,6 +1,6 @@
 #include "ASIFT_matcher.hpp"
 
-ASIFT_matcher::ASIFT_matcher(): _nb_refs(0), _resize_imgs(false), _showDebug(false)
+ASIFT_matcher::ASIFT_matcher(): _nb_refs(0), _total_num_matchings(0), _resize_imgs(false), _showDebug(false)
 {
 	default_sift_parameters(_siftParam);
 }
@@ -127,13 +127,13 @@ bool ASIFT_matcher::addReference(const char* image, unsigned int num_tilts)
 	return true;
 }
 
-//Return true if successfull
-bool ASIFT_matcher::match(const char* image, unsigned int num_tilts)
+//Return number of match
+unsigned int ASIFT_matcher::match(const char* image, unsigned int num_tilts)
 {
 	if(_nb_refs<=0)
 	{
 		cout<<"ASIFT_matcher Error : Trying to match without reference"<<endl;
-		return false;
+		return 0;
 	}
 
 	///// Read input
@@ -229,11 +229,11 @@ bool ASIFT_matcher::match(const char* image, unsigned int num_tilts)
 	cout<<"	"<< num_keys <<" ASIFT keypoints found in "<< image << endl;
 
 	//// Match ASIFT keypoints
-
-	int num_matchings = 0;
+	_total_num_matchings=0;
 
 	for(unsigned int i = 0; i<_nb_refs;i++)
 	{
+		int num_matchings = 0;
 		matchingslist matchings;
 
 		cout << "Matching the keypoints..." << endl;
@@ -253,19 +253,20 @@ bool ASIFT_matcher::match(const char* image, unsigned int num_tilts)
 		cout << "Keypoints matching accomplished in " << difftime(tend, tstart) << " seconds." << endl;
 
 		_num_matchings.push_back(num_matchings);
+		_total_num_matchings += num_matchings;
 		_matchings.push_back(matchings);
 	}
 
-	return true;
+	return _total_num_matchings;
 }
 
-//Return true if successfull
-bool ASIFT_matcher::match(vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts)
+//Return number of match
+unsigned int ASIFT_matcher::match(vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts)
 {
 	if(image.size()!=w*h)
 	{
 		cerr<<"Error : Input image size doesn't correspond with parameters"<<endl;
-		return false;
+		return 0;
 	}
 
 	///// Compute ASIFT keypoints
@@ -282,11 +283,11 @@ bool ASIFT_matcher::match(vector<float>& image, unsigned int w, unsigned int h, 
 	cout<<"	"<< num_keys <<" ASIFT keypoints found in Input image"<< endl;
 
 	//// Match ASIFT keypoints
-
-	int num_matchings = 0;
+	_total_num_matchings=0;
 
 	for(unsigned int i = 0; i<_nb_refs;i++)
 	{
+		int num_matchings = 0;
 		matchingslist matchings;
 
 		cout << "Matching the keypoints..." << endl;
@@ -306,10 +307,11 @@ bool ASIFT_matcher::match(vector<float>& image, unsigned int w, unsigned int h, 
 		cout << "Keypoints matching accomplished in " << difftime(tend, tstart) << " seconds." << endl;
 
 		_num_matchings.push_back(num_matchings);
+		_total_num_matchings += num_matchings;
 		_matchings.push_back(matchings);
 	}
 
-	return true;
+	return _total_num_matchings;
 }
 
 //Return true if successfull
@@ -495,12 +497,12 @@ void ASIFT_matcher::print() const
 	}
 }
 
-unsigned int ASIFT_matcher::getNbMatch() const
-{
-	unsigned int res = 0;
-	for (unsigned int i=0;i<_num_matchings.size();i++)
-	{
-		res+=_num_matchings[i];
-	} 
-	return res;
-}
+// unsigned int ASIFT_matcher::getNbMatch() const
+// {
+// 	unsigned int res = 0;
+// 	for (unsigned int i=0;i<_num_matchings.size();i++)
+// 	{
+// 		res+=_num_matchings[i];
+// 	} 
+// 	return res;
+// }

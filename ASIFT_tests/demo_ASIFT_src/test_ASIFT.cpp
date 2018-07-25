@@ -17,6 +17,9 @@ int main(int argc, char **argv)
         return 1;
     }
 	
+    char* output_img = "./results/res.png";
+    char* output_match = "./results/matching.txt";
+
 	//////////////////////////////////////////////// Input
 	float * iarr1;
     size_t w1, h1;
@@ -108,6 +111,7 @@ int main(int argc, char **argv)
       "book_training/train_image_001.png"};
 
     int tilt_ref = 7, tilt_input = 1;
+    int nb_match;
 
     if(argc>2)
     {
@@ -123,7 +127,7 @@ int main(int argc, char **argv)
 
 	matcher.addReference(refData[0].c_str(), tilt_ref);
 	matcher.addReference(refData[1].c_str(), tilt_ref);
-	matcher.match(ipixels1_zoom, wS1, hS1, tilt_input);
+	nb_match = matcher.match(ipixels1_zoom, wS1, hS1, tilt_input);
 
 	if(argc>3 && atoi(argv[3])>0)
 		matcher.distFilter(atoi(argv[3]));
@@ -170,9 +174,36 @@ int main(int argc, char **argv)
 	}
 
 	///////////////////////////////////////////////////////////////// Save imgOut	
-	write_png_f32("./results/res.png", opixelsASIFT, w1, h1, 1);
+	write_png_f32(output_img, opixelsASIFT, w1, h1, 1);
 	
 	delete[] opixelsASIFT; /*memcheck*/
 	
+	////// Write the coordinates of the matched points (row1, col1, row2, col2)
+	std::ofstream file(output_match);
+	if (file.is_open())
+	{		
+		// Write the number of matchings and number of references in the first line
+		file << nb_match <<"  "<<matcher.getNbRef() <<std::endl;
+
+		for(unsigned int i =0; i<matcher.getNbRef();i++)
+		{
+			//Write reference indice before match
+			file<<i<<std::endl;
+			matchingslist matchings = matcher.getMatch()[i];
+			matchingslist::iterator ptr = matchings.begin();
+			for(int i=0; i < (int) matchings.size(); i++, ptr++)		
+			{
+				file << zoom1*ptr->first.x << "  " << zoom1*ptr->first.y << "  " <<  matcher.getZoomRef()[i]*ptr->second.x << 
+				"  " <<  matcher.getZoomRef()[i]*ptr->second.y << std::endl;
+			}
+		}	
+	}
+	else 
+	{
+		std::cerr << "Unable to open the file matchings."; 
+	}
+
+	file.close();
+
     return 0;
 }
