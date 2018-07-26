@@ -11,17 +11,73 @@ ASIFT_matcher::ASIFT_matcher(): _nb_refs(0), _total_num_matchings(0), _resize_im
 // }
 
 //Return true if successfull
-bool ASIFT_matcher::addReference(const char* image, unsigned int num_tilts)
+bool ASIFT_matcher::addReference(const char* image_path, unsigned int num_tilts)
 {
 	///// Read input
 	float * iarr1;
     size_t w1, h1;
-    if (NULL == (iarr1 = read_png_f32_gray(image, &w1, &h1))) {
-        std::cerr << "Unable to load image file " << image << std::endl;
+    if (NULL == (iarr1 = read_png_f32_gray(image_path, &w1, &h1))) {
+        std::cerr << "Unable to load image file " << image_path << std::endl;
         return false;
     }
     std::vector<float> ipixels1(iarr1, iarr1 + w1 * h1);
 	free(iarr1); /*memcheck*/
+
+	// cout<<"Size : "<<w1<<"/"<<h1<<" - "<<ipixels1.size()<<endl;
+
+	// Mat imageMat;
+ //    imageMat = imread(image_path);   // Read the file
+
+ //    if(! imageMat.data )                              // Check for invalid input
+ //    {
+ //        cout <<  "Could not open or find " << image_path << std::endl;
+ //        return -1;
+ //    }                         
+ //    vector<float> ipixels1;
+ //    size_t w1=0, h1=0;
+
+ //    if(imageMat.isContinuous())
+ //    {
+ //    	Mat M1;
+ //    	cvtColor(imageMat,M1,COLOR_BGR2GRAY);
+
+ //    	// M1.convertTo(M1,CV_32FC1);
+ //    //Conversion for ASIFT
+	// 	if (M1.isContinuous()) 
+	// 	{
+	// 		ipixels1.assign((float*)M1.datastart, (float*)M1.dataend);
+	// 	} 
+	// 	else {
+	// 		for (int i = 0; i < M1.rows; ++i)
+	// 		{
+	// 			ipixels1.insert(ipixels1.end(), (float*)M1.ptr<uchar>(i), (float*)M1.ptr<uchar>(i)+M1.cols);
+	// 		}
+	// 	}
+ //    // ipixels1.assign((float*)M1.datastart, (float*)M1.dataend);
+ //    // ipixels1.assign(imageMat.begin<float>(), imageMat.end<float>());
+ //    w1=M1.cols;
+ //    h1=M1.rows;
+
+ //    cout<<"Size : "<<w1<<"/"<<h1<<" - "<<ipixels1.size()<<endl;
+
+ //    Mat M2=Mat(h1,w1,CV_32FC1);
+	// memcpy(M2.data,ipixels1.data(),ipixels1.size()*sizeof(float));
+
+	// namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
+ //    imshow( "Display window", M2 );                   // Show our image inside it.
+
+ //    float *opixelsASIFT = new float[w1*h1];
+	// /////////////////////////////////////////////////////////////////// Copy image to output
+	// for(int j = 0; j < (int) h1; j++)
+	// 	for(int i = 0; i < (int) w1; i++)  opixelsASIFT[j*w1+i] = ipixels1[j*w1+i];	
+
+	// ///////////////////////////////////////////////////////////////// Save imgOut	
+	// write_png_f32("img.png", opixelsASIFT, w1, h1, 1);
+	
+	// delete[] opixelsASIFT; /*memcheck*/
+
+ //    waitKey(0);
+	// }
 
     ///// Resize the images to area wS*hW in remaining the apsect-ratio	
 	///// Resize if the resize flag is not set or if the flag is set unequal to 0
@@ -122,13 +178,13 @@ bool ASIFT_matcher::addReference(const char* image, unsigned int num_tilts)
 	_nb_refs++;
 
 	cout<<"Reference built in "<< difftime(tend, tstart) << " seconds." << endl;
-	cout<<"	"<< num_keys <<" ASIFT keypoints found in "<< image << endl;
+	cout<<"	"<< num_keys <<" ASIFT keypoints found in "<< image_path << endl;
 
 	return true;
 }
 
 //Return number of match
-unsigned int ASIFT_matcher::match(const char* image, unsigned int num_tilts)
+unsigned int ASIFT_matcher::match(const char* image_path, unsigned int num_tilts)
 {
 	if(_nb_refs<=0)
 	{
@@ -139,8 +195,8 @@ unsigned int ASIFT_matcher::match(const char* image, unsigned int num_tilts)
 	///// Read input
 	float * iarr1;
     size_t w1, h1;
-    if (NULL == (iarr1 = read_png_f32_gray(image, &w1, &h1))) {
-        std::cerr << "Unable to load image file " << image << std::endl;
+    if (NULL == (iarr1 = read_png_f32_gray(image_path, &w1, &h1))) {
+        std::cerr << "Unable to load image file " << image_path << std::endl;
         return 1;
     }
     std::vector<float> ipixels1(iarr1, iarr1 + w1 * h1);
@@ -226,7 +282,7 @@ unsigned int ASIFT_matcher::match(const char* image, unsigned int num_tilts)
 
 	tend = time(0);
 	cout<< "Keypoints computation accomplished in " << difftime(tend, tstart) << " seconds." << endl;
-	cout<<"	"<< num_keys <<" ASIFT keypoints found in "<< image << endl;
+	cout<<"	"<< num_keys <<" ASIFT keypoints found in "<< image_path << endl;
 
 	//// Match ASIFT keypoints
 	_total_num_matchings=0;
@@ -465,6 +521,77 @@ bool ASIFT_matcher::distFilter(int threshold=2)
 		return true;
 	}
 	return false;
+}
+
+//A tester
+bool ASIFT_matcher::saveReferences(const char* ref_path) const
+{
+	// Write all the keypoints (row, col, scale, orientation, desciptor (128 integers))
+	std::ofstream file_key1(ref_path);
+	if (file_key1.is_open())
+	{
+		file_key1<<_nb_refs<<std::endl;
+		for(unsigned int i=0; i<_keys.size();i++)
+		{
+			asift_keypoints kps =_keys[i];
+			// Follow the same convention of David Lowe: 
+			// the first line contains the number of keypoints and the length of the desciptors (128) 
+			// Added number of tilts
+			file_key1 << _num_keys[i] << "  " << VecLength << "  " << _num_tilts[i] << "  " << std::endl;
+			for (int tt = 0; tt < (int) kps.size(); tt++)
+			{
+				for (int rr = 0; rr < (int) kps[tt].size(); rr++)
+				{
+					keypointslist::iterator ptr = kps[tt][rr].begin();
+					for(int i=0; i < (int) kps[tt][rr].size(); i++, ptr++)	
+					{
+						file_key1 << _zoom_refs[i]*ptr->x << "  " << _zoom_refs[i]*ptr->y << "  " << _zoom_refs[i]*ptr->scale << "  " << ptr->angle;
+						
+						for (int ii = 0; ii < (int) VecLength; ii++)
+						{
+							file_key1 << "  " << ptr->vec[ii];
+						}
+						
+						file_key1 << std::endl;
+					}
+				}	
+			}
+			file_key1<<std::endl;
+		}
+	}
+	else 
+	{
+		std::cerr << "Unable to open the file :"<<ref_path;
+		return false;
+	}
+
+	file_key1.close();
+	return true;
+}
+
+//A finir
+bool ASIFT_matcher::loadReferences(const char* ref_path)
+{
+	std::ifstream ref_file(ref_path);
+	std::string nb_ref;
+	if (ref_file.is_open())
+	{
+		std::getline(ref_file, nb_ref);
+		//std::stoi(nb_ref, _nb_refs); //C++11
+		_nb_refs = atoi(nb_ref.c_str());
+		for(unsigned int i=0; i<_nb_refs;i++)
+		{
+
+		}
+	}
+	else 
+	{
+		std::cerr << "Unable to open the file :"<<ref_path;
+		return false;
+	}
+
+	ref_file.close();
+	return true;
 }
 
 //Debugging function

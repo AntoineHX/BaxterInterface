@@ -19,6 +19,7 @@ int main(int argc, char **argv)
 	
     char* output_img = "./results/res.png";
     char* output_match = "./results/matching.txt";
+    char* output_references = "./results/references.txt";
 
 	//////////////////////////////////////////////// Input
 	float * iarr1;
@@ -105,10 +106,26 @@ int main(int argc, char **argv)
 		zoom1 = 1;
 	}
 
-
+	unsigned int nb_ref =2;
 	std::string refData[] = {
       "book_training/train_image_000.png", 
-      "book_training/train_image_001.png"};
+      "book_training/train_image_001.png", 
+      "book_training/train_image_002.png", 
+      "book_training/train_image_003.png"};
+
+	// unsigned int nb_ref =11;
+	// std::string refData[] = {
+ //      "toy_training/obj11__processed__0000_color.png",
+ //  	  "toy_training/obj11__processed__0001_color.png",
+ //  	  "toy_training/obj11__processed__0002_color.png",
+ //  	  "toy_training/obj11__processed__0003_color.png",
+ //  	  "toy_training/obj11__processed__0004_color.png",
+ //  	  "toy_training/obj11__processed__0005_color.png",
+ //  	  "toy_training/obj11__processed__0006_color.png",
+ //  	  "toy_training/obj11__processed__0007_color.png",
+ //  	  "toy_training/obj11__processed__0008_color.png",
+ //  	  "toy_training/obj11__processed__0009_color.png",
+ //  	  "toy_training/obj11__processed__0010_color.png",};
 
     int tilt_ref = 7, tilt_input = 1;
     int nb_match;
@@ -125,8 +142,13 @@ int main(int argc, char **argv)
     time_t tstart, tend;
 	tstart = time(0);
 
-	matcher.addReference(refData[0].c_str(), tilt_ref);
-	matcher.addReference(refData[1].c_str(), tilt_ref);
+	for(unsigned int i=0; i<nb_ref;i++)
+	{
+		matcher.addReference(refData[i].c_str(), tilt_ref);
+	}
+
+	matcher.saveReferences(output_references);
+
 	nb_match = matcher.match(ipixels1_zoom, wS1, hS1, tilt_input);
 
 	if(argc>3 && atoi(argv[3])>0)

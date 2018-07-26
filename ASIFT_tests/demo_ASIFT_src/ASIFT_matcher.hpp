@@ -18,6 +18,12 @@ using namespace std;
 #include "compute_asift_keypoints.h"
 #include "compute_asift_matches.h"
 
+
+// #include <opencv2/core/core.hpp>
+// #include <opencv2/highgui/highgui.hpp>
+// #include <opencv2/imgproc/imgproc.hpp>
+// using namespace cv;
+
 # define IM_X 800
 # define IM_Y 600
 
@@ -37,14 +43,16 @@ public:
 	ASIFT_matcher();
 	// virtual ~ASIFT_matcher();
 
-	bool addReference(const char* image, unsigned int num_tilts=1);
-	unsigned int match(const char* image, unsigned int num_tilts =1);
+	bool addReference(const char* image_path, unsigned int num_tilts=1);
+	unsigned int match(const char* image_path, unsigned int num_tilts =1);
 	unsigned int match(vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1);
 	void print() const; //Debugging function
 	bool computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const; //Compute the bounding rectangle of the keypoints
 	bool computeCenter(int& cx, int& cy) const;
 	bool distFilter(int threshold); //Filter keypoint which are far (Euclidian distance) from the center.
 
+	bool saveReferences(const char* ref_path) const;
+	bool loadReferences(const char* ref_path);
 
 	unsigned int getNbRef() const{ return _nb_refs;}
 	const vector< vector< float > >& getRefImgs() const{ return _im_refs;}
