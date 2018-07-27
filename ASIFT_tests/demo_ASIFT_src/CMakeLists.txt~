@@ -26,7 +26,9 @@ IF(CMAKE_COMPILER_IS_GNUCXX)
   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-strict-aliasing")
   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wextra -Wno-write-strings")
   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated -ansi")
-  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -ftree-vectorize -funroll-loops")
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -ftree-vectorize -funroll-loops")
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L/usr/X11R6/lib -lm -lpthread -lX11")
 ENDIF(CMAKE_COMPILER_IS_GNUCXX)
 
 
@@ -51,5 +53,5 @@ TARGET_LINK_LIBRARIES(demo_ASIFT png zlib Match Numerics)
 
 find_package( OpenCV REQUIRED )
 add_executable(test_ASIFT test_ASIFT.cpp ASIFT_matcher.cpp ${ASIFT_srcs})
-TARGET_LINK_LIBRARIES(test_ASIFT png zlib Match Numerics)
+TARGET_LINK_LIBRARIES(test_ASIFT png zlib Match Numerics X11 ${OpenCV_LIBS})
 

@@ -9,8 +9,13 @@ CMakeFiles/test_ASIFT.dir/io_png/io_png.c.o
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/io_png.c
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/io_png.h
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o
+ ./io_png/libs/png/png.h
+ ./io_png/libs/png/pngconf.h
+ ./io_png/libs/zlib/zconf.h
+ ./io_png/libs/zlib/zlib.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/ASIFT_matcher.cpp
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/ASIFT_matcher.hpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CImg.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/compute_asift_keypoints.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/compute_asift_matches.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/demo_lib_sift.h
@@ -19,10 +24,11 @@ CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/flimage.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/fproj.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/frot.h
- /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/io_png.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/library.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/numerics1.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/splines.h
+ /usr/include/opencv/cv.h
+ /usr/include/opencv/highgui.h
 CMakeFiles/test_ASIFT.dir/compute_asift_keypoints.cpp.o
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/compute_asift_keypoints.cpp
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/compute_asift_keypoints.h
@@ -252,7 +258,12 @@ CMakeFiles/test_ASIFT.dir/splines.cpp.o
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/splines.cpp
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/splines.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o
+ ./io_png/libs/png/png.h
+ ./io_png/libs/png/pngconf.h
+ ./io_png/libs/zlib/zconf.h
+ ./io_png/libs/zlib/zlib.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/ASIFT_matcher.hpp
+ /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CImg.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/compute_asift_keypoints.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/compute_asift_matches.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/demo_lib_sift.h
@@ -261,8 +272,9 @@ CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/flimage.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/fproj.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/frot.h
- /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/io_png.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/library.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/numerics1.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/splines.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/test_ASIFT.cpp
+ /usr/include/opencv/cv.h
+ /usr/include/opencv/highgui.h

@@ -14,70 +14,46 @@ ASIFT_matcher::ASIFT_matcher(): _nb_refs(0), _total_num_matchings(0), _resize_im
 bool ASIFT_matcher::addReference(const char* image_path, unsigned int num_tilts)
 {
 	///// Read input
-	float * iarr1;
-    size_t w1, h1;
-    if (NULL == (iarr1 = read_png_f32_gray(image_path, &w1, &h1))) {
-        std::cerr << "Unable to load image file " << image_path << std::endl;
-        return false;
-    }
-    std::vector<float> ipixels1(iarr1, iarr1 + w1 * h1);
-	free(iarr1); /*memcheck*/
+	// float * iarr1;
+ //    size_t w1, h1;
+ //    if (NULL == (iarr1 = read_png_f32_gray(image_path, &w1, &h1))) {
+ //        std::cerr << "Unable to load image file " << image_path << std::endl;
+ //        return false;
+ //    }
+ //    std::vector<float> ipixels1(iarr1, iarr1 + w1 * h1);
+	// free(iarr1); /*memcheck*/
 
 	// cout<<"Size : "<<w1<<"/"<<h1<<" - "<<ipixels1.size()<<endl;
 
-	// Mat imageMat;
- //    imageMat = imread(image_path);   // Read the file
+	cimg_library::CImg<float> image;
+	try
+	{
+		image.assign(image_path);
+	}
+	catch(cimg_library::CImgIOException)
+	{
+		std::cerr << "Unable to load image file " << image_path << std::endl;
+		return false;
+	}
+	//Convert to grayscale
+	cimg_library::CImg<float> gray(image.width(), image.height(), 1, 1, 0);
+	cimg_forXY(image,x,y) { 
+    // Separation of channels
+    int R = (int)image(x,y,0,0);
+    int G = (int)image(x,y,0,1);
+    int B = (int)image(x,y,0,2);
+    // Arithmetic addition of channels for gray
+    // int grayValue = (int)(0.33*R + 0.33*G + 0.33*B);
+    // Real weighted addition of channels for gray
+    int grayValueWeight = (int)(0.299*R + 0.587*G + 0.114*B);
+    // saving píxel values into image information
+    // gray(x,y,0,0) = grayValue;
+    gray(x,y,0,0) = grayValueWeight;
+	}
 
- //    if(! imageMat.data )                              // Check for invalid input
- //    {
- //        cout <<  "Could not open or find " << image_path << std::endl;
- //        return -1;
- //    }                         
- //    vector<float> ipixels1;
- //    size_t w1=0, h1=0;
-
- //    if(imageMat.isContinuous())
- //    {
- //    	Mat M1;
- //    	cvtColor(imageMat,M1,COLOR_BGR2GRAY);
-
- //    	// M1.convertTo(M1,CV_32FC1);
- //    //Conversion for ASIFT
-	// 	if (M1.isContinuous()) 
-	// 	{
-	// 		ipixels1.assign((float*)M1.datastart, (float*)M1.dataend);
-	// 	} 
-	// 	else {
-	// 		for (int i = 0; i < M1.rows; ++i)
-	// 		{
-	// 			ipixels1.insert(ipixels1.end(), (float*)M1.ptr<uchar>(i), (float*)M1.ptr<uchar>(i)+M1.cols);
-	// 		}
-	// 	}
- //    // ipixels1.assign((float*)M1.datastart, (float*)M1.dataend);
- //    // ipixels1.assign(imageMat.begin<float>(), imageMat.end<float>());
- //    w1=M1.cols;
- //    h1=M1.rows;
-
- //    cout<<"Size : "<<w1<<"/"<<h1<<" - "<<ipixels1.size()<<endl;
-
- //    Mat M2=Mat(h1,w1,CV_32FC1);
-	// memcpy(M2.data,ipixels1.data(),ipixels1.size()*sizeof(float));
-
-	// namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
- //    imshow( "Display window", M2 );                   // Show our image inside it.
-
- //    float *opixelsASIFT = new float[w1*h1];
-	// /////////////////////////////////////////////////////////////////// Copy image to output
-	// for(int j = 0; j < (int) h1; j++)
-	// 	for(int i = 0; i < (int) w1; i++)  opixelsASIFT[j*w1+i] = ipixels1[j*w1+i];	
-
-	// ///////////////////////////////////////////////////////////////// Save imgOut	
-	// write_png_f32("img.png", opixelsASIFT, w1, h1, 1);
-	
-	// delete[] opixelsASIFT; /*memcheck*/
-
- //    waitKey(0);
-	// }
+	vector<float> ipixels1;
+    size_t w1=gray.width(), h1=gray.height();
+    ipixels1.assign(gray.begin(), gray.end());
 
     ///// Resize the images to area wS*hW in remaining the apsect-ratio	
 	///// Resize if the resize flag is not set or if the flag is set unequal to 0
@@ -193,14 +169,43 @@ unsigned int ASIFT_matcher::match(const char* image_path, unsigned int num_tilts
 	}
 
 	///// Read input
-	float * iarr1;
-    size_t w1, h1;
-    if (NULL == (iarr1 = read_png_f32_gray(image_path, &w1, &h1))) {
-        std::cerr << "Unable to load image file " << image_path << std::endl;
-        return 1;
-    }
-    std::vector<float> ipixels1(iarr1, iarr1 + w1 * h1);
-	free(iarr1); /*memcheck*/
+	// float * iarr1;
+ //    size_t w1, h1;
+ //    if (NULL == (iarr1 = read_png_f32_gray(image_path, &w1, &h1))) {
+ //        std::cerr << "Unable to load image file " << image_path << std::endl;
+ //        return 1;
+ //    }
+ //    std::vector<float> ipixels1(iarr1, iarr1 + w1 * h1);
+	// free(iarr1); /*memcheck*/
+
+    cimg_library::CImg<float> image;
+	try
+	{
+		image.assign(image_path);
+	}
+	catch(cimg_library::CImgIOException)
+	{
+		std::cerr << "Unable to load image file " << image_path << std::endl;
+		return 0;
+	}
+	//Convert to grayscale
+	cimg_library::CImg<float> gray(image.width(), image.height(), 1, 1, 0);
+	cimg_forXY(image,x,y) { 
+    // Separation of channels
+    int R = (int)image(x,y,0,0);
+    int G = (int)image(x,y,0,1);
+    int B = (int)image(x,y,0,2);
+    // Arithmetic addition of channels for gray
+    // int grayValue = (int)(0.33*R + 0.33*G + 0.33*B);
+    // Real weighted addition of channels for gray
+    int grayValueWeight = (int)(0.299*R + 0.587*G + 0.114*B);
+    // saving píxel values into image information
+    // gray(x,y,0,0) = grayValue;
+    gray(x,y,0,0) = grayValueWeight;
+	}
+	vector<float> ipixels1;
+    size_t w1=gray.width(), h1=gray.height();
+    ipixels1.assign(gray.begin(), gray.end());
 
     ///// Resize the images to area wS*hW in remaining the apsect-ratio	
 	///// Resize if the resize flag is not set or if the flag is set unequal to 0
@@ -530,14 +535,14 @@ bool ASIFT_matcher::saveReferences(const char* ref_path) const
 	std::ofstream file_key1(ref_path);
 	if (file_key1.is_open())
 	{
-		file_key1<<_nb_refs<<std::endl;
+		file_key1<<_nb_refs<<"  "<<std::endl;
 		for(unsigned int i=0; i<_keys.size();i++)
 		{
 			asift_keypoints kps =_keys[i];
 			// Follow the same convention of David Lowe: 
 			// the first line contains the number of keypoints and the length of the desciptors (128) 
 			// Added number of tilts
-			file_key1 << _num_keys[i] << "  " << VecLength << "  " << _num_tilts[i] << "  " << std::endl;
+			file_key1 << _num_keys[i] << "  " << VecLength << "  " <<std::endl; //<< _num_tilts[i] << "  " << std::endl;
 			for (int tt = 0; tt < (int) kps.size(); tt++)
 			{
 				for (int rr = 0; rr < (int) kps[tt].size(); rr++)
@@ -573,15 +578,68 @@ bool ASIFT_matcher::saveReferences(const char* ref_path) const
 bool ASIFT_matcher::loadReferences(const char* ref_path)
 {
 	std::ifstream ref_file(ref_path);
-	std::string nb_ref;
+	std::string line, tmp;
+	std::stringstream iss;
 	if (ref_file.is_open())
 	{
-		std::getline(ref_file, nb_ref);
-		//std::stoi(nb_ref, _nb_refs); //C++11
-		_nb_refs = atoi(nb_ref.c_str());
-		for(unsigned int i=0; i<_nb_refs;i++)
+		std::getline(ref_file, line);
+		std::string::size_type sz;
+		_nb_refs = std::stoi(line, &sz); //C++11
+		// _nb_refs = atoi(line.c_str());
+		_keys = std::vector<asift_keypoints>(_nb_refs);
+		_num_keys = std::vector< int >(_nb_refs);
+		_num_tilts = std::vector< int >(_nb_refs,1);
+		_zoom_refs = std::vector<float>(_nb_refs,1);
+		for(unsigned int i = 0; i<_nb_refs;i++)
 		{
+			std::getline(ref_file, line);
+			std::stringstream iss(line);
 
+			std::getline(iss,tmp,' ');
+			_num_keys[i]=atoi(tmp.c_str());
+
+			std::getline(iss,tmp,' ');
+			if(VecLength!=atoi(tmp.c_str()))
+			{
+				std::cout<<"Error VecLength doesn't correspond..."<<std::endl;
+				return false;
+			}
+
+			// std::getline(iss,tmp,' ');
+			// _num_tilts[i]=atoi(tmp.c_str());
+
+			keypointslist list;
+			for(unsigned int j =0; j<(unsigned int)_num_keys[j];j++)
+			{
+				keypoint nkp;
+
+				std::getline(ref_file, line);
+				std::stringstream iss(line);
+
+				std::getline(iss,tmp,' ');
+				// std::stof(nb_ref, nkp.x); //C++11
+				nkp.x=atof(tmp.c_str());
+
+				std::getline(iss,tmp,' ');
+				nkp.y=atof(tmp.c_str());
+
+				std::getline(iss,tmp,' ');
+				nkp.scale=atof(tmp.c_str());
+
+				std::getline(iss,tmp,' ');
+				nkp.angle=atof(tmp.c_str());
+
+				for(unsigned int k=0; k<(int) VecLength; k++)
+				{
+					std::getline(iss,tmp,' ');
+					nkp.vec[k]=atof(tmp.c_str());
+				}
+
+				list.push_back(nkp);
+			}
+			std::vector< keypointslist > vkps(1,list);
+			asift_keypoints akps(1,vkps);
+			_keys[i]=akps;
 		}
 	}
 	else 

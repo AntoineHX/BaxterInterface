@@ -3,14 +3,14 @@
 #include <string.h>
 #include <time.h>
 #include <vector>
-using namespace std;
+#include <sstream>
 
 #ifdef _OPENMP
 #include <omp.h>
 #endif
 
 #include "demo_lib_sift.h"
-#include "io_png/io_png.h"
+// #include "io_png/io_png.h"
 
 #include "library.h"
 #include "frot.h"
@@ -18,21 +18,12 @@ using namespace std;
 #include "compute_asift_keypoints.h"
 #include "compute_asift_matches.h"
 
-
-// #include <opencv2/core/core.hpp>
-// #include <opencv2/highgui/highgui.hpp>
-// #include <opencv2/imgproc/imgproc.hpp>
-// using namespace cv;
+#include "CImg.h" //Need ImageMagick package
 
 # define IM_X 800
 # define IM_Y 600
 
-// struct image
-// {
-// 	vector<float> img;
-// 	int width;
-// 	int height;
-// } image;
+using namespace std;
 
 typedef vector< vector< keypointslist > > asift_keypoints;
 

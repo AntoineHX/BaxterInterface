@@ -19,18 +19,49 @@ int main(int argc, char **argv)
 	
     char* output_img = "./results/res.png";
     char* output_match = "./results/matching.txt";
-    char* output_references = "./results/references.txt";
+    // char* output_references = "./results/references.txt";
 
 	//////////////////////////////////////////////// Input
-	float * iarr1;
-    size_t w1, h1;
-    if (NULL == (iarr1 = read_png_f32_gray(argv[1], &w1, &h1))) {
-        std::cerr << "Unable to load image file " << argv[1] << std::endl;
-        return 1;
-    }
-    std::vector<float> ipixels1(iarr1, iarr1 + w1 * h1);
-	free(iarr1); /*memcheck*/
+	// float * iarr1;
+ //    size_t w1, h1;
+ //    if (NULL == (iarr1 = read_png_f32_gray(argv[1], &w1, &h1))) {
+ //        std::cerr << "Unable to load image file " << argv[1] << std::endl;
+ //        return 1;
+ //    }
+ //    std::vector<float> ipixels1(iarr1, iarr1 + w1 * h1);
+	// free(iarr1); /*memcheck*/
 
+    cimg_library::CImg<float> image;
+	try
+	{
+		image =cimg_library::CImg<float>(argv[1]);
+	}
+	catch(cimg_library::CImgIOException)
+	{
+		std::cerr << "Unable to load image file " << argv[1] << std::endl;
+		return false;
+	}
+
+	//Convert to grayscale
+	cimg_library::CImg<float> gray(image.width(), image.height(), 1, 1, 0);
+	cimg_forXY(image,x,y) { 
+    // Separation of channels
+    int R = (int)image(x,y,0,0);
+    int G = (int)image(x,y,0,1);
+    int B = (int)image(x,y,0,2);
+    // Arithmetic addition of channels for gray
+    // int grayValue = (int)(0.33*R + 0.33*G + 0.33*B);
+    // Real weighted addition of channels for gray
+    int grayValueWeight = (int)(0.299*R + 0.587*G + 0.114*B);
+    // saving píxel values into image information
+    // gray(x,y,0,0) = grayValue;
+    gray(x,y,0,0) = grayValueWeight;
+	}
+	vector<float> ipixels1;
+    int w1=gray.width(), h1=gray.height();
+    ipixels1.assign(gray.begin(), gray.end());
+
+    // cout<<"Image size : "<<ipixels1.size()<<" - "<<image.spectrum()<<" - "<<w1<<" / "<<h1<<endl;
 	///// Resize the images to area wS*hW in remaining the apsect-ratio	
 	///// Resize if the resize flag is not set or if the flag is set unequal to 0
 	float wS = IM_X;
@@ -106,26 +137,36 @@ int main(int argc, char **argv)
 		zoom1 = 1;
 	}
 
-	unsigned int nb_ref =2;
-	std::string refData[] = {
-      "book_training/train_image_000.png", 
-      "book_training/train_image_001.png", 
-      "book_training/train_image_002.png", 
-      "book_training/train_image_003.png"};
-
-	// unsigned int nb_ref =11;
+	// unsigned int nb_ref =2;
 	// std::string refData[] = {
- //      "toy_training/obj11__processed__0000_color.png",
- //  	  "toy_training/obj11__processed__0001_color.png",
- //  	  "toy_training/obj11__processed__0002_color.png",
- //  	  "toy_training/obj11__processed__0003_color.png",
- //  	  "toy_training/obj11__processed__0004_color.png",
- //  	  "toy_training/obj11__processed__0005_color.png",
- //  	  "toy_training/obj11__processed__0006_color.png",
- //  	  "toy_training/obj11__processed__0007_color.png",
- //  	  "toy_training/obj11__processed__0008_color.png",
- //  	  "toy_training/obj11__processed__0009_color.png",
- //  	  "toy_training/obj11__processed__0010_color.png",};
+ //      "book_training/train_image_000.png", 
+ //      "book_training/train_image_001.png", 
+ //      "book_training/train_image_002.png", 
+ //      "book_training/train_image_003.png"};
+
+	unsigned int nb_ref =21;
+	std::string refData[] = {
+      "toy_training/obj1bg1__processed__0000_color.jpg",
+      "toy_training/obj1bg1__processed__0001_color.jpg",
+      "toy_training/obj1bg1__processed__0002_color.jpg",
+      "toy_training/obj1bg1__processed__0003_color.jpg",
+      "toy_training/obj1bg1__processed__0004_color.jpg",
+      "toy_training/obj1bg1__processed__0005_color.jpg",
+      "toy_training/obj1bg1__processed__0006_color.jpg",
+      "toy_training/obj1bg1__processed__0007_color.jpg",
+      "toy_training/obj1bg1__processed__0008_color.jpg",
+      "toy_training/obj1bg1__processed__0009_color.jpg",
+      "toy_training/obj1bg1__processed__0010_color.jpg",
+      "toy_training/obj1bg1__processed__0011_color.jpg",
+      "toy_training/obj1bg1__processed__0012_color.jpg",
+      "toy_training/obj1bg1__processed__0013_color.jpg",
+      "toy_training/obj1bg1__processed__0014_color.jpg",
+      "toy_training/obj1bg1__processed__0015_color.jpg",
+      "toy_training/obj1bg1__processed__0016_color.jpg",
+      "toy_training/obj1bg1__processed__0017_color.jpg",
+      "toy_training/obj1bg1__processed__0018_color.jpg",
+      "toy_training/obj1bg1__processed__0019_color.jpg",
+      "toy_training/obj1bg1__processed__0020_color.jpg"};
 
     int tilt_ref = 7, tilt_input = 1;
     int nb_match;
@@ -147,7 +188,10 @@ int main(int argc, char **argv)
 		matcher.addReference(refData[i].c_str(), tilt_ref);
 	}
 
-	matcher.saveReferences(output_references);
+	// matcher.saveReferences(output_references);
+	// matcher.print();
+	// matcher.loadReferences(output_references);
+	// matcher.print();
 
 	nb_match = matcher.match(ipixels1_zoom, wS1, hS1, tilt_input);
 
@@ -196,7 +240,9 @@ int main(int argc, char **argv)
 	}
 
 	///////////////////////////////////////////////////////////////// Save imgOut	
-	write_png_f32(output_img, opixelsASIFT, w1, h1, 1);
+	// write_png_f32(output_img, opixelsASIFT, w1, h1, 1);
+	image.assign(opixelsASIFT,w1,h1);
+	image.save(output_img);
 	
 	delete[] opixelsASIFT; /*memcheck*/
 	

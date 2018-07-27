@@ -8,8 +8,13 @@ CMakeFiles/test_ASIFT.dir/io_png/io_png.c.o: ./io_png/libs/zlib/zlib.h
 CMakeFiles/test_ASIFT.dir/io_png/io_png.c.o: io_png/io_png.c
 CMakeFiles/test_ASIFT.dir/io_png/io_png.c.o: io_png/io_png.h
 
+CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: ./io_png/libs/png/png.h
+CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: ./io_png/libs/png/pngconf.h
+CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: ./io_png/libs/zlib/zconf.h
+CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: ./io_png/libs/zlib/zlib.h
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: ASIFT_matcher.cpp
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: ASIFT_matcher.hpp
+CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: CImg.h
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: compute_asift_keypoints.h
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: compute_asift_matches.h
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: demo_lib_sift.h
@@ -18,10 +23,11 @@ CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: filter.h
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: flimage.h
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: fproj.h
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: frot.h
-CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: io_png/io_png.h
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: library.h
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: numerics1.h
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: splines.h
+CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: /usr/include/opencv/cv.h
+CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: /usr/include/opencv/highgui.h
 
 CMakeFiles/test_ASIFT.dir/compute_asift_keypoints.cpp.o: compute_asift_keypoints.cpp
 CMakeFiles/test_ASIFT.dir/compute_asift_keypoints.cpp.o: compute_asift_keypoints.h
@@ -251,7 +257,12 @@ CMakeFiles/test_ASIFT.dir/splines.cpp.o: numerics1.h
 CMakeFiles/test_ASIFT.dir/splines.cpp.o: splines.cpp
 CMakeFiles/test_ASIFT.dir/splines.cpp.o: splines.h
 
+CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: ./io_png/libs/png/png.h
+CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: ./io_png/libs/png/pngconf.h
+CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: ./io_png/libs/zlib/zconf.h
+CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: ./io_png/libs/zlib/zlib.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: ASIFT_matcher.hpp
+CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: CImg.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: compute_asift_keypoints.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: compute_asift_matches.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: demo_lib_sift.h
@@ -260,9 +271,10 @@ CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: filter.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: flimage.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: fproj.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: frot.h
-CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: io_png/io_png.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: library.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: numerics1.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: splines.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: test_ASIFT.cpp
+CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: /usr/include/opencv/cv.h
+CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: /usr/include/opencv/highgui.h
 
