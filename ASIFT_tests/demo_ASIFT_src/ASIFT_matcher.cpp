@@ -5,6 +5,14 @@ ASIFT_matcher::ASIFT_matcher(): _nb_refs(0), _total_num_matchings(0), _resize_im
 	default_sift_parameters(_siftParam);
 }
 
+ASIFT_matcher::ASIFT_matcher(const char* ref_path): ASIFT_matcher()
+{
+	if(!loadReferences(ref_path))
+	{
+		std::cerr<<"Error : Failed to load references"<<std::endl;
+	}
+}
+
 // ASIFT_matcher::~ASIFT_matcher()
 // {
 
@@ -607,8 +615,8 @@ bool ASIFT_matcher::loadReferences(const char* ref_path)
 			std::getline(iss,tmp,' ');
 			if(VecLength!=atoi(tmp.c_str()))
 			{
-				std::cout<<"Error VecLength doesn't correspond..."<<std::endl;
-				// return false;
+				std::cerr<<"Error VecLength doesn't correspond..."<<std::endl;
+				return false;
 			}
 
 			// std::getline(iss,tmp,' ');
@@ -677,6 +685,30 @@ bool ASIFT_matcher::loadReferences(const char* ref_path)
 
 	ref_file.close();
 	return true;
+}
+
+ASIFT_matcher& ASIFT_matcher::operator=(const ASIFT_matcher& m)
+{
+
+	_nb_refs=m.getNbRef();
+	_im_refs=m.getRefImgs();
+	_size_refs=m.getSizeRef();
+	_zoom_refs=m.getZoomRef();
+
+	_num_keys=m.getNumKeys();
+	_num_tilts=m.getNumTilts();
+	_keys=m.getKeys();
+
+	_total_num_matchings=m.getNbMatch();
+	_num_matchings=getNbMatchs();
+	_matchings=m.getMatch();
+
+	_siftParam=m.getSiftPar();
+
+	_resize_imgs=m.isResizingImg();
+	_showDebug=m.isShowingDebug();
+
+	return *this;
 }
 
 //Debugging function

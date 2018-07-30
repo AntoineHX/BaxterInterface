@@ -233,7 +233,7 @@ int main(int argc, char **argv)
     {
     	cout<<"	"<<NbMatch[i]<<endl;
     }
-	
+
 	int x,y,cx,cy;
 	unsigned int h,w;
 	

@@ -32,12 +32,13 @@ class ASIFT_matcher
 {
 public:
 	ASIFT_matcher();
+	ASIFT_matcher(const char* ref_path);
+	ASIFT_matcher(const ASIFT_matcher& matcher) { *this = matcher;}
 	// virtual ~ASIFT_matcher();
 
 	bool addReference(const char* image_path, unsigned int num_tilts=1);
 	unsigned int match(const char* image_path, unsigned int num_tilts =1);
 	unsigned int match(vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1);
-	void print() const; //Debugging function
 	bool computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const; //Compute the bounding rectangle of the keypoints
 	bool computeCenter(int& cx, int& cy) const;
 	bool distFilter(int threshold); //Filter keypoint which are far (Euclidian distance) from the center.
@@ -45,18 +46,27 @@ public:
 	bool saveReferences(const char* ref_path) const;
 	bool loadReferences(const char* ref_path);
 
+	ASIFT_matcher& operator=(const ASIFT_matcher& m);
+
 	unsigned int getNbRef() const{ return _nb_refs;}
 	const vector< vector< float > >& getRefImgs() const{ return _im_refs;}
 	const vector< pair<int,int> >& getSizeRef() const{ return _size_refs;}
 	const vector<float>& getZoomRef() const{ return _zoom_refs;}
+	const std::vector<int>& getNumKeys() const{ return _num_keys;}
+	const std::vector<int>& getNumTilts() const{ return _num_tilts;}
+	const std::vector< asift_keypoints >& getKeys() const{ return _keys;}
 	const vector < unsigned int >& getNbMatchs() const{ return _num_matchings;}
 	unsigned int getNbMatch() const{ return _total_num_matchings;}
 	const vector< matchingslist >& getMatch() const{ return _matchings;}
 	vector< matchingslist >& getMatch(){ return _matchings;}
-	const siftPar& getSiftPar(){ return _siftParam;}
+	const siftPar& getSiftPar() const{ return _siftParam;}
 	void setSiftPar(const siftPar &newSiftPar){ _siftParam = newSiftPar;}
+	bool isResizingImg() const{ return _resize_imgs;}
 	void setResizeImg(bool resize_imgs){ _resize_imgs=resize_imgs;}
+	bool isShowingDebug() const{ return _showDebug;}
 	void showDebug(bool showDebug){ _showDebug=showDebug;}
+
+	void print() const; //Debugging function
 
 protected:
 
