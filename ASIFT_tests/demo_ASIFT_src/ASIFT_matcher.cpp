@@ -528,7 +528,8 @@ bool ASIFT_matcher::distFilter(int threshold=2)
 	return false;
 }
 
-//A tester
+//Save reference data necessary for the matching
+//Doesn't save references images or Sift parameters
 bool ASIFT_matcher::saveReferences(const char* ref_path) const
 {
 	// Write all the keypoints (row, col, scale, orientation, desciptor (128 integers))
@@ -543,7 +544,7 @@ bool ASIFT_matcher::saveReferences(const char* ref_path) const
 			// the first line contains the number of keypoints and the length of the desciptors (128) 
 			// Added number of tilts
 			// Added sizes
-			file_key1 << _num_keys[j] << " " << VecLength << " " << _num_tilts[j] << " " <<_size_refs[j].first<<" "<<_size_refs[j].second<<" "<<std::endl;
+			file_key1 << _num_keys[j] << " " << VecLength << " " <<_size_refs[j].first<<" "<<_size_refs[j].second<<" "<<std::endl; //<<_num_tilts[j] << " "
 			for (int tt = 0; tt < (int) kps.size(); tt++)
 			{
 				for (int rr = 0; rr < (int) kps[tt].size(); rr++)
@@ -562,7 +563,7 @@ bool ASIFT_matcher::saveReferences(const char* ref_path) const
 					}
 				}	
 			}
-			file_key1<<std::endl;
+			// file_key1<<std::endl;
 		}
 	}
 	else 
@@ -575,7 +576,9 @@ bool ASIFT_matcher::saveReferences(const char* ref_path) const
 	return true;
 }
 
-//A finir
+//Load reference data necessary for the matching 
+//Doesn't load references images or Sift parameters
+//TODO : split data between different tilts
 bool ASIFT_matcher::loadReferences(const char* ref_path)
 {
 	std::ifstream ref_file(ref_path);
@@ -605,10 +608,10 @@ bool ASIFT_matcher::loadReferences(const char* ref_path)
 			if(VecLength!=atoi(tmp.c_str()))
 			{
 				std::cout<<"Error VecLength doesn't correspond..."<<std::endl;
-				return false;
+				// return false;
 			}
 
-			std::getline(iss,tmp,' ');
+			// std::getline(iss,tmp,' ');
 			// _num_tilts[i]=atoi(tmp.c_str());
 
 			std::getline(iss,tmp,' ');
@@ -663,6 +666,7 @@ bool ASIFT_matcher::loadReferences(const char* ref_path)
 			std::vector< keypointslist > vkps(1,list);
 			asift_keypoints akps(1,vkps);
 			_keys[i]=akps;
+			// std::getline(ref_file, line);
 		}
 	}
 	else 

@@ -137,7 +137,7 @@ int main(int argc, char **argv)
 		zoom1 = 1;
 	}
 
-	unsigned int nb_ref =1;
+	unsigned int nb_ref =2;
 	std::string refData[] = {
       "book_training/train_image_000.png", 
       "book_training/train_image_001.png", 
@@ -204,7 +204,7 @@ int main(int argc, char **argv)
 
     time_t tstart, tend;
 	tstart = time(0);
-	
+
 	for(unsigned int i=0; i<nb_ref;i++)
 	{
 		matcher.addReference(refData[i].c_str(), tilt_ref);
