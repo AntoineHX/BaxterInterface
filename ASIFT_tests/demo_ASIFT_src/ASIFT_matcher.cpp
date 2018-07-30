@@ -535,14 +535,15 @@ bool ASIFT_matcher::saveReferences(const char* ref_path) const
 	std::ofstream file_key1(ref_path);
 	if (file_key1.is_open())
 	{
-		file_key1<<_nb_refs<<"  "<<std::endl;
-		for(unsigned int i=0; i<_keys.size();i++)
+		file_key1<<_nb_refs<<" "<<std::endl;
+		for(unsigned int j=0; j<_keys.size();j++)
 		{
-			asift_keypoints kps =_keys[i];
+			asift_keypoints kps =_keys[j];
 			// Follow the same convention of David Lowe: 
 			// the first line contains the number of keypoints and the length of the desciptors (128) 
 			// Added number of tilts
-			file_key1 << _num_keys[i] << "  " << VecLength << "  " <<std::endl; //<< _num_tilts[i] << "  " << std::endl;
+			// Added sizes
+			file_key1 << _num_keys[j] << " " << VecLength << " " << _num_tilts[j] << " " <<_size_refs[j].first<<" "<<_size_refs[j].second<<" "<<std::endl;
 			for (int tt = 0; tt < (int) kps.size(); tt++)
 			{
 				for (int rr = 0; rr < (int) kps[tt].size(); rr++)
@@ -550,11 +551,11 @@ bool ASIFT_matcher::saveReferences(const char* ref_path) const
 					keypointslist::iterator ptr = kps[tt][rr].begin();
 					for(int i=0; i < (int) kps[tt][rr].size(); i++, ptr++)	
 					{
-						file_key1 << _zoom_refs[i]*ptr->x << "  " << _zoom_refs[i]*ptr->y << "  " << _zoom_refs[i]*ptr->scale << "  " << ptr->angle;
-						
+						file_key1 << _zoom_refs[j]*ptr->x << " " << _zoom_refs[j]*ptr->y << " " << _zoom_refs[j]*ptr->scale << " " << ptr->angle;
+
 						for (int ii = 0; ii < (int) VecLength; ii++)
 						{
-							file_key1 << "  " << ptr->vec[ii];
+							file_key1 << " " << ptr->vec[ii];
 						}
 						
 						file_key1 << std::endl;
@@ -580,14 +581,16 @@ bool ASIFT_matcher::loadReferences(const char* ref_path)
 	std::ifstream ref_file(ref_path);
 	std::string line, tmp;
 	std::stringstream iss;
+	pair<int,int> size_tmp;
 	if (ref_file.is_open())
 	{
 		std::getline(ref_file, line);
 		std::string::size_type sz;
-		_nb_refs = std::stoi(line, &sz); //C++11
-		// _nb_refs = atoi(line.c_str());
+		// _nb_refs = std::stoi(line, &sz); //C++11
+		_nb_refs = atoi(line.c_str());
 		_keys = std::vector<asift_keypoints>(_nb_refs);
 		_num_keys = std::vector< int >(_nb_refs);
+		_size_refs= std::vector< pair<int,int> >(_nb_refs);
 		_num_tilts = std::vector< int >(_nb_refs,1);
 		_zoom_refs = std::vector<float>(_nb_refs,1);
 		for(unsigned int i = 0; i<_nb_refs;i++)
@@ -605,27 +608,40 @@ bool ASIFT_matcher::loadReferences(const char* ref_path)
 				return false;
 			}
 
-			// std::getline(iss,tmp,' ');
+			std::getline(iss,tmp,' ');
 			// _num_tilts[i]=atoi(tmp.c_str());
 
+			std::getline(iss,tmp,' ');
+			size_tmp.first=atoi(tmp.c_str());
+
+			std::getline(iss,tmp,' ');
+			size_tmp.second=atoi(tmp.c_str());
+
+			_size_refs[i]=size_tmp;
+
 			keypointslist list;
-			for(unsigned int j =0; j<(unsigned int)_num_keys[j];j++)
+			for(unsigned int j =0; j<(unsigned int)_num_keys[i];j++)
 			{
 				keypoint nkp;
 
 				std::getline(ref_file, line);
 				std::stringstream iss(line);
+				// if(j==0)
+				// 	cout<<line<<endl;
 
 				std::getline(iss,tmp,' ');
 				// std::stof(nb_ref, nkp.x); //C++11
 				nkp.x=atof(tmp.c_str());
-
+				// if(j<5)
+				// 	cout<<"x : "<<nkp.x<<endl;
 				std::getline(iss,tmp,' ');
 				nkp.y=atof(tmp.c_str());
-
+				// if(j<5)
+				// 	cout<<"y : "<<nkp.y<<endl;
 				std::getline(iss,tmp,' ');
 				nkp.scale=atof(tmp.c_str());
-
+				// if(j<5)
+				// 	cout<<"Scale : "<<nkp.scale<<endl;
 				std::getline(iss,tmp,' ');
 				nkp.angle=atof(tmp.c_str());
 
@@ -636,6 +652,13 @@ bool ASIFT_matcher::loadReferences(const char* ref_path)
 				}
 
 				list.push_back(nkp);
+				// if(j<5)
+				// {
+				// 	cout<<"x : "<<list[j].x<<endl;
+				// 	cout<<"y : "<<list[j].y<<endl;
+				// 	cout<<"Scale : "<<list[j].scale<<endl;
+				// }
+
 			}
 			std::vector< keypointslist > vkps(1,list);
 			asift_keypoints akps(1,vkps);
@@ -664,7 +687,7 @@ void ASIFT_matcher::print() const
 			for(unsigned int k=0; k<_keys[i][j].size();k++)
 			{
 				cout<<"		"<<k<<" - size :"<<_keys[i][j][k].size()<<endl;
-				float sx=0,sy=0,ss=0,sa=0, sv=0;
+				double sx=0,sy=0,ss=0,sa=0, sv=0;
 				for(unsigned int l=0; l<_keys[i][j][k].size();l++)
 				{
 					sx+=_keys[i][j][k][l].x;
@@ -675,6 +698,7 @@ void ASIFT_matcher::print() const
 					{
 						sv+=_keys[i][j][k][l].vec[v];
 					}
+					// cout<<" 		"<<sx<<"-"<<sy<<"-"<<ss<<"-"<<sa<<"-"<<sv<<endl;
 				}
 				cout<<" 		"<<sx<<"-"<<sy<<"-"<<ss<<"-"<<sa<<"-"<<sv<<endl;
 			}

@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	
     char* output_img = "./results/res.png";
     char* output_match = "./results/matching.txt";
-    // char* output_references = "./results/references.txt";
+    char* output_references = "./results/references.txt";
 
 	//////////////////////////////////////////////// Input
 	// float * iarr1;
@@ -137,36 +137,58 @@ int main(int argc, char **argv)
 		zoom1 = 1;
 	}
 
-	// unsigned int nb_ref =2;
-	// std::string refData[] = {
- //      "book_training/train_image_000.png", 
- //      "book_training/train_image_001.png", 
- //      "book_training/train_image_002.png", 
- //      "book_training/train_image_003.png"};
-
-	unsigned int nb_ref =21;
+	unsigned int nb_ref =1;
 	std::string refData[] = {
-      "toy_training/obj1bg1__processed__0000_color.jpg",
-      "toy_training/obj1bg1__processed__0001_color.jpg",
-      "toy_training/obj1bg1__processed__0002_color.jpg",
-      "toy_training/obj1bg1__processed__0003_color.jpg",
-      "toy_training/obj1bg1__processed__0004_color.jpg",
-      "toy_training/obj1bg1__processed__0005_color.jpg",
-      "toy_training/obj1bg1__processed__0006_color.jpg",
-      "toy_training/obj1bg1__processed__0007_color.jpg",
-      "toy_training/obj1bg1__processed__0008_color.jpg",
-      "toy_training/obj1bg1__processed__0009_color.jpg",
-      "toy_training/obj1bg1__processed__0010_color.jpg",
-      "toy_training/obj1bg1__processed__0011_color.jpg",
-      "toy_training/obj1bg1__processed__0012_color.jpg",
-      "toy_training/obj1bg1__processed__0013_color.jpg",
-      "toy_training/obj1bg1__processed__0014_color.jpg",
-      "toy_training/obj1bg1__processed__0015_color.jpg",
-      "toy_training/obj1bg1__processed__0016_color.jpg",
-      "toy_training/obj1bg1__processed__0017_color.jpg",
-      "toy_training/obj1bg1__processed__0018_color.jpg",
-      "toy_training/obj1bg1__processed__0019_color.jpg",
-      "toy_training/obj1bg1__processed__0020_color.jpg"};
+      "book_training/train_image_000.png", 
+      "book_training/train_image_001.png", 
+      "book_training/train_image_002.png", 
+      "book_training/train_image_003.png"};
+
+	// unsigned int nb_ref =21;
+	// std::string refData[] = {
+ //      "toy_training/obj1bg0__processed__0000_color.jpg",
+ //      "toy_training/obj1bg0__processed__0001_color.jpg",
+ //      "toy_training/obj1bg0__processed__0002_color.jpg",
+ //      "toy_training/obj1bg0__processed__0003_color.jpg",
+ //      "toy_training/obj1bg0__processed__0004_color.jpg",
+ //      "toy_training/obj1bg0__processed__0005_color.jpg",
+ //      "toy_training/obj1bg0__processed__0006_color.jpg",
+ //      "toy_training/obj1bg0__processed__0007_color.jpg",
+ //      "toy_training/obj1bg0__processed__0008_color.jpg",
+ //      "toy_training/obj1bg0__processed__0009_color.jpg",
+ //      "toy_training/obj1bg0__processed__0010_color.jpg",
+ //      "toy_training/obj1bg0__processed__0011_color.jpg",
+ //      "toy_training/obj1bg0__processed__0012_color.jpg",
+ //      "toy_training/obj1bg0__processed__0013_color.jpg",
+ //      "toy_training/obj1bg0__processed__0014_color.jpg",
+ //      "toy_training/obj1bg0__processed__0015_color.jpg",
+ //      "toy_training/obj1bg0__processed__0016_color.jpg",
+ //      "toy_training/obj1bg0__processed__0017_color.jpg",
+ //      "toy_training/obj1bg0__processed__0018_color.jpg",
+ //      "toy_training/obj1bg0__processed__0019_color.jpg",
+ //      "toy_training/obj1bg0__processed__0020_color.jpg"};
+
+ //    unsigned int nb_ref =12;
+	// std::string refData[] = {
+ //      "toy_training/obj11__processed__0036_color.jpg",
+ //      "toy_training/obj11__processed__0037_color.jpg",
+ //      "toy_training/obj11__processed__0038_color.jpg",
+ //      "toy_training/obj11__processed__0039_color.jpg",
+ //      "toy_training/obj11__processed__0040_color.jpg",
+ //      "toy_training/obj11__processed__0041_color.jpg",
+ //      "toy_training/obj11__processed__0042_color.jpg",
+ //      "toy_training/obj11__processed__0043_color.jpg",
+ //      "toy_training/obj11__processed__0044_color.jpg",
+ //      "toy_training/obj11__processed__0045_color.jpg",
+ //      "toy_training/obj11__processed__0046_color.jpg",
+ //      "toy_training/obj11__processed__0047_color.jpg"};
+
+	// unsigned int nb_ref =1;
+	// std::string refData[] = {
+ //      "toy_training/000.png",
+ //      "toy_training/001.png",
+ //      "toy_training/002.png",
+ //      "toy_training/003.png",};
 
     int tilt_ref = 7, tilt_input = 1;
     int nb_match;
@@ -182,15 +204,19 @@ int main(int argc, char **argv)
 
     time_t tstart, tend;
 	tstart = time(0);
-
+	
 	for(unsigned int i=0; i<nb_ref;i++)
 	{
 		matcher.addReference(refData[i].c_str(), tilt_ref);
 	}
 
-	// matcher.saveReferences(output_references);
+	std::cout<<"Saving..."<<std::endl;
+	matcher.saveReferences(output_references);
 	// matcher.print();
-	// matcher.loadReferences(output_references);
+	std::cout<<"Loading..."<<std::endl;
+	matcher.loadReferences(output_references);
+	// std::cout<<"Saving..."<<std::endl;
+	// matcher.saveReferences("./results/references2.txt");
 	// matcher.print();
 
 	nb_match = matcher.match(ipixels1_zoom, wS1, hS1, tilt_input);
