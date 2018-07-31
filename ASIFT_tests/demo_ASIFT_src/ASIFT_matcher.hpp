@@ -37,8 +37,9 @@ public:
 	// virtual ~ASIFT_matcher();
 
 	bool addReference(const char* image_path, unsigned int num_tilts=1);
+	bool addReference(const vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1);
 	unsigned int match(const char* image_path, unsigned int num_tilts =1);
-	unsigned int match(vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1);
+	unsigned int match(const vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1);
 	bool computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const; //Compute the bounding rectangle of the keypoints
 	bool computeCenter(int& cx, int& cy) const;
 	bool distFilter(int threshold); //Filter keypoint which are far (Euclidian distance) from the center.

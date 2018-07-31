@@ -59,11 +59,130 @@ bool ASIFT_matcher::addReference(const char* image_path, unsigned int num_tilts)
     gray(x,y,0,0) = grayValueWeight;
 	}
 
-	vector<float> ipixels1;
+	std::vector<float> ipixels1;
     size_t w1=gray.width(), h1=gray.height();
     ipixels1.assign(gray.begin(), gray.end());
 
-    ///// Resize the images to area wS*hW in remaining the apsect-ratio	
+    std::cout<<"Building reference from "<< image_path << std::endl;
+
+    return addReference(ipixels1, w1, h1, num_tilts);
+ //    ///// Resize the images to area wS*hW in remaining the apsect-ratio	
+	// ///// Resize if the resize flag is not set or if the flag is set unequal to 0
+	// float wS = IM_X;
+	// float hS = IM_Y;
+	
+	// float zoom1=0;	
+	// int wS1=0, hS1=0;
+	// vector<float> ipixels1_zoom;
+
+	// if(_resize_imgs)
+	// {
+	// 	cout << "WARNING: The input image is resized to " << wS << "x" << hS << " for ASIFT. " << endl 
+	// 	<< "         But the results will be normalized to the original image size." << endl << endl;
+		
+	// 	float InitSigma_aa = 1.6;
+		
+	// 	float fproj_p, fproj_bg;
+	// 	char fproj_i;
+	// 	float *fproj_x4, *fproj_y4;
+	// 	int fproj_o;
+
+	// 	fproj_o = 3;
+	// 	fproj_p = 0;
+	// 	fproj_i = 0;
+	// 	fproj_bg = 0;
+	// 	fproj_x4 = 0;
+	// 	fproj_y4 = 0;
+				
+	// 	float areaS = wS * hS;
+
+	// 	// Resize image 1 
+	// 	float area1 = w1 * h1;
+	// 	zoom1 = sqrt(area1/areaS);
+		
+	// 	wS1 = (int) (w1 / zoom1);
+	// 	hS1 = (int) (h1 / zoom1);
+		
+	// 	int fproj_sx = wS1;
+	// 	int fproj_sy = hS1;     
+		
+	// 	float fproj_x1 = 0;
+	// 	float fproj_y1 = 0;
+	// 	float fproj_x2 = wS1;
+	// 	float fproj_y2 = 0;
+	// 	float fproj_x3 = 0;	     
+	// 	float fproj_y3 = hS1;
+		
+	// 	/* Anti-aliasing filtering along vertical direction */
+	// 	if ( zoom1 > 1 )
+	// 	{
+	// 		float sigma_aa = InitSigma_aa * zoom1 / 2;
+	// 		GaussianBlur1D(ipixels1,w1,h1,sigma_aa,1);
+	// 		GaussianBlur1D(ipixels1,w1,h1,sigma_aa,0);
+	// 	}
+			
+	// 	// simulate a tilt: subsample the image along the vertical axis by a factor of t.
+	// 	ipixels1_zoom.resize(wS1*hS1);
+	// 	fproj (ipixels1, ipixels1_zoom, w1, h1, &fproj_sx, &fproj_sy, &fproj_bg, &fproj_o, &fproj_p, 
+	// 		   &fproj_i , fproj_x1 , fproj_y1 , fproj_x2 , fproj_y2 , fproj_x3 , fproj_y3, fproj_x4, fproj_y4); 
+	// }
+	// else
+	// {
+	// 	ipixels1_zoom.resize(w1*h1);	
+	// 	ipixels1_zoom = ipixels1;
+	// 	wS1 = w1;
+	// 	hS1 = h1;
+	// 	zoom1 = 1;
+	// }
+
+	// // image new_ref;
+	// // new_ref.img = ipixels1_zoom;
+	// // new_ref.width = wS1;
+	// // new_ref.height = hS1;
+
+
+	// ///// Compute ASIFT keypoints
+	// asift_keypoints keys;
+	// // vector< vector< keypointslist > >* keys = new vector< vector< keypointslist > >;
+	// int num_keys = 0;
+
+	// time_t tstart, tend;
+	// tstart = time(0);
+
+	// num_keys = compute_asift_keypoints(ipixels1_zoom, wS1, hS1, num_tilts, _showDebug, keys, _siftParam);
+
+	// tend = time(0);
+
+	// //Save data
+	// _im_refs.push_back(ipixels1_zoom);
+	// _size_refs.push_back(make_pair(wS1,hS1));
+	// _zoom_refs.push_back(zoom1);
+
+	// _num_keys.push_back(num_keys);
+	// _num_tilts.push_back(num_tilts);
+	// _keys.push_back(keys);
+
+	// _nb_refs++;
+
+	// cout<<"Reference built in "<< difftime(tend, tstart) << " seconds." << endl;
+	// cout<<"	"<< num_keys <<" ASIFT keypoints found in "<< image_path << endl;
+
+	// return true;
+}
+
+//Image : Gray scale image (image size = w*h)
+bool ASIFT_matcher::addReference(const vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts)
+{
+	if(image.size()!=w*h)
+	{
+		cerr<<"Error : Input image size doesn't correspond with parameters"<<endl;
+		return false;
+	}
+
+	int w1=w, h1=h;
+	vector<float> ipixels1 = image;
+
+	///// Resize the images to area wS*hW in remaining the apsect-ratio	
 	///// Resize if the resize flag is not set or if the flag is set unequal to 0
 	float wS = IM_X;
 	float hS = IM_Y;
@@ -132,15 +251,8 @@ bool ASIFT_matcher::addReference(const char* image_path, unsigned int num_tilts)
 		zoom1 = 1;
 	}
 
-	// image new_ref;
-	// new_ref.img = ipixels1_zoom;
-	// new_ref.width = wS1;
-	// new_ref.height = hS1;
-
-
 	///// Compute ASIFT keypoints
 	asift_keypoints keys;
-	// vector< vector< keypointslist > >* keys = new vector< vector< keypointslist > >;
 	int num_keys = 0;
 
 	time_t tstart, tend;
@@ -162,7 +274,7 @@ bool ASIFT_matcher::addReference(const char* image_path, unsigned int num_tilts)
 	_nb_refs++;
 
 	cout<<"Reference built in "<< difftime(tend, tstart) << " seconds." << endl;
-	cout<<"	"<< num_keys <<" ASIFT keypoints found in "<< image_path << endl;
+	cout<<"	"<< num_keys <<" ASIFT keypoints found."<< endl;
 
 	return true;
 }
@@ -215,7 +327,25 @@ unsigned int ASIFT_matcher::match(const char* image_path, unsigned int num_tilts
     size_t w1=gray.width(), h1=gray.height();
     ipixels1.assign(gray.begin(), gray.end());
 
-    ///// Resize the images to area wS*hW in remaining the apsect-ratio	
+    std::cout<<"Matching from "<<image_path<<std::endl;
+
+    return match(ipixels1, w1, h1, num_tilts);
+}
+
+//Image : Gray scale image (image size = w*h)
+//Return number of match
+unsigned int ASIFT_matcher::match(const vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts)
+{
+	if(image.size()!=w*h)
+	{
+		cerr<<"Error : Input image size doesn't correspond with parameters"<<endl;
+		return 0;
+	}
+
+	int w1=w, h1=h;
+	vector<float> ipixels1 = image;
+
+	///// Resize the images to area wS*hW in remaining the apsect-ratio	
 	///// Resize if the resize flag is not set or if the flag is set unequal to 0
 	float wS = IM_X;
 	float hS = IM_Y;
@@ -295,61 +425,7 @@ unsigned int ASIFT_matcher::match(const char* image_path, unsigned int num_tilts
 
 	tend = time(0);
 	cout<< "Keypoints computation accomplished in " << difftime(tend, tstart) << " seconds." << endl;
-	cout<<"	"<< num_keys <<" ASIFT keypoints found in "<< image_path << endl;
-
-	//// Match ASIFT keypoints
-	_total_num_matchings=0;
-
-	for(unsigned int i = 0; i<_nb_refs;i++)
-	{
-		int num_matchings = 0;
-		matchingslist matchings;
-
-		cout << "Matching the keypoints..." << endl;
-		tstart = time(0);
-		try
-		{
-			num_matchings = compute_asift_matches(num_tilts, _num_tilts[i], wS1, hS1, _size_refs[i].first, _size_refs[i].second, _showDebug, keys, _keys[i], matchings, _siftParam);
-		}
-		catch(const bad_alloc& ba)
-		{
-			cerr<<"ERROR: ASIFT_matcher::match - ";
-			cerr << ba.what() << endl;
-		}
-		// cout<< _keys[i].size()<< " " << _keys[i][0].size() <<" "<< _keys[i][0][0].size()<<endl;
-
-		tend = time(0);
-		cout << "Keypoints matching accomplished in " << difftime(tend, tstart) << " seconds." << endl;
-
-		_num_matchings.push_back(num_matchings);
-		_total_num_matchings += num_matchings;
-		_matchings.push_back(matchings);
-	}
-
-	return _total_num_matchings;
-}
-
-//Return number of match
-unsigned int ASIFT_matcher::match(vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts)
-{
-	if(image.size()!=w*h)
-	{
-		cerr<<"Error : Input image size doesn't correspond with parameters"<<endl;
-		return 0;
-	}
-
-	///// Compute ASIFT keypoints
-	asift_keypoints keys;
-	int num_keys = 0;
-
-	time_t tstart, tend;
-	tstart = time(0);
-
-	num_keys = compute_asift_keypoints(image, w, h, num_tilts, _showDebug, keys, _siftParam);
-
-	tend = time(0);
-	cout<< "Keypoints computation accomplished in " << difftime(tend, tstart) << " seconds." << endl;
-	cout<<"	"<< num_keys <<" ASIFT keypoints found in Input image"<< endl;
+	cout<<"	"<< num_keys <<" ASIFT keypoints found."<< endl;
 
 	//// Match ASIFT keypoints
 	_total_num_matchings=0;
