@@ -19,6 +19,7 @@ enum MATCHER_STATUS{
 	MATCHER_STATUS_PROCESSING,
 	MATCHER_STATUS_WAITING_INIT};
 
+
 class ROS_matcher
 {
 protected:
@@ -28,7 +29,9 @@ protected:
 	ros::Publisher _center_pub;
 
 	//Subscriber ROS
-	// ros::Subscriber _image_sub;
+	message_filters::Subscriber<sensor_msgs::CameraInfo>* info_sub;
+	message_filters::Subscriber<sensor_msgs::Image>* image_sub;
+	message_filters::Subscriber<sensor_msgs::PointCloud2>* pointcloud_sub;
 	
 	//Matcher
 	int _num_tilt;
@@ -36,10 +39,12 @@ protected:
 
 	MATCHER_STATUS _status;
 
+	message_filters::TimeSynchronizer<sensor_msgs::CameraInfo, sensor_msgs::Image>* Timesync;
+
 public:
 	ROS_matcher();
-	// ~ROS_matcher();
-	void cameraCallback(const sensor_msgs::CameraInfo::ConstPtr& info_msg, const sensor_msgs::Image::ConstPtr& image_msg, const sensor_msgs::PointCloud2::ConstPtr& pointcloud_msg);
+	~ROS_matcher();
+	void cameraCallback(const sensor_msgs::CameraInfo::ConstPtr& info_msg, const sensor_msgs::Image::ConstPtr& image_msg);
 	
 };
 #endif

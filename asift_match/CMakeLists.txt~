@@ -25,6 +25,9 @@ find_package(catkin REQUIRED COMPONENTS
  roscpp 
  tf 
  rospy
+ pcl_conversions
+ pcl_ros
+ sensor_msgs
 )
 #find_package(Eigen3 REQUIRED)
 #find_package(cmake_modules REQUIRED)
@@ -93,7 +96,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -ftree-vectorize -funroll-loops -L/u
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   #CATKIN_DEPENDS roscpp tf message_runtime
-  #INCLUDE_DIRS include
+  INCLUDE_DIRS book_training
 )
 
 ###########
@@ -128,7 +131,6 @@ target_link_libraries(ASIFT_matcher
  ${Eigen_LIBRARIES}
  X11
 )
-
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
