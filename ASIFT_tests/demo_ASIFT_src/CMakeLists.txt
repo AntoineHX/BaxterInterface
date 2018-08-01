@@ -45,13 +45,14 @@ set(ASIFT_srcs
 	
 include_directories(.
 					./io_png
-					./io_png/libs/png)
+					./io_png/libs/png
+)
 					
 					
 add_executable(demo_ASIFT demo_ASIFT.cpp ${ASIFT_srcs})
 TARGET_LINK_LIBRARIES(demo_ASIFT png zlib Match Numerics)
 
-find_package( OpenCV REQUIRED )
+#find_package( OpenCV REQUIRED )
 add_executable(test_ASIFT test_ASIFT.cpp ASIFT_matcher.cpp ${ASIFT_srcs})
-TARGET_LINK_LIBRARIES(test_ASIFT png zlib Match Numerics X11) #${OpenCV_LIBS})
+TARGET_LINK_LIBRARIES(test_ASIFT png zlib Match Numerics X11)
 
