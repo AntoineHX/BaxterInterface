@@ -7,8 +7,8 @@ ROS_matcher::ROS_matcher(): _num_tilt(1), _status(MATCHER_STATUS_IDLE)
 	info_sub = new message_filters::Subscriber<sensor_msgs::CameraInfo>(_nh, "/camera/rgb/camera_info", 1);
 	image_sub = new message_filters::Subscriber<sensor_msgs::Image>(_nh, "/camera/rgb/image_raw", 1);
 	pointcloud_sub= new message_filters::Subscriber<sensor_msgs::PointCloud2>(_nh, "/camera/depth_registered/points", 1);
-	Timesync = new message_filters::TimeSynchronizer<sensor_msgs::CameraInfo, sensor_msgs::Image>(*info_sub, *image_sub, 10);
-	Timesync->registerCallback(boost::bind(&ROS_matcher::cameraCallback, this, _1, _2));
+	Timesync = new message_filters::Synchronizer<MySyncPolicy>(MySyncPolicy(10),*info_sub, *image_sub, *pointcloud_sub);
+	Timesync-> registerCallback(boost::bind(&ROS_matcher::cameraCallback, this, _1, _2, _3));
 
 	// unsigned int nb_ref =2;
 	// std::string refData[] = {
@@ -24,13 +24,13 @@ ROS_matcher::ROS_matcher(): _num_tilt(1), _status(MATCHER_STATUS_IDLE)
 
 ROS_matcher::~ROS_matcher()
 {
-	// delete info_sub;
-	// delete image_sub;
-	// delete pointcloud_sub;
+	delete info_sub;
+	delete image_sub;
+	delete pointcloud_sub;
 	// delete Timesync;
 }
 
-void ROS_matcher::cameraCallback(const sensor_msgs::CameraInfo::ConstPtr& info_msg, const sensor_msgs::Image::ConstPtr& image_msg)
+void ROS_matcher::cameraCallback(const sensor_msgs::CameraInfo::ConstPtr& info_msg, const sensor_msgs::Image::ConstPtr& image_msg, const sensor_msgs::PointCloud2::ConstPtr& pointcloud_msg)
 {
 	ROS_INFO("Callback");
 
@@ -72,14 +72,20 @@ void ROS_matcher::cameraCallback(const sensor_msgs::CameraInfo::ConstPtr& info_m
 		//Recherche du point 3D
 		if(nb_match>0)
 		{
-
-
 			//Publish 3D point
 			int cx, cy;
 			geometry_msgs::PointStamped center_msg;
 			//Provisoire
 			if(matcher.computeCenter(cx, cy))
 			{
+				//Conversions des donnée d'entrée en PCL
+				pcl::PCLPointCloud2 pcl_pc2;
+				pcl_conversions::toPCL(*pointcloud_msg,pcl_pc2);
+				pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
+				pcl::fromPCLPointCloud2(pcl_pc2,*cloud);
+
+				
+				
 				center_msg.header.frame_id = image_msg->header.frame_id;
 				center_msg.point.x=cx;
 				center_msg.point.y=cy;

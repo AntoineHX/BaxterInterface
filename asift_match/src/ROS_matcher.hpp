@@ -5,14 +5,19 @@
 #include <tf/tf.h>
 
 #include <message_filters/subscriber.h>
-#include <message_filters/time_synchronizer.h>
+#include <message_filters/synchronizer.h>
+#include <message_filters/sync_policies/approximate_time.h>
 
 #include <sensor_msgs/CameraInfo.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <sensor_msgs/Image.h>
 #include <geometry_msgs/PointStamped.h>
 
+#include <pcl_conversions/pcl_conversions.h>
+
 #include "ASIFT_matcher.hpp"
+
+typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::CameraInfo, sensor_msgs::Image, sensor_msgs::PointCloud2> MySyncPolicy;
 
 enum MATCHER_STATUS{
 	MATCHER_STATUS_IDLE=0,
@@ -39,12 +44,12 @@ protected:
 
 	MATCHER_STATUS _status;
 
-	message_filters::TimeSynchronizer<sensor_msgs::CameraInfo, sensor_msgs::Image>* Timesync;
+	message_filters::Synchronizer<MySyncPolicy>* Timesync;
 
 public:
 	ROS_matcher();
 	~ROS_matcher();
-	void cameraCallback(const sensor_msgs::CameraInfo::ConstPtr& info_msg, const sensor_msgs::Image::ConstPtr& image_msg);
+	void cameraCallback(const sensor_msgs::CameraInfo::ConstPtr& info_msg, const sensor_msgs::Image::ConstPtr& image_msg, const sensor_msgs::PointCloud2::ConstPtr& pointcloud_msg);
 	
 };
 #endif
