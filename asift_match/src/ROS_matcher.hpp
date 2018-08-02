@@ -12,8 +12,10 @@
 #include <sensor_msgs/PointCloud2.h>
 #include <sensor_msgs/Image.h>
 #include <geometry_msgs/PointStamped.h>
+#include <rviz_interface/NamedPoint.h>
 
 #include <pcl_conversions/pcl_conversions.h>
+#include <pcl/impl/point_types.hpp>
 
 #include "ASIFT_matcher.hpp"
 

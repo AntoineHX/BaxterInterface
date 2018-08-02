@@ -69,6 +69,8 @@ public:
 	void setResizeImg(bool resize_imgs){ _resize_imgs=resize_imgs;}
 	bool isShowingDebug() const{ return _showDebug;}
 	void showDebug(bool showDebug){ _showDebug=showDebug;}
+	bool isShowingInfo() const{ return _showInfo;}
+	void showInfo(bool showInfo){ _showInfo=showInfo;}
 
 	void print() const; //Debugging function
 
@@ -96,6 +98,7 @@ protected:
 	//Flags
 	bool _resize_imgs;// = false; //Resize images to IM_X/IM_Y ?
 	bool _showDebug;// = 0; //Show debugging messages ?
+	bool _showInfo; //Show info messages
 };
 
 #endif

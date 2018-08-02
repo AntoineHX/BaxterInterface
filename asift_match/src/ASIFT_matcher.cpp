@@ -1,6 +1,6 @@
 #include "ASIFT_matcher.hpp"
 
-ASIFT_matcher::ASIFT_matcher(): _nb_refs(0), _total_num_matchings(0), _resize_imgs(false), _showDebug(false)
+ASIFT_matcher::ASIFT_matcher(): _nb_refs(0), _total_num_matchings(0), _resize_imgs(false), _showDebug(false), _showInfo(false)
 {
 	default_sift_parameters(_siftParam);
 }
@@ -63,7 +63,8 @@ bool ASIFT_matcher::addReference(const char* image_path, unsigned int num_tilts)
     size_t w1=gray.width(), h1=gray.height();
     ipixels1.assign(gray.begin(), gray.end());
 
-    std::cout<<"Building reference from "<< image_path << std::endl;
+    if(_showInfo)
+    	std::cout<<"Building reference from "<< image_path << std::endl;
 
     return addReference(ipixels1, w1, h1, num_tilts);
 }
@@ -91,8 +92,9 @@ bool ASIFT_matcher::addReference(const vector<float>& image, unsigned int w, uns
 
 	if(_resize_imgs)
 	{
-		cout << "WARNING: The input image is resized to " << wS << "x" << hS << " for ASIFT. " << endl 
-		<< "         But the results will be normalized to the original image size." << endl << endl;
+		if(_showInfo)
+			cout << "WARNING: The input image is resized to " << wS << "x" << hS << " for ASIFT. " << endl 
+			<< "         But the results will be normalized to the original image size." << endl << endl;
 		
 		float InitSigma_aa = 1.6;
 		
@@ -171,8 +173,11 @@ bool ASIFT_matcher::addReference(const vector<float>& image, unsigned int w, uns
 
 	_nb_refs++;
 
-	cout<<"Reference built in "<< difftime(tend, tstart) << " seconds." << endl;
-	cout<<"	"<< num_keys <<" ASIFT keypoints found."<< endl;
+	if(_showInfo)
+	{
+		cout<<"Reference built in "<< difftime(tend, tstart) << " seconds." << endl;
+		cout<<"	"<< num_keys <<" ASIFT keypoints found."<< endl;
+	}
 
 	return true;
 }
@@ -225,7 +230,8 @@ unsigned int ASIFT_matcher::match(const char* image_path, unsigned int num_tilts
     size_t w1=gray.width(), h1=gray.height();
     ipixels1.assign(gray.begin(), gray.end());
 
-    std::cout<<"Matching from "<<image_path<<std::endl;
+    if(_showInfo)
+    	std::cout<<"Matching from "<<image_path<<std::endl;
 
     return match(ipixels1, w1, h1, num_tilts);
 }
@@ -254,8 +260,11 @@ unsigned int ASIFT_matcher::match(const vector<float>& image, unsigned int w, un
 
 	if(_resize_imgs)
 	{
-		cout << "WARNING: The input image is resized to " << wS << "x" << hS << " for ASIFT. " << endl 
-		<< "         But the results will be normalized to the original image size." << endl << endl;
+		if(_showInfo)
+		{
+			cout << "WARNING: The input image is resized to " << wS << "x" << hS << " for ASIFT. " << endl 
+			<< "         But the results will be normalized to the original image size." << endl << endl;
+		}
 		
 		float InitSigma_aa = 1.6;
 		
@@ -322,8 +331,11 @@ unsigned int ASIFT_matcher::match(const vector<float>& image, unsigned int w, un
 	num_keys = compute_asift_keypoints(ipixels1_zoom, wS1, hS1, num_tilts, _showDebug, keys, _siftParam);
 
 	tend = time(0);
-	cout<< "Keypoints computation accomplished in " << difftime(tend, tstart) << " seconds." << endl;
-	cout<<"	"<< num_keys <<" ASIFT keypoints found."<< endl;
+	if(_showInfo)
+	{
+		cout<< "Keypoints computation accomplished in " << difftime(tend, tstart) << " seconds." << endl;
+		cout<<"	"<< num_keys <<" ASIFT keypoints found."<< endl;
+	}
 
 	//// Match ASIFT keypoints
 	_total_num_matchings=0;
@@ -332,8 +344,9 @@ unsigned int ASIFT_matcher::match(const vector<float>& image, unsigned int w, un
 	{
 		int num_matchings = 0;
 		matchingslist matchings;
+		if(_showInfo)
+			cout << "Matching the keypoints..." << endl;
 
-		cout << "Matching the keypoints..." << endl;
 		tstart = time(0);
 		try
 		{
@@ -347,7 +360,9 @@ unsigned int ASIFT_matcher::match(const vector<float>& image, unsigned int w, un
 		// cout<< _keys[i].size()<< " " << _keys[i][0].size() <<" "<< _keys[i][0][0].size()<<endl;
 
 		tend = time(0);
-		cout << "Keypoints matching accomplished in " << difftime(tend, tstart) << " seconds." << endl;
+
+		if(_showInfo)
+			cout << "Keypoints matching accomplished in " << difftime(tend, tstart) << " seconds." << endl;
 
 		_num_matchings.push_back(num_matchings);
 		_total_num_matchings += num_matchings;
@@ -434,7 +449,9 @@ bool ASIFT_matcher::computeCenter(int& cx, int& cy) const
 //Return true if successfull 
 bool ASIFT_matcher::distFilter(int threshold=2)
 {
-	cout<<"filtering keypoint..."<<endl;
+	if(_showInfo)
+		cout<<"filtering keypoint..."<<endl;
+	
 	if(getNbMatch()==0)
 	{
 		cerr<<"Error : cannot filter points without matchs"<<endl;

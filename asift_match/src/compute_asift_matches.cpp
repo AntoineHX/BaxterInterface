@@ -764,25 +764,25 @@ int compute_asift_matches(int num_of_tilts1, int num_of_tilts2, int w1, int h1, 
 				matchings = matchings_unique;
 				Minfoall = Minfoall_unique;     
 				
-				cout << "The two images match! " << matchings.size() << " matchings are identified. log(nfa)=" << nfa << "." << endl;
+				// cout << "The two images match! " << matchings.size() << " matchings are identified. log(nfa)=" << nfa << "." << endl;
 			}
 			else 
 			{
 				matchings.clear();
 				Minfoall.clear();
-				cout << "The two images do not match. The matching is not significant: log(nfa)=" << nfa << "." << endl;
+				// cout << "The two images do not match. The matching is not significant: log(nfa)=" << nfa << "." << endl;
 			}
 		}
 		else 
 		{
 			matchings.clear();
 			Minfoall.clear();
-			cout << "The two images do not match. Not enough matches to do epipolar filtering." << endl;		
+			// cout << "The two images do not match. Not enough matches to do epipolar filtering." << endl;		
 		}
 	}
 	else 
 	{
-		cout << "The two images do not match.\n" << endl;
+		// cout << "The two images do not match.\n" << endl;
 	}
 	
 	return matchings.size();

@@ -1,5 +1,5 @@
 <launch>
 	<node name="rviz" pkg="rviz" type="rviz"/>
 	<node name="RvizInterface" pkg="rviz_interface" type="RvizInterface"/>
-	<!--node name="plannar_seg" pkg="pcl_tests" type="plannar_seg"/-->
+	<node name="ASIFT_matching" pkg="asift_matching" type="ASIFT_matcher"/>
 </launch>
