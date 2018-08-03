@@ -137,12 +137,20 @@ int main(int argc, char **argv)
 		zoom1 = 1;
 	}
 
-	unsigned int nb_ref =2;
+	// unsigned int nb_ref =2;
+	// std::string refData[] = {
+ //      "book_training/train_image_000.png", 
+ //      "book_training/train_image_001.png", 
+ //      "book_training/train_image_002.png", 
+ //      "book_training/train_image_003.png"};
+
+	unsigned int nb_ref =5;
 	std::string refData[] = {
-      "book_training/train_image_000.png", 
-      "book_training/train_image_001.png", 
-      "book_training/train_image_002.png", 
-      "book_training/train_image_003.png"};
+      "robobo_references/robobo_000.png",
+      "robobo_references/robobo_001.png",
+  	  "robobo_references/robobo_002.png",
+  	  "robobo_references/robobo_003.png",
+  	  "robobo_references/robobo_004.png"};
 
 	// unsigned int nb_ref =21;
 	// std::string refData[] = {

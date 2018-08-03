@@ -6,8 +6,9 @@ ROS_matcher::ROS_matcher(): _status(MATCHER_STATUS_WAITING_INIT)
 	std::vector<std::string> reference_data_paths;
 
 	//Load Param
-	_nh.param<std::string>("tracked_object", tracked_object, "6DOF");
+	_nh.param<std::string>("tracked_object", tracked_object, "Object");
 	_nh.param<int>("num_tilt", _num_tilt, 8);
+	_nh.param<int>("std_dev_filter_coeff", _filter_coeff, 0);
 
 	_nh.param<std::string>("object_center_topic", center_topic,"/ASIFT_matcher/object_center");
 	_nh.param<std::string>("image_topic", image_topic,"/camera/rgb/image_raw");
@@ -18,10 +19,10 @@ ROS_matcher::ROS_matcher(): _status(MATCHER_STATUS_WAITING_INIT)
 
 	//Subscriber
 	// info_sub = new message_filters::Subscriber<sensor_msgs::CameraInfo>(_nh, "camera/rgb/camera_info", 1);
-	image_sub = new message_filters::Subscriber<sensor_msgs::Image>(_nh, image_topic, 1);
-	pointcloud_sub= new message_filters::Subscriber<sensor_msgs::PointCloud2>(_nh, pointcloud_topic, 1);
+	_image_sub = new message_filters::Subscriber<sensor_msgs::Image>(_nh, image_topic, 1);
+	_pointcloud_sub= new message_filters::Subscriber<sensor_msgs::PointCloud2>(_nh, pointcloud_topic, 1);
 	
-	Timesync = new message_filters::Synchronizer<MySyncPolicy>(MySyncPolicy(2), *image_sub, *pointcloud_sub);
+	Timesync = new message_filters::Synchronizer<MySyncPolicy>(MySyncPolicy(2), *_image_sub, *_pointcloud_sub);
 	Timesync-> registerCallback(boost::bind(&ROS_matcher::cameraCallback, this, _1, _2));
 
 	//Load References
@@ -44,14 +45,14 @@ ROS_matcher::ROS_matcher(): _status(MATCHER_STATUS_WAITING_INIT)
 	}
 
 	if(_status == MATCHER_STATUS_IDLE)
-		ROS_INFO("Matcher Ready ! (%d references)",matcher.getNbRef());
+		ROS_INFO("Matcher Ready ! (%d references from %s)",matcher.getNbRef(), reference_txt_path.c_str());
 }
 
 ROS_matcher::~ROS_matcher()
 {
 	// delete info_sub;
-	delete image_sub;
-	delete pointcloud_sub;
+	delete _image_sub;
+	delete _pointcloud_sub;
 	// delete Timesync;
 }
 
@@ -103,7 +104,7 @@ void ROS_matcher::cameraCallback(const sensor_msgs::Image::ConstPtr& image_msg, 
 			int cx, cy;
 			// geometry_msgs::PointStamped center_msg;
 			rviz_interface::NamedPoint center_msg;
-			matcher.distFilter(2);
+			matcher.distFilter(_filter_coeff);
 
 			if(matcher.computeCenter(cx, cy))
 			{

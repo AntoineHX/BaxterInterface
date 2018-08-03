@@ -11,7 +11,7 @@ RvizInterface::RvizInterface(): _server("RvizInterface")
 	_n.param<std::string>("objective_topic", objective_topic,"/RvizInterface/state_objective");
 	_n.param<std::string>("vizualization_topic", vizualization_topic,"/RvizInterface/visual_marker");
 	_n.param<std::string>("config_topic", config_topic,"/RvizInterface/interface_config");
-	_n.param<std::string>("object_center_topic", position_topic,"/object_center");
+	_n.param<std::string>("object_center_topic", position_topic,"/ASIFT_matcher/object_center");
 	_n.param<std::string>("tracked_object", object_name,"Object");
 
 	//Topic you want to publish

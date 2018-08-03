@@ -37,11 +37,11 @@ protected:
 
 	//Subscriber ROS
 	// message_filters::Subscriber<sensor_msgs::CameraInfo>* info_sub;
-	message_filters::Subscriber<sensor_msgs::Image>* image_sub;
-	message_filters::Subscriber<sensor_msgs::PointCloud2>* pointcloud_sub;
+	message_filters::Subscriber<sensor_msgs::Image>* _image_sub;
+	message_filters::Subscriber<sensor_msgs::PointCloud2>* _pointcloud_sub;
 	
 	//Matcher
-	int _num_tilt;
+	int _num_tilt, _filter_coeff;
 	ASIFT_matcher matcher;
 
 	MATCHER_STATUS _status;

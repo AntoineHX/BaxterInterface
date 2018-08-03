@@ -275,6 +275,4 @@ CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: library.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: numerics1.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: splines.h
 CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: test_ASIFT.cpp
-CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: /usr/include/opencv/cv.h
-CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o: /usr/include/opencv/highgui.h
 

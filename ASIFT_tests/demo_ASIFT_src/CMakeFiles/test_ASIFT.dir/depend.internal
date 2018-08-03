@@ -276,5 +276,3 @@ CMakeFiles/test_ASIFT.dir/test_ASIFT.cpp.o
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/numerics1.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/splines.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/test_ASIFT.cpp
- /usr/include/opencv/cv.h
- /usr/include/opencv/highgui.h
