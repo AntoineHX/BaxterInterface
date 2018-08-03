@@ -1,26 +1,43 @@
 #include "ROS_matcher.hpp"
 
-ROS_matcher::ROS_matcher(): _num_tilt(8), _status(MATCHER_STATUS_IDLE)
+ROS_matcher::ROS_matcher(): _num_tilt(8), _status(MATCHER_STATUS_WAITING_INIT)
 {
-	// _center_pub = _nh.advertise<geometry_msgs::PointStamped>("/ROS_matcher/center", 10);
-	_center_pub = _nh.advertise<rviz_interface::NamedPoint>("/object_center", 1);
+	std::string center_topic, image_topic, pointcloud_topic, reference_txt_path;
+	std::vector<std::string> reference_data_paths;
 
-	info_sub = new message_filters::Subscriber<sensor_msgs::CameraInfo>(_nh, "/camera/rgb/camera_info", 1);
-	image_sub = new message_filters::Subscriber<sensor_msgs::Image>(_nh, "/camera/rgb/image_raw", 1);
-	pointcloud_sub= new message_filters::Subscriber<sensor_msgs::PointCloud2>(_nh, "/camera/depth_registered/points", 1);
+	_nh.param<std::string>("object_center_topic", center_topic,"/ASIFT_matcher/object_center");
+	_nh.param<std::string>("image_topic", image_topic,"/camera/rgb/image_raw");
+	_nh.param<std::string>("pointcloud_topic", pointcloud_topic,"/camera/depth_registered/points");
+	
+	_center_pub = _nh.advertise<rviz_interface::NamedPoint>(center_topic, 1);
+
+	info_sub = new message_filters::Subscriber<sensor_msgs::CameraInfo>(_nh, "camera/rgb/camera_info", 1);
+	image_sub = new message_filters::Subscriber<sensor_msgs::Image>(_nh, image_topic, 1);
+	pointcloud_sub= new message_filters::Subscriber<sensor_msgs::PointCloud2>(_nh, pointcloud_topic, 1);
+	
 	Timesync = new message_filters::Synchronizer<MySyncPolicy>(MySyncPolicy(10),*info_sub, *image_sub, *pointcloud_sub);
 	Timesync-> registerCallback(boost::bind(&ROS_matcher::cameraCallback, this, _1, _2, _3));
 
-	// unsigned int nb_ref =2;
-	// std::string refData[] = {
- //      "train_image_000.png", 
- //      "train_image_001.png"};
+	if(_nh.getParam("reference_txt_path", reference_txt_path))
+	{
+		if(matcher.loadReferences(reference_txt_path.c_str()))
+			_status = MATCHER_STATUS_IDLE;
+	}
+	else if(_nh.getParam("reference_data", reference_data_paths))
+	{
+		for(unsigned int i=0; i<reference_data_paths.size(); i++)
+			matcher.addReference(reference_data_paths[i].c_str(),_num_tilt);
+		
+		if(matcher.getNbRef()>0)
+			_status = MATCHER_STATUS_IDLE;
+	}
+	else
+	{
+		ROS_WARN("No reference data to initialize matcher.");
+	}
 
- //    for(unsigned int i=0; i<nb_ref;i++)
-	// {
-	// 	matcher.addReference(refData[i].c_str(), _num_tilt);
-	// }
-	ROS_INFO("Matcher Ready !");
+	if(_status == MATCHER_STATUS_IDLE)
+		ROS_INFO("Matcher Ready ! (%d references)",matcher.getNbRef());
 }
 
 ROS_matcher::~ROS_matcher()

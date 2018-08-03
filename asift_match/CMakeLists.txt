@@ -29,8 +29,11 @@ find_package(catkin REQUIRED COMPONENTS
  pcl_ros
  sensor_msgs
 )
-#find_package(Eigen3 REQUIRED)
-#find_package(cmake_modules REQUIRED)
+
+## Uncomment this if the package has a setup.py. This macro ensures
+## modules and global scripts declared therein get installed
+## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
+catkin_python_setup()
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 #add_compile_options(-std=c++11)

@@ -1,0 +1,12 @@
+<launch>
+	<param name="reference_txt_path" value="$(find asift_matching)/reference_data/references.txt"/>
+	<!--rosparam param="reference_data">[
+	"$(find asift_matching)/reference_data/train_image_000.png", 
+	"$(find asift_matching)/reference_data/train_image_001.png"]</rosparam-->
+
+	<param name="object_center_topic" value="/object_center"/>
+	<param name="image_topic" value="/camera/rgb/image_raw"/>
+	<param name="pointcloud_topic" value="/camera/depth_registered/points"/>
+
+	<node name="ASIFT_matching" pkg="asift_matching" type="ASIFT_matcher" output="screen"/>
+</launch>
