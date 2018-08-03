@@ -1,8 +1,10 @@
 <launch>
+	<param name="tracked_object" value="6DOF"/>
+	<param name="num_tilt" type="int" value="2"/>
 	<param name="reference_txt_path" value="$(find asift_matching)/reference_data/references.txt"/>
-	<rosparam param="reference_data">[
+	<!--rosparam param="reference_data">[
 	"$(find asift_matching)/reference_data/train_image_000.png", 
-	"$(find asift_matching)/reference_data/train_image_001.png"]</rosparam>
+	"$(find asift_matching)/reference_data/train_image_001.png"]</rosparam-->
 
 	<param name="object_center_topic" value="/object_center"/>
 	<param name="image_topic" value="/camera/rgb/image_raw"/>

@@ -19,7 +19,7 @@
 
 #include "ASIFT_matcher.hpp"
 
-typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::CameraInfo, sensor_msgs::Image, sensor_msgs::PointCloud2> MySyncPolicy;
+typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::Image, sensor_msgs::PointCloud2> MySyncPolicy;
 
 enum MATCHER_STATUS{
 	MATCHER_STATUS_IDLE=0,
@@ -36,7 +36,7 @@ protected:
 	ros::Publisher _center_pub;
 
 	//Subscriber ROS
-	message_filters::Subscriber<sensor_msgs::CameraInfo>* info_sub;
+	// message_filters::Subscriber<sensor_msgs::CameraInfo>* info_sub;
 	message_filters::Subscriber<sensor_msgs::Image>* image_sub;
 	message_filters::Subscriber<sensor_msgs::PointCloud2>* pointcloud_sub;
 	
@@ -48,10 +48,12 @@ protected:
 
 	message_filters::Synchronizer<MySyncPolicy>* Timesync;
 
+	std::string tracked_object;
+
 public:
 	ROS_matcher();
 	~ROS_matcher();
-	void cameraCallback(const sensor_msgs::CameraInfo::ConstPtr& info_msg, const sensor_msgs::Image::ConstPtr& image_msg, const sensor_msgs::PointCloud2::ConstPtr& pointcloud_msg);
+	void cameraCallback(const sensor_msgs::Image::ConstPtr& image_msg, const sensor_msgs::PointCloud2::ConstPtr& pointcloud_msg);
 	
 };
 #endif

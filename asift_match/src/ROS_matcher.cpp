@@ -1,9 +1,12 @@
 #include "ROS_matcher.hpp"
 
-ROS_matcher::ROS_matcher(): _num_tilt(8), _status(MATCHER_STATUS_WAITING_INIT)
+ROS_matcher::ROS_matcher(): _status(MATCHER_STATUS_WAITING_INIT)
 {
 	std::string center_topic, image_topic, pointcloud_topic, reference_txt_path;
 	std::vector<std::string> reference_data_paths;
+
+	_nh.param<std::string>("tracked_object", tracked_object, "6DOF");
+	_nh.param<int>("num_tilt", _num_tilt, 8);
 
 	_nh.param<std::string>("object_center_topic", center_topic,"/ASIFT_matcher/object_center");
 	_nh.param<std::string>("image_topic", image_topic,"/camera/rgb/image_raw");
@@ -11,12 +14,12 @@ ROS_matcher::ROS_matcher(): _num_tilt(8), _status(MATCHER_STATUS_WAITING_INIT)
 	
 	_center_pub = _nh.advertise<rviz_interface::NamedPoint>(center_topic, 1);
 
-	info_sub = new message_filters::Subscriber<sensor_msgs::CameraInfo>(_nh, "camera/rgb/camera_info", 1);
+	// info_sub = new message_filters::Subscriber<sensor_msgs::CameraInfo>(_nh, "camera/rgb/camera_info", 1);
 	image_sub = new message_filters::Subscriber<sensor_msgs::Image>(_nh, image_topic, 1);
 	pointcloud_sub= new message_filters::Subscriber<sensor_msgs::PointCloud2>(_nh, pointcloud_topic, 1);
 	
-	Timesync = new message_filters::Synchronizer<MySyncPolicy>(MySyncPolicy(10),*info_sub, *image_sub, *pointcloud_sub);
-	Timesync-> registerCallback(boost::bind(&ROS_matcher::cameraCallback, this, _1, _2, _3));
+	Timesync = new message_filters::Synchronizer<MySyncPolicy>(MySyncPolicy(2), *image_sub, *pointcloud_sub);
+	Timesync-> registerCallback(boost::bind(&ROS_matcher::cameraCallback, this, _1, _2));
 
 	if(_nh.getParam("reference_txt_path", reference_txt_path))
 	{
@@ -27,7 +30,7 @@ ROS_matcher::ROS_matcher(): _num_tilt(8), _status(MATCHER_STATUS_WAITING_INIT)
 	{
 		for(unsigned int i=0; i<reference_data_paths.size(); i++)
 			matcher.addReference(reference_data_paths[i].c_str(),_num_tilt);
-		
+
 		if(matcher.getNbRef()>0)
 			_status = MATCHER_STATUS_IDLE;
 	}
@@ -42,13 +45,13 @@ ROS_matcher::ROS_matcher(): _num_tilt(8), _status(MATCHER_STATUS_WAITING_INIT)
 
 ROS_matcher::~ROS_matcher()
 {
-	delete info_sub;
+	// delete info_sub;
 	delete image_sub;
 	delete pointcloud_sub;
 	// delete Timesync;
 }
 
-void ROS_matcher::cameraCallback(const sensor_msgs::CameraInfo::ConstPtr& info_msg, const sensor_msgs::Image::ConstPtr& image_msg, const sensor_msgs::PointCloud2::ConstPtr& pointcloud_msg)
+void ROS_matcher::cameraCallback(const sensor_msgs::Image::ConstPtr& image_msg, const sensor_msgs::PointCloud2::ConstPtr& pointcloud_msg)
 {
 	// ROS_INFO("Callback");
 
@@ -116,7 +119,7 @@ void ROS_matcher::cameraCallback(const sensor_msgs::CameraInfo::ConstPtr& info_m
 
 					if(!isnan(center.x) && !isnan(center.y) && !isnan(center.z))
 					{
-						center_msg.name = "6DOF";
+						center_msg.name = tracked_object;
 
 						center_msg.header.frame_id = image_msg->header.frame_id;
 						center_msg.point.x=center.x;
