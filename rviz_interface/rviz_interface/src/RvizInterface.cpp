@@ -3,20 +3,30 @@
 //Constructeur
 RvizInterface::RvizInterface(): _server("RvizInterface")
 {
+	std::string objective_topic, vizualization_topic, config_topic, position_topic;
+	//Need to load multiple object
+	std::string object_name;
+
+	//Load Param
+	_n.param<std::string>("objective_topic", objective_topic,"/RvizInterface/state_objective");
+	_n.param<std::string>("vizualization_topic", vizualization_topic,"/RvizInterface/visual_marker");
+	_n.param<std::string>("config_topic", config_topic,"/RvizInterface/interface_config");
+	_n.param<std::string>("object_center_topic", position_topic,"/object_center");
+	_n.param<std::string>("tracked_object", object_name,"Object");
+
 	//Topic you want to publish
-	_objective_pub = _n.advertise<rviz_interface::StateSpace>("/RvizInterface/state_objective", 10);
-	_visualization_pub = _n.advertise<visualization_msgs::Marker>("/RvizInterface/visual_marker", 10);
+	_objective_pub = _n.advertise<rviz_interface::StateSpace>(objective_topic, 10);
+	_visualization_pub = _n.advertise<visualization_msgs::Marker>(vizualization_topic, 10);
 
 	//Topic you want to subscribe
-	_config_sub = _n.subscribe("/RvizInterface/interface_config", 1, &RvizInterface::configCallback, this);
-	_position_sub = _n.subscribe("/object_center", 1, &RvizInterface::positionCallback, this);
+	_config_sub = _n.subscribe(config_topic, 1, &RvizInterface::configCallback, this);
+	_position_sub = _n.subscribe(position_topic, 1, &RvizInterface::positionCallback, this);
 
-	_objects.push_back(new InteractiveObject(&_server, "6DOF", (int) rviz_interface::StateSpace::STATE_3D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
+	_objects.push_back(new InteractiveObject(&_server, object_name, (int) rviz_interface::StateSpace::STATE_3D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
 	_objects[0]->add6DOFcontrol();
 
-	_objects.push_back(new InteractiveObject(&_server, "3DOF", (int) rviz_interface::StateSpace::STATE_2D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(1,1,0)));
-	_objects[1]->add3DOFcontrol();
-
+	// _objects.push_back(new InteractiveObject(&_server, "3DOF", (int) rviz_interface::StateSpace::STATE_2D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(1,1,0)));
+	// _objects[1]->add3DOFcontrol();
 
 	// _objects.push_back(new InteractiveObject(&_server, "3DOF 2", (int) rviz_interface::StateSpace::STATE_2D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(-1,1,0)));
 	// _objects[2]->add3DOFcontrol(tf::Vector3(0.5,0.5,0));

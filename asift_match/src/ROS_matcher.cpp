@@ -5,6 +5,7 @@ ROS_matcher::ROS_matcher(): _status(MATCHER_STATUS_WAITING_INIT)
 	std::string center_topic, image_topic, pointcloud_topic, reference_txt_path;
 	std::vector<std::string> reference_data_paths;
 
+	//Load Param
 	_nh.param<std::string>("tracked_object", tracked_object, "6DOF");
 	_nh.param<int>("num_tilt", _num_tilt, 8);
 
@@ -12,8 +13,10 @@ ROS_matcher::ROS_matcher(): _status(MATCHER_STATUS_WAITING_INIT)
 	_nh.param<std::string>("image_topic", image_topic,"/camera/rgb/image_raw");
 	_nh.param<std::string>("pointcloud_topic", pointcloud_topic,"/camera/depth_registered/points");
 	
+	//Publisher
 	_center_pub = _nh.advertise<rviz_interface::NamedPoint>(center_topic, 1);
 
+	//Subscriber
 	// info_sub = new message_filters::Subscriber<sensor_msgs::CameraInfo>(_nh, "camera/rgb/camera_info", 1);
 	image_sub = new message_filters::Subscriber<sensor_msgs::Image>(_nh, image_topic, 1);
 	pointcloud_sub= new message_filters::Subscriber<sensor_msgs::PointCloud2>(_nh, pointcloud_topic, 1);
@@ -21,6 +24,7 @@ ROS_matcher::ROS_matcher(): _status(MATCHER_STATUS_WAITING_INIT)
 	Timesync = new message_filters::Synchronizer<MySyncPolicy>(MySyncPolicy(2), *image_sub, *pointcloud_sub);
 	Timesync-> registerCallback(boost::bind(&ROS_matcher::cameraCallback, this, _1, _2));
 
+	//Load References
 	if(_nh.getParam("reference_txt_path", reference_txt_path))
 	{
 		if(matcher.loadReferences(reference_txt_path.c_str()))
