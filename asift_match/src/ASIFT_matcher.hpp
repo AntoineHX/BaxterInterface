@@ -1,3 +1,14 @@
+/*
+ * Image matching using Affine-SIFT algorithm.
+ * Allow to find matching keypoints, filter, compute ROI & center of an object in an image, after having built the references (with at least 1 image).
+ * @author : antoine.harle@etu.upmc.Fr
+ * Reference: J.M. Morel and G.Yu, ASIFT: A New Framework for Fully Affine Invariant Image 
+ *            Comparison, SIAM Journal on Imaging Sciences, vol. 2, issue 2, pp. 438-469, 2009. 
+ * Reference: ASIFT online demo (You can try ASIFT with your own images online.) 
+ *			  http://www.ipol.im/pub/algo/my_affine_sift/
+ */
+
+
 #ifndef ASIFTMATCHER_HPP
 #define ASIFTMATCHER_HPP
 
@@ -30,28 +41,28 @@ using namespace std;
 
 typedef vector< vector< keypointslist > > asift_keypoints;
 
-//ASIFT wrapper
 class ASIFT_matcher
 {
 public:
-	ASIFT_matcher();
-	ASIFT_matcher(const char* ref_path);
-	ASIFT_matcher(const ASIFT_matcher& matcher) { *this = matcher;}
+	ASIFT_matcher();//Default constructor.
+	ASIFT_matcher(const char* ref_path); //Constuctor from keypoints references (.txt).
+	ASIFT_matcher(const ASIFT_matcher& matcher) { *this = matcher;} //Copy constructor.
 	// virtual ~ASIFT_matcher();
 
-	bool addReference(const char* image_path, unsigned int num_tilts=1);
-	bool addReference(const vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1);
-	unsigned int match(const char* image_path, unsigned int num_tilts =1);
-	unsigned int match(const vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1);
-	bool computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const; //Compute the bounding rectangle of the keypoints
-	bool computeCenter(int& cx, int& cy) const;
-	bool distFilter(int threshold); //Filter keypoint which are far (Euclidian distance) from the center.
+	bool addReference(const char* image_path, unsigned int num_tilts =1); //Add a reference image.
+	bool addReference(const vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1); //Add a reference image.
+	unsigned int match(const char* image_path, unsigned int num_tilts =1); //Perform matching between an image and the references.
+	unsigned int match(const vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1); //Perform matching between an image and the references.
+	bool computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const; //Compute the bounding rectangle of the mathcing keypoints.
+	bool computeCenter(int& cx, int& cy) const; //Compute the centroid of the matching keypoints.
+	bool distFilter(int threshold =2); //Perform a standard deviation filtering on the matching keypoints.
 
-	bool saveReferences(const char* ref_path) const;
-	bool loadReferences(const char* ref_path);
+	bool saveReferences(const char* ref_path) const; //Save reference data necessary for the matching.
+	bool loadReferences(const char* ref_path); //Load reference data necessary for the matching.
 
-	ASIFT_matcher& operator=(const ASIFT_matcher& m);
+	ASIFT_matcher& operator=(const ASIFT_matcher& m); //Assignation operator.
 
+	//Setter/Getter
 	unsigned int getNbRef() const{ return _nb_refs;}
 	const vector< vector< float > >& getRefImgs() const{ return _im_refs;}
 	const vector< pair<int,int> >& getSizeRef() const{ return _size_refs;}
@@ -72,31 +83,31 @@ public:
 	bool isShowingInfo() const{ return _showInfo;}
 	void showInfo(bool showInfo){ _showInfo=showInfo;}
 
-	void print() const; //Debugging function
+	void print() const; //Debugging function : print content form the ASIFT matcher.
 
 protected:
 
 	//Reference Images
-	unsigned int _nb_refs;// = 0; //Number of reference images
+	unsigned int _nb_refs;//Number of reference images
 	vector< vector< float > > _im_refs; //Reference images used for matching
 	vector< pair<int,int> > _size_refs; //Width/Height
 	vector<float> _zoom_refs; //Zoom coeffs
 
-	//ASIFT Keypoints
+	//Reference ASIFT Keypoints
 	vector< int > _num_keys; //Number of keypoint/reference
 	vector< int > _num_tilts; //Number of tilts/reference (Speed VS Precision)
-	vector< asift_keypoints > _keys; //Keypoints
+	vector< asift_keypoints > _keys; //Reference keypoints
 
 	//Matchs
-	unsigned int _total_num_matchings;
+	unsigned int _total_num_matchings; //Number of matching keypoints.
 	vector < unsigned int > _num_matchings; //Number of match/reference
-	vector< matchingslist > _matchings; //Matchs
+	vector< matchingslist > _matchings; //Matching keypoints
 
 	siftPar _siftParam;	//SIFT parameters
 
 	//Flags
-	bool _resize_imgs;// = false; //Resize images to IM_X/IM_Y ?
-	bool _showDebug;// = 0; //Show debugging messages ?
+	bool _resize_imgs;//Resize images to IM_X/IM_Y ?
+	bool _showDebug;//Show debugging messages ?
 	bool _showInfo; //Show info messages
 };
 

@@ -137,59 +137,59 @@ int main(int argc, char **argv)
 		zoom1 = 1;
 	}
 
-	// unsigned int nb_ref =3;
-	// std::string refData[] = {
- //      "book_training/train_image_000.png", 
- //      "book_training/train_image_001.png", 
- //      "book_training/000.png", 
- //      "book_training/train_image_003.png"};
-
-	unsigned int nb_ref =7;
+	unsigned int nb_ref =3;
 	std::string refData[] = {
-      // "robobo_references/0.jpg",
-      // "robobo_references/1.jpg",
-      // "robobo_references/2.jpg",
-      // "robobo_references/3.jpg",
-      // "robobo_references/4.jpg",
-      // "robobo_references/5.jpg",
-      // "robobo_references/6.jpg",
+      "book_training/train_image_000.png", 
+      "book_training/train_image_001.png", 
+      "book_training/000.png", 
+      "book_training/train_image_003.png"};
 
-      "robobo_references/000.jpg",
-      "robobo_references/001.jpg",
-      "robobo_references/002.jpg",
-      "robobo_references/003.jpg",
-      "robobo_references/004.jpg",
-      "robobo_references/005.jpg",
-      "robobo_references/006.jpg",
+	// unsigned int nb_ref =7;
+	// std::string refData[] = {
+ //      // "robobo_references/0.jpg",
+ //      // "robobo_references/1.jpg",
+ //      // "robobo_references/2.jpg",
+ //      // "robobo_references/3.jpg",
+ //      // "robobo_references/4.jpg",
+ //      // "robobo_references/5.jpg",
+ //      // "robobo_references/6.jpg",
 
-      "robobo_references/000_2.jpg",
-      "robobo_references/001_2.jpg",
-      "robobo_references/002_2.jpg",
-      "robobo_references/003_2.jpg",
-      "robobo_references/004_2.jpg",
-      "robobo_references/005_2.jpg",
-      "robobo_references/006_2.jpg",
-      "robobo_references/007_2.jpg",
+ //      "robobo_references/000.jpg",
+ //      "robobo_references/001.jpg",
+ //      "robobo_references/002.jpg",
+ //      "robobo_references/003.jpg",
+ //      "robobo_references/004.jpg",
+ //      "robobo_references/005.jpg",
+ //      "robobo_references/006.jpg",
 
-      "robobo_references/000.png",
-      "robobo_references/001.png",
-      "robobo_references/002.png",
-      "robobo_references/003.png",
-      "robobo_references/004.png",
-      "robobo_references/005.png",
-      "robobo_references/006.png",
-      "robobo_references/000_a.png",
-      "robobo_references/001_a.png",
-      "robobo_references/002_a.png",
-      "robobo_references/003_a.png",
-      "robobo_references/004_a.png",
-      "robobo_references/006_a.png",
-      "robobo_references/000_2.png",
-      "robobo_references/001_2.png",
-      "robobo_references/002_2.png",
-      "robobo_references/003_2.png",
-      "robobo_references/004_2.png",
-      "robobo_references/006_2.png"};
+ //      "robobo_references/000_2.jpg",
+ //      "robobo_references/001_2.jpg",
+ //      "robobo_references/002_2.jpg",
+ //      "robobo_references/003_2.jpg",
+ //      "robobo_references/004_2.jpg",
+ //      "robobo_references/005_2.jpg",
+ //      "robobo_references/006_2.jpg",
+ //      "robobo_references/007_2.jpg",
+
+ //      "robobo_references/000.png",
+ //      "robobo_references/001.png",
+ //      "robobo_references/002.png",
+ //      "robobo_references/003.png",
+ //      "robobo_references/004.png",
+ //      "robobo_references/005.png",
+ //      "robobo_references/006.png",
+ //      "robobo_references/000_a.png",
+ //      "robobo_references/001_a.png",
+ //      "robobo_references/002_a.png",
+ //      "robobo_references/003_a.png",
+ //      "robobo_references/004_a.png",
+ //      "robobo_references/006_a.png",
+ //      "robobo_references/000_2.png",
+ //      "robobo_references/001_2.png",
+ //      "robobo_references/002_2.png",
+ //      "robobo_references/003_2.png",
+ //      "robobo_references/004_2.png",
+ //      "robobo_references/006_2.png"};
 
 	// unsigned int nb_ref =21;
 	// std::string refData[] = {

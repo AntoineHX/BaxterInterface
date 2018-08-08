@@ -1,3 +1,10 @@
+/*
+ * Rviz interface to send objective.
+ * Composed of 3D marker and a configuration panel.
+ * @author : antoine.harle@etu.upmc.Fr
+ * @see : InteractiveObject.cpp/.hpp, InterfacePanel.cpp/.hpp
+ */
+
 #ifndef RVIZINTERFACE_HPP
 #define RVIZINTERFACE_HPP
 
@@ -38,8 +45,7 @@ public:
 	//Fonction Callback du panel Rviz gérant les configurations
 	void configCallback(const rviz_interface::InterfaceConfig & new_config);
 
-	//Fonction callback gérant la position de l'objet
-	//PROVISOIRE : Pour un seul objet avec test PCL
+	//Fonction callback gérant la position des objets
 	void positionCallback(const rviz_interface::NamedPoint & new_center);
 };
 

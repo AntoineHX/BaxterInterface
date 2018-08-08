@@ -1,3 +1,10 @@
+/*
+ * ROS wrapper for the ASIFT_matcher object.
+ * Track an object described in the references in a RGBD stream and publish it's center.
+ * @author : antoine.harle@etu.upmc.Fr
+ * @see : ASIFT_matcher.cpp/.hpp, asift_match.launch
+ */
+
 #include "ROS_matcher.hpp"
 
 ROS_matcher::ROS_matcher(): _status(MATCHER_STATUS_WAITING_INIT)

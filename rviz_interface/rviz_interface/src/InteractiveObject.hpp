@@ -1,3 +1,9 @@
+/*
+ * Rviz interactive object.
+ * @author : antoine.harle@etu.upmc.Fr
+ * @see : RvizInterface.cpp/.hpp
+ */
+
 #ifndef INTERACTIVEOBJECT_HPP
 #define INTERACTIVEOBJECT_HPP
 

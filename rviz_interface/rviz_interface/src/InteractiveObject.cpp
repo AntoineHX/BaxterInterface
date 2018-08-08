@@ -1,3 +1,9 @@
+/*
+ * Rviz interactive object.
+ * @author : antoine.harle@etu.upmc.Fr
+ * @see : RvizInterface.cpp/.hpp
+ */
+
 #include "InteractiveObject.hpp"
 
 unsigned int InteractiveObject::nextObjectID = 1;

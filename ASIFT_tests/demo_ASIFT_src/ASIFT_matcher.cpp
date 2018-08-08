@@ -1,10 +1,24 @@
+/*
+ * Image matching using Affine-SIFT algorithm.
+ * Allow to find matching keypoints, filter, compute ROI & center of an object in an image, after having built the references (with at least 1 image).
+ * @author : antoine.harle@etu.upmc.Fr
+ * Reference: J.M. Morel and G.Yu, ASIFT: A New Framework for Fully Affine Invariant Image 
+ *            Comparison, SIAM Journal on Imaging Sciences, vol. 2, issue 2, pp. 438-469, 2009. 
+ * Reference: ASIFT online demo (You can try ASIFT with your own images online.) 
+ *			  http://www.ipol.im/pub/algo/my_affine_sift/
+ */
+
 #include "ASIFT_matcher.hpp"
 
+//Default constructor
 ASIFT_matcher::ASIFT_matcher(): _nb_refs(0), _total_num_matchings(0), _resize_imgs(false), _showDebug(false), _showInfo(true)
 {
 	default_sift_parameters(_siftParam);
 }
 
+/* Constuctor from keypoints references (.txt)
+ * ref_path : path to a text file with keypoints reference following the convention of saveReference function.
+ */
 ASIFT_matcher::ASIFT_matcher(const char* ref_path): ASIFT_matcher()
 {
 	if(!loadReferences(ref_path))
@@ -18,7 +32,12 @@ ASIFT_matcher::ASIFT_matcher(const char* ref_path): ASIFT_matcher()
 
 // }
 
-//Return true if successfull
+/*
+ * Add a reference image.
+ * image_path : path to the image file (support the same format than CImg / ImageMagick).
+ * num_tilts : Number of virtual tilts applied to the image. More tilts equal to better matching but slower process. Default : 1 (no tilt). Recommended : 8.
+ * Return true if the reference was loaded with success.
+ */
 bool ASIFT_matcher::addReference(const char* image_path, unsigned int num_tilts)
 {
 	///// Read input
@@ -69,7 +88,14 @@ bool ASIFT_matcher::addReference(const char* image_path, unsigned int num_tilts)
     return addReference(ipixels1, w1, h1, num_tilts);
 }
 
-//Image : Gray scale image (image size = w*h)
+/*
+ * Add a reference image.
+ * image : Gray scale image. Image size must be equal to width * height.
+ * w : Width of the image.
+ * h : Height of the image.
+ * num_tilts : Number of virtual tilts applied to the image. More tilts equal to better matching but slower process. Default : 1 (no tilt). Recommended : 8.
+ * Return true if the reference was loaded with success.
+ */
 bool ASIFT_matcher::addReference(const vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts)
 {
 	if(image.size()!=w*h)
@@ -180,7 +206,12 @@ bool ASIFT_matcher::addReference(const vector<float>& image, unsigned int w, uns
 	return true;
 }
 
-//Return number of match
+/*
+ * Perform matching between an image and the references.
+ * image_path : path to the image file (support the same format than CImg / ImageMagick).
+ * num_tilts : Number of virtual tilts applied to the image. More tilts equal to better matching but slower process. Default : 1 (no tilt). Recommended : 8.
+ * Return number of matching keypoints found. 
+ */
 unsigned int ASIFT_matcher::match(const char* image_path, unsigned int num_tilts)
 {
 	if(_nb_refs<=0)
@@ -234,8 +265,14 @@ unsigned int ASIFT_matcher::match(const char* image_path, unsigned int num_tilts
     return match(ipixels1, w1, h1, num_tilts);
 }
 
-//Image : Gray scale image (image size = w*h)
-//Return number of match
+/*
+ * Perform matching between an image and the references.
+ * image : Gray scale image. Image size must be equal to width * height.
+ * w : Width of the image.
+ * h : Height of the image.
+ * num_tilts : Number of virtual tilts applied to the image. More tilts equal to better matching but slower process. Default : 1 (no tilt). Recommended : 8.
+ * Return number of matching keypoints found. 
+ */
 unsigned int ASIFT_matcher::match(const vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts)
 {
 	if(image.size()!=w*h)
@@ -366,7 +403,15 @@ unsigned int ASIFT_matcher::match(const vector<float>& image, unsigned int w, un
 	return _total_num_matchings;
 }
 
-//Return true if successfull
+/*
+ * Compute the bounding rectangle of the matching keypoints. 
+ * Match function must have been called before and found at least one matching keypoint.
+ * x : X-coordinate of the upper-left point.
+ * y : Y-coordinate of the upper-left point.
+ * h : Height of the rectangle.
+ * w : Width of the rectangle.
+ * Return true if the ROI was succesfully found and arguments modified.
+ */
 bool ASIFT_matcher::computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const
 {
 	if(getNbMatch()==0)
@@ -410,7 +455,13 @@ bool ASIFT_matcher::computeROI(int& x, int& y, unsigned int& h, unsigned int& w)
 	return true;
 }
 
-//Return true if successfull
+/*
+ * Compute the centroid of the matching keypoints.
+ * Match function must have been called before and found at least one matching keypoint.
+ * cx : X-coordinate of the centroid.
+ * cy : Y-coordinate of the centroid.
+ * Return true if the ROI was succesfully found and arguments modified.
+ */
 bool ASIFT_matcher::computeCenter(int& cx, int& cy) const
 {
 	if(getNbMatch()==0)
@@ -437,11 +488,13 @@ bool ASIFT_matcher::computeCenter(int& cx, int& cy) const
 	return true;
 }
 
-//Filter keypoint which are far (Euclidian distance) from the center.
-//Not optimized
-//threshold : 1-68%/2-95%/3-99%
-//Return true if successfull 
-bool ASIFT_matcher::distFilter(int threshold=2)
+/*
+ * Perform a standard deviation filtering on the matching keypoints.
+ * Match function must have been called before and found at least one matching keypoint.
+ * threshold : Filtering coefficient. 1-Keep 68% of the keypoints / 2-Keep 95% of the keypoints / 3-Keep 99% of the keypoints. Default : 2.
+ * Return true if the filtering is done.
+ */
+bool ASIFT_matcher::distFilter(int threshold)
 {
 	if(_showInfo)
 		cout<<"filtering keypoint..."<<endl;
@@ -520,8 +573,16 @@ bool ASIFT_matcher::distFilter(int threshold=2)
 	return false;
 }
 
-//Save reference data necessary for the matching
-//Doesn't save references images or Sift parameters
+/*
+ * Save reference data necessary for the matching.
+ * ref_path : path were the reference data will be saved (.txt).
+ * Follow a modified convention of David Lowe (SIFT keypoints) :
+ * - Number of reference.
+ * - Number of keypoints in the reference / Length of the descriptors (128) / Width of the reference / Height of the reference / Number of tilts.
+ * -
+ * - Keypoints (row, col, scale, orientation, desciptor (128 integers)).
+ * Return true if the reference data was successfully saved.
+ */
 bool ASIFT_matcher::saveReferences(const char* ref_path) const
 {
 	// Write all the keypoints (row, col, scale, orientation, desciptor (128 integers))
@@ -572,8 +633,16 @@ bool ASIFT_matcher::saveReferences(const char* ref_path) const
 	return true;
 }
 
-//Load reference data necessary for the matching 
-//Doesn't load references images or Sift parameters
+/*
+ * Load reference data necessary for the matching.
+ * ref_path : path from were the reference data will be loaded (.txt).
+ * Follow a modified convention of David Lowe (SIFT keypoints) :
+ * - Number of reference.
+ * - Number of keypoints in the reference / Length of the descriptors (128) / Width of the reference / Height of the reference / Number of tilts.
+ * -
+ * - Keypoints (row, col, scale, orientation, desciptor (128 integers)).
+ * Return true if the reference data was successfully loaded.
+ */
 bool ASIFT_matcher::loadReferences(const char* ref_path)
 {
 	std::ifstream ref_file(ref_path);
@@ -838,6 +907,10 @@ bool ASIFT_matcher::loadReferences(const char* ref_path)
 // 	return true;
 // }
 
+/*
+ * Assignation operator.
+ * m : ASIFT matcher object to copy.
+ */
 ASIFT_matcher& ASIFT_matcher::operator=(const ASIFT_matcher& m)
 {
 
@@ -862,7 +935,7 @@ ASIFT_matcher& ASIFT_matcher::operator=(const ASIFT_matcher& m)
 	return *this;
 }
 
-//Debugging function
+//Debugging function : print content form the ASIFT matcher.
 void ASIFT_matcher::print() const
 {
 	for(unsigned int i=0; i< _keys.size();i++)
@@ -892,13 +965,3 @@ void ASIFT_matcher::print() const
 		}
 	}
 }
-
-// unsigned int ASIFT_matcher::getNbMatch() const
-// {
-// 	unsigned int res = 0;
-// 	for (unsigned int i=0;i<_num_matchings.size();i++)
-// 	{
-// 		res+=_num_matchings[i];
-// 	} 
-// 	return res;
-// }

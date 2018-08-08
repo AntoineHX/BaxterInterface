@@ -1,3 +1,10 @@
+/*
+ * Rviz interface to send objective.
+ * Composed of 3D marker and a configuration panel.
+ * @author : antoine.harle@etu.upmc.Fr
+ * @see : InteractiveObject.cpp/.hpp, InterfacePanel.cpp/.hpp
+ */
+
 #include "RvizInterface.hpp"
 
 //Constructeur
@@ -86,6 +93,7 @@ void RvizInterface::configCallback(const rviz_interface::InterfaceConfig & new_c
 // 	}
 // }
 
+//Fonction callback gérant la position des objets
 void RvizInterface::positionCallback(const rviz_interface::NamedPoint & new_center)
 {
 	for(unsigned int i=0;i<_objects.size();i++)
@@ -107,6 +115,7 @@ void RvizInterface::positionCallback(const rviz_interface::NamedPoint & new_cent
 	}
 }
 
+//RvizInterface node.
 int main(int argc, char **argv)
 {
   //Initiate ROS
