@@ -27,8 +27,6 @@ CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/library.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/numerics1.h
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/splines.h
- /usr/include/opencv/cv.h
- /usr/include/opencv/highgui.h
 CMakeFiles/test_ASIFT.dir/compute_asift_keypoints.cpp.o
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/compute_asift_keypoints.cpp
  /home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/compute_asift_keypoints.h

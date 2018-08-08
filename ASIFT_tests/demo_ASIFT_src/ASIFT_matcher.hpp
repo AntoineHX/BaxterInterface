@@ -66,16 +66,17 @@ public:
 	const siftPar& getSiftPar() const{ return _siftParam;}
 	void setSiftPar(const siftPar &newSiftPar){ _siftParam = newSiftPar;}
 	bool isResizingImg() const{ return _resize_imgs;}
-	void setResizeImg(bool resize_imgs){ _resize_imgs=resize_imgs;}
+	void resizeImg(bool resize_imgs){ _resize_imgs=resize_imgs;}
 	bool isShowingDebug() const{ return _showDebug;}
 	void showDebug(bool showDebug){ _showDebug=showDebug;}
+	bool isShowingInfo() const{ return _showInfo;}
+	void showInfo(bool showInfo){ _showInfo=showInfo;}
 
 	void print() const; //Debugging function
 
 protected:
 
 	//Reference Images
-	// vector< image > _im_refs;
 	unsigned int _nb_refs;// = 0; //Number of reference images
 	vector< vector< float > > _im_refs; //Reference images used for matching
 	vector< pair<int,int> > _size_refs; //Width/Height
@@ -96,6 +97,7 @@ protected:
 	//Flags
 	bool _resize_imgs;// = false; //Resize images to IM_X/IM_Y ?
 	bool _showDebug;// = 0; //Show debugging messages ?
+	bool _showInfo; //Show info messages
 };
 
 #endif

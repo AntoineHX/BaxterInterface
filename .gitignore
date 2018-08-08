@@ -1,0 +1,8 @@
+
+ASIFT_tests/demo_ASIFT_src/test/
+
+*.jpg
+
+*.png
+
+*.o

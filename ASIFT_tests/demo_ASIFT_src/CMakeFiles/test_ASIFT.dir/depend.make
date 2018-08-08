@@ -26,8 +26,6 @@ CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: frot.h
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: library.h
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: numerics1.h
 CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: splines.h
-CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: /usr/include/opencv/cv.h
-CMakeFiles/test_ASIFT.dir/ASIFT_matcher.cpp.o: /usr/include/opencv/highgui.h
 
 CMakeFiles/test_ASIFT.dir/compute_asift_keypoints.cpp.o: compute_asift_keypoints.cpp
 CMakeFiles/test_ASIFT.dir/compute_asift_keypoints.cpp.o: compute_asift_keypoints.h

@@ -1,3 +1,10 @@
+/*
+ * ROS wrapper for the ASIFT_matcher object.
+ * Track an object described in the references in a RGBD stream and publish it's center.
+ * @author : antoine.harle@etu.upmc.Fr
+ * @see : ASIFT_matcher.cpp/.hpp, asift_match.launch
+ */
+
 #ifndef ROSMATCHER_HPP
 #define ROSMATCHER_HPP
 
@@ -39,16 +46,16 @@ protected:
 	// message_filters::Subscriber<sensor_msgs::CameraInfo>* info_sub;
 	message_filters::Subscriber<sensor_msgs::Image>* _image_sub;
 	message_filters::Subscriber<sensor_msgs::PointCloud2>* _pointcloud_sub;
-	
-	//Matcher
-	int _num_tilt, _filter_coeff;
-	ASIFT_matcher matcher;
-
-	MATCHER_STATUS _status;
 
 	message_filters::Synchronizer<MySyncPolicy>* Timesync;
+	
+	//Matcher
+	int _num_tilt, _filter_coeff; //Parameters of the ASIFT_matcher
+	ASIFT_matcher matcher; //Matcher
 
-	std::string tracked_object;
+	MATCHER_STATUS _status; //Matcher status
+
+	std::string tracked_object; //Name of the tracked object.
 
 public:
 	ROS_matcher();

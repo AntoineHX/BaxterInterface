@@ -130,7 +130,7 @@ image are set to the value of the closest image pixel.
 void ConvHorizontal(vector<float>& image, int width, int height, float *kernel, int ksize)
 {
   int rows, cols, r, c, i, halfsize;
-  float buffer[4000];
+  float buffer[5000];
   vector<float> pixels(width*height);
 
 
@@ -139,7 +139,7 @@ void ConvHorizontal(vector<float>& image, int width, int height, float *kernel, 
 
   halfsize = ksize / 2;
   pixels = image;
-  assert(cols + ksize < 4000);
+  assert(cols + ksize < 5000);
 
   for (r = 0; r < rows; r++) {
     /* Copy the row into buffer with pixels at ends replicated for
@@ -165,7 +165,7 @@ void ConvHorizontal(vector<float>& image, int width, int height, float *kernel, 
 void ConvVertical(vector<float>& image, int width, int height, float *kernel, int ksize)
 {
   int rows, cols, r, c, i, halfsize;
-  float buffer[4000];
+  float buffer[5000];
   vector<float> pixels(width*height);
 
   rows = height;
@@ -173,7 +173,7 @@ void ConvVertical(vector<float>& image, int width, int height, float *kernel, in
 
   halfsize = ksize / 2;
   pixels = image;
-  assert(rows + ksize < 4000);
+  assert(rows + ksize < 5000);
 
   for (c = 0; c < cols; c++) {
     for (i = 0; i < halfsize; i++)

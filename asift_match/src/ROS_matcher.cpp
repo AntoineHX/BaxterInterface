@@ -25,6 +25,7 @@ ROS_matcher::ROS_matcher(): _status(MATCHER_STATUS_WAITING_INIT)
 	Timesync = new message_filters::Synchronizer<MySyncPolicy>(MySyncPolicy(2), *_image_sub, *_pointcloud_sub);
 	Timesync-> registerCallback(boost::bind(&ROS_matcher::cameraCallback, this, _1, _2));
 
+	matcher.showInfo(false);
 	//Load References
 	if(_nh.getParam("reference_txt_path", reference_txt_path))
 	{
