@@ -1,15 +1,18 @@
 <launch>
 	<node name="rviz" pkg="rviz" type="rviz"/>
 
+	<!--Objects/-->
+	<rosparam param="tracked_object_names"> ["Foo", "KungFoo", "Panda", "Boo"]</rosparam>
+	<rosparam param="tracked_object_types"> [3, 2, 1, 0]</rosparam>
+
 	<!--Interface/-->
 	<param name="objective_topic" value="/RvizInterface/state_objective"/>
 	<param name="vizualization_topic" value="/RvizInterface/visual_marker"/>
 	<param name="config_topic" value="/RvizInterface/interface_config"/>
 
-	<node name="RvizInterface" pkg="rviz_interface" type="RvizInterface"/>
+	<node name="RvizInterface" pkg="rviz_interface" type="RvizInterface" output="screen"/>
 
 	<!--Matcher/-->
-	<param name="tracked_object" value="Foo"/>
 	<param name="num_tilt" type="int" value="8"/>
 	<param name="std_dev_filter_coeff" type="int" value="2"/>
 	<param name="reference_txt_path" value="$(find asift_matching)/reference_data/robobo_references.txt"/>

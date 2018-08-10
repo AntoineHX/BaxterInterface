@@ -11,15 +11,14 @@
 RvizInterface::RvizInterface(): _server("RvizInterface")
 {
 	std::string objective_topic, vizualization_topic, config_topic, position_topic;
-	//Need to load multiple object
-	std::string object_name;
+	std::vector<std::string> object_names;
+	std::vector<int> object_types;
 
-	//Load Param
+	//Load Topics param
 	_n.param<std::string>("objective_topic", objective_topic,"/RvizInterface/state_objective");
 	_n.param<std::string>("vizualization_topic", vizualization_topic,"/RvizInterface/visual_marker");
 	_n.param<std::string>("config_topic", config_topic,"/RvizInterface/interface_config");
 	_n.param<std::string>("object_center_topic", position_topic,"/ASIFT_matcher/object_center");
-	_n.param<std::string>("tracked_object", object_name,"Object");
 
 	//Topic you want to publish
 	_objective_pub = _n.advertise<rviz_interface::StateSpace>(objective_topic, 10);
@@ -29,10 +28,51 @@ RvizInterface::RvizInterface(): _server("RvizInterface")
 	_config_sub = _n.subscribe(config_topic, 1, &RvizInterface::configCallback, this);
 	_position_sub = _n.subscribe(position_topic, 1, &RvizInterface::positionCallback, this);
 
-	_objects.push_back(new InteractiveObject(&_server, object_name, (int) rviz_interface::StateSpace::STATE_3D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
-	_objects[0]->add6DOFcontrol();
+	//Load objects
+	_n.getParam("tracked_object_names",object_names);
+	_n.getParam("tracked_object_types",object_types);
 
-	// _objects.push_back(new InteractiveObject(&_server, "3DOF", (int) rviz_interface::StateSpace::STATE_2D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(1,1,0)));
+	int names_size = object_names.size();
+
+	if(names_size<object_types.size())
+	{
+		ROS_WARN("Missing object names. Objects without names won't be added...");
+	}
+	else if(names_size>object_types.size())
+	{
+		ROS_WARN("Missing object types. Missing types are set to Ordinary by default...");
+		while(names_size>object_types.size())
+		{
+			object_types.push_back(0);
+		}
+	}
+
+	for(unsigned int i=0; i< names_size;i++)
+	{
+		switch(object_types[i])
+		{
+			case 0:
+				_objects.push_back(new InteractiveObject(&_server, object_names[i], (int) rviz_interface::StateSpace::ORDINARY, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
+				_objects[i]->add6DOFcontrol();
+				break;
+			case 1:
+				_objects.push_back(new InteractiveObject(&_server, object_names[i], (int) rviz_interface::StateSpace::STATE_BOOL, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
+				_objects[i]->addButtoncontrol();
+				break;
+			case 2:
+				_objects.push_back(new InteractiveObject(&_server, object_names[i], (int) rviz_interface::StateSpace::STATE_2D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
+				_objects[i]->add3DOFcontrol();
+				break;
+			case 3:
+				_objects.push_back(new InteractiveObject(&_server, object_names[i], (int) rviz_interface::StateSpace::STATE_3D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
+				_objects[i]->add6DOFcontrol();
+				break;
+		}
+	}
+	// _objects.push_back(new InteractiveObject(&_server, object_name, (int) rviz_interface::StateSpace::STATE_3D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
+	// _objects[0]->add6DOFcontrol();
+
+	// _objects.push_back(new InteractiveObject(&_server, "3DOF", (int) rviz_interface::StateSpace::STATE_2D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
 	// _objects[1]->add3DOFcontrol();
 
 	// _objects.push_back(new InteractiveObject(&_server, "3DOF 2", (int) rviz_interface::StateSpace::STATE_2D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(-1,1,0)));

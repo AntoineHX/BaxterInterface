@@ -1,7 +1,7 @@
 # Represents a state space.
 
 # General info.
-#Header header
+Header header
 
 # Identifying string for this state space. (ID ?)
 string name

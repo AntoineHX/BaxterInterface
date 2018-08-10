@@ -144,32 +144,51 @@ int main(int argc, char **argv)
       "book_training/000.png", 
       "book_training/train_image_003.png"};
 
-	// unsigned int nb_ref =7;
+	// unsigned int nb_ref =26;
 	// std::string refData[] = {
- //      // "robobo_references/0.jpg",
- //      // "robobo_references/1.jpg",
- //      // "robobo_references/2.jpg",
- //      // "robobo_references/3.jpg",
- //      // "robobo_references/4.jpg",
- //      // "robobo_references/5.jpg",
- //      // "robobo_references/6.jpg",
+ //      "robobo_references/0.jpg",
+ //      "robobo_references/1.jpg",
+ //      "robobo_references/2.jpg",
+ //      "robobo_references/3.jpg",
+ //      "robobo_references/4.jpg",
+ //      "robobo_references/5.jpg",
+ //      "robobo_references/6.jpg",
+ //      "robobo_references/7.jpg",
+ //      "robobo_references/8.jpg",
+ //      "robobo_references/9.jpg",
+ //      "robobo_references/10.jpg",
+ //      "robobo_references/11.jpg",
+ //      "robobo_references/12.jpg",
+ //      "robobo_references/13.jpg",
+ //      "robobo_references/14.jpg",
+ //      "robobo_references/15.jpg",
+ //      "robobo_references/16.jpg",
+ //      "robobo_references/17.jpg",
+ //      "robobo_references/18.jpg",
+ //      "robobo_references/19.jpg",
+ //      "robobo_references/20.jpg",
+ //      "robobo_references/21.jpg",
+ //      "robobo_references/22.jpg",
+ //      "robobo_references/23.jpg",
+ //      "robobo_references/24.jpg",
+ //      "robobo_references/25.jpg",
 
- //      "robobo_references/000.jpg",
- //      "robobo_references/001.jpg",
- //      "robobo_references/002.jpg",
- //      "robobo_references/003.jpg",
- //      "robobo_references/004.jpg",
- //      "robobo_references/005.jpg",
- //      "robobo_references/006.jpg",
+ //      // "robobo_references/000.jpg",
+ //      // "robobo_references/001.jpg",
+ //      // "robobo_references/002.jpg",
+ //      // "robobo_references/003.jpg",
+ //      // "robobo_references/004.jpg",
+ //      // "robobo_references/005.jpg",
+ //      // "robobo_references/006.jpg",
 
- //      "robobo_references/000_2.jpg",
- //      "robobo_references/001_2.jpg",
- //      "robobo_references/002_2.jpg",
- //      "robobo_references/003_2.jpg",
- //      "robobo_references/004_2.jpg",
- //      "robobo_references/005_2.jpg",
- //      "robobo_references/006_2.jpg",
- //      "robobo_references/007_2.jpg",
+ //      // "robobo_references/000_2.jpg",
+ //      // "robobo_references/001_2.jpg",
+ //      // "robobo_references/002_2.jpg",
+ //      // "robobo_references/003_2.jpg",
+ //      // "robobo_references/004_2.jpg",
+ //      // "robobo_references/005_2.jpg",
+ //      // "robobo_references/006_2.jpg",
+ //      // "robobo_references/007_2.jpg", //Super lent ?!!
 
  //      "robobo_references/000.png",
  //      "robobo_references/001.png",
@@ -279,7 +298,7 @@ int main(int argc, char **argv)
     cout<<"Nb matching reference : "<<NbMatch.size()<<endl;
     for(unsigned int i=0; i<NbMatch.size(); i++)
     {
-    	cout<<"	"<<NbMatch[i]<<endl;
+    	cout<<"  Ref "<<i<<" : "<<NbMatch[i]<<endl;
     }
 
 	int x,y,cx,cy;

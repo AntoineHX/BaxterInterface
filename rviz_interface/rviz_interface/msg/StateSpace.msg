@@ -12,10 +12,10 @@ string name
 # STATE_2D : Expect a 2D position and orientation (Dimension = 3).
 # STATE_3D : Expect a 3D position and orientation (quaternion) (Dimension = 7).
 # STATE_BOOL : Expect a single boolean information (ie bouton on/off) (Dimension = 1).
-uint8 ORDINARY=0 
-uint8 STATE_2D=1
-uint8 STATE_3D=2
-uint8 STATE_BOOL=3
+uint8 ORDINARY=0
+uint8 STATE_BOOL=1
+uint8 STATE_2D=2
+uint8 STATE_3D=3
 
 uint8 state_type
 
