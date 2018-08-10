@@ -1,0 +1,16 @@
+<launch>
+	<node name="rviz" pkg="rviz" type="rviz"/>
+	
+	<!--Interface/-->
+		<!--Objects/-->
+	<rosparam param="object_names"> ["Foo", "KungFoo", "Panda", "Boo"]</rosparam>
+	<rosparam param="object_types"> [3, 2, 1, 0]</rosparam>
+
+		<!--Topics/-->
+	<param name="objective_topic" value="/RvizInterface/state_objective"/>
+	<param name="vizualization_topic" value="/RvizInterface/visual_marker"/>
+	<param name="config_topic" value="/RvizInterface/interface_config"/>
+
+	<node name="RvizInterface" pkg="rviz_interface" type="RvizInterface" output="screen"/>
+
+</launch>

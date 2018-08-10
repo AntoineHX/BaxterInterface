@@ -2,6 +2,11 @@
 	<node name="rviz" pkg="rviz" type="rviz"/>
 
 	<!--Interface/-->
+		<!--Objects/-->
+	<rosparam param="object_names"> ["Foo", "KungFoo", "Panda", "Boo"]</rosparam>
+	<rosparam param="object_types"> [3, 2, 1, 0]</rosparam>
+
+		<!--Topics/-->
 	<param name="objective_topic" value="/RvizInterface/state_objective"/>
 	<param name="vizualization_topic" value="/RvizInterface/visual_marker"/>
 	<param name="config_topic" value="/RvizInterface/interface_config"/>
@@ -9,15 +14,19 @@
 	<node name="RvizInterface" pkg="rviz_interface" type="RvizInterface" output="screen"/>
 
 	<!--Matcher/-->
-	<rosparam param="tracked_object_names"> ["Foo", "KungFoo", "Panda", "Boo"]</rosparam>
-	<rosparam param="tracked_object_types"> [3, 2, 1, 0]</rosparam>
+		<!--Matcher Parameters/-->
+	<param name="tracked_object" value="Foo"/>
 	<param name="num_tilt" type="int" value="8"/>
-	<param name="std_dev_filter_coeff" type="int" value="2"/>
-	<param name="reference_txt_path" value="$(find asift_matching)/reference_data/robobo_references.txt"/>
-	<!--rosparam param="reference_data">[
-	"$(find asift_matching)/reference_data/train_image_000.png", 
-	"$(find asift_matching)/reference_data/train_image_001.png"]</rosparam-->
-
+	<param name="std_dev_filter_coeff" type="double" value="0.5"/>
+		<!--Matcher References/-->
+	<param name="reference_path" value="$(find asift_matching)/reference_data/"/>
+	<param name="reference_txt_path" value="$(find asift_matching)/reference_data/book_references.txt"/>
+	<rosparam param="reference_data">[
+        "train_image_000.png", 
+        "train_image_001.png"]
+        </rosparam>
+	
+		<!--Topics/-->
 	<param name="object_center_topic" value="/object_center"/>
 	<param name="image_topic" value="/camera/rgb/image_raw"/>
 	<param name="pointcloud_topic" value="/camera/depth_registered/points"/>

@@ -494,7 +494,7 @@ bool ASIFT_matcher::computeCenter(int& cx, int& cy) const
  * threshold : Filtering coefficient. 1-Keep 68% of the keypoints / 2-Keep 95% of the keypoints / 3-Keep 99% of the keypoints. Default : 2.
  * Return true if the filtering is done.
  */
-bool ASIFT_matcher::distFilter(int threshold)
+bool ASIFT_matcher::distFilter(float threshold)
 {
 	if(_showInfo)
 		cout<<"filtering keypoint..."<<endl;
@@ -564,6 +564,11 @@ bool ASIFT_matcher::distFilter(int threshold)
 			filtered_match.push_back(new_match);
 			_num_matchings[i]=new_match.size();
 		}
+
+		//Update number of remaining points
+		_total_num_matchings = 0;
+		for(unsigned int i=0; i<_num_matchings.size();i++)
+			_total_num_matchings+=_num_matchings[i];
 
 		//Save filtered matchs
 		_matchings = filtered_match;

@@ -13,6 +13,7 @@ RvizInterface::RvizInterface(): _server("RvizInterface")
 	std::string objective_topic, vizualization_topic, config_topic, position_topic;
 	std::vector<std::string> object_names;
 	std::vector<int> object_types;
+	std::string frame_id;
 
 	//Load Topics param
 	_n.param<std::string>("objective_topic", objective_topic,"/RvizInterface/state_objective");
@@ -29,8 +30,9 @@ RvizInterface::RvizInterface(): _server("RvizInterface")
 	_position_sub = _n.subscribe(position_topic, 1, &RvizInterface::positionCallback, this);
 
 	//Load objects
-	_n.getParam("tracked_object_names",object_names);
-	_n.getParam("tracked_object_types",object_types);
+	_n.param<std::string>("frame_id", frame_id,"/map");
+	_n.getParam("object_names",object_names);
+	_n.getParam("object_types",object_types);
 
 	int names_size = object_names.size();
 
@@ -57,7 +59,7 @@ RvizInterface::RvizInterface(): _server("RvizInterface")
 				break;
 			case 1:
 				_objects.push_back(new InteractiveObject(&_server, object_names[i], (int) rviz_interface::StateSpace::STATE_BOOL, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
-				_objects[i]->addButtoncontrol();
+				// _objects[i]->addButtoncontrol();
 				break;
 			case 2:
 				_objects.push_back(new InteractiveObject(&_server, object_names[i], (int) rviz_interface::StateSpace::STATE_2D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
@@ -69,16 +71,6 @@ RvizInterface::RvizInterface(): _server("RvizInterface")
 				break;
 		}
 	}
-	// _objects.push_back(new InteractiveObject(&_server, object_name, (int) rviz_interface::StateSpace::STATE_3D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
-	// _objects[0]->add6DOFcontrol();
-
-	// _objects.push_back(new InteractiveObject(&_server, "3DOF", (int) rviz_interface::StateSpace::STATE_2D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
-	// _objects[1]->add3DOFcontrol();
-
-	// _objects.push_back(new InteractiveObject(&_server, "3DOF 2", (int) rviz_interface::StateSpace::STATE_2D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(-1,1,0)));
-	// _objects[2]->add3DOFcontrol(tf::Vector3(0.5,0.5,0));
-
-	// _objects.push_back(new InteractiveObject(&_server, "Button", (int) rviz_interface::StateSpace::STATE_3D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(1,-1,0)));
 
 	for(unsigned int i=0;i<_objects.size();i++)
 	{

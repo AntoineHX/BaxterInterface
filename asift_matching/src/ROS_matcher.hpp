@@ -50,7 +50,8 @@ protected:
 	message_filters::Synchronizer<MySyncPolicy>* Timesync;
 	
 	//Matcher
-	int _num_tilt, _filter_coeff; //Parameters of the ASIFT_matcher
+	int _num_tilt; //Number of tilts
+	float _filter_coeff; //Filter parameter
 	ASIFT_matcher matcher; //Matcher
 
 	MATCHER_STATUS _status; //Matcher status

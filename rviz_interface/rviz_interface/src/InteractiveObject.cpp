@@ -9,7 +9,7 @@
 unsigned int InteractiveObject::nextObjectID = 1;
 
 //Constructeur
-InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServer* server, const std::string& name, unsigned int type, unsigned int shape = Marker::CUBE, const tf::Vector3& position = tf::Vector3(0,0,0)) : _name(name), _type(type), _server(server), _showVisuals(true), _followObject(true)
+InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServer* server, const std::string& name, unsigned int type, unsigned int shape = Marker::CUBE, const tf::Vector3& position) : _name(name), _type(type), _server(server), _showVisuals(true), _followObject(true)
 {
 	_objectID = nextObjectID++;
 	_state.name = name;
@@ -31,7 +31,7 @@ InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServe
 }
 
  //Construit un InteractiveMarker
-void InteractiveObject::createInteractiveMarker(Marker& marker, const tf::Vector3& position = tf::Vector3(0,0,0))
+void InteractiveObject::createInteractiveMarker(Marker& marker, const tf::Vector3& position)
 {
 	//// Création d'un marker interactif ////
 	// _int_marker.header.frame_id = "/map"; //Par défaut

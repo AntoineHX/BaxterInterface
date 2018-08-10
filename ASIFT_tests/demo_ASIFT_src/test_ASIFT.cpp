@@ -7,7 +7,7 @@ int main(int argc, char **argv)
 				  << " ***************************  ASIFT image matching  **************************** " << std::endl
 				  << " ******************************************************************************* " << std::endl
 				  << "Usage: " << argv[0] << " imgIn.png [Tilt number option] [Filter option] [Resize option] " << std::endl
-									      << "- imgIn.png: input image (in PNG format). " << std::endl
+									      << "- imgIn.png: input image. " << std::endl
 									      << "- [Tilt number option: 1..(32+ ?)] : 7: Recommended / 1: no tilt. " << std::endl
 									      << "- [Filter option: 0..3]. Standard deviation filter coeff (1-68%/2-95%/3-99%). 0: no filtering (default). " << std::endl 
 										  << "- [Resize option: 0/1]. 1: input images resize to 800x600 (default). 0: no resize. " << std::endl 

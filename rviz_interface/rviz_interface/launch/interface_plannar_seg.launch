@@ -2,8 +2,8 @@
 	<node name="rviz" pkg="rviz" type="rviz"/>
 	
 	<!--Interface/-->
-	<rosparam param="tracked_object_names"> ["6DOF"]</rosparam>
-	<rosparam param="tracked_object_types"> [0]</rosparam>
+	<rosparam param="object_names"> ["6DOF"]</rosparam>
+	<rosparam param="object_types"> [0]</rosparam>
 	<node name="RvizInterface" pkg="rviz_interface" type="RvizInterface"/>
 
 	

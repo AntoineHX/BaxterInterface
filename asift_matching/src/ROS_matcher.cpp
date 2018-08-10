@@ -7,15 +7,16 @@
 
 #include "ROS_matcher.hpp"
 
+//TODO : Regler le problème du chergements des images
 ROS_matcher::ROS_matcher(): _status(MATCHER_STATUS_WAITING_INIT)
 {
-	std::string center_topic, image_topic, pointcloud_topic, reference_txt_path;
+	std::string center_topic, image_topic, pointcloud_topic, reference_txt_path, reference_path;
 	std::vector<std::string> reference_data_paths;
 
 	//Load Param
 	_nh.param<std::string>("tracked_object", tracked_object, "Object");
 	_nh.param<int>("num_tilt", _num_tilt, 8);
-	_nh.param<int>("std_dev_filter_coeff", _filter_coeff, 0);
+	_nh.param<float>("std_dev_filter_coeff", _filter_coeff, 0);
 
 	_nh.param<std::string>("object_center_topic", center_topic,"/ASIFT_matcher/object_center");
 	_nh.param<std::string>("image_topic", image_topic,"/camera/rgb/image_raw");
@@ -34,26 +35,30 @@ ROS_matcher::ROS_matcher(): _status(MATCHER_STATUS_WAITING_INIT)
 
 	matcher.showInfo(false);
 	//Load References
-	if(_nh.getParam("reference_txt_path", reference_txt_path))
+	_nh.param<std::string>("reference_path", reference_path); //BUG sur reference path ?
+	ROS_INFO("Ref path : %s", reference_path.c_str());
+	if(_nh.getParam("reference_txt_path", reference_txt_path) && matcher.loadReferences(reference_txt_path.c_str()))
 	{
-		if(matcher.loadReferences(reference_txt_path.c_str()))
-			_status = MATCHER_STATUS_IDLE;
+		ROS_INFO("Loaded reference from %s",reference_txt_path.c_str());
 	}
 	else if(_nh.getParam("reference_data", reference_data_paths))
 	{
 		for(unsigned int i=0; i<reference_data_paths.size(); i++)
-			matcher.addReference(reference_data_paths[i].c_str(),_num_tilt);
-
-		if(matcher.getNbRef()>0)
-			_status = MATCHER_STATUS_IDLE;
+		{
+			matcher.addReference((reference_path+reference_data_paths[i]).c_str(),_num_tilt);
+			ROS_INFO("Loaded reference from %s",(reference_path+reference_data_paths[i]).c_str());
+		}
 	}
 	else
 	{
 		ROS_WARN("No reference data to initialize matcher.");
 	}
 
-	if(_status == MATCHER_STATUS_IDLE)
-		ROS_INFO("Matcher Ready ! (%d references from %s)",matcher.getNbRef(), reference_txt_path.c_str());
+	if(matcher.getNbRef()>0)
+	{
+		_status = MATCHER_STATUS_IDLE;
+		ROS_INFO("Matcher Ready ! (%d references)",matcher.getNbRef());
+	}
 }
 
 ROS_matcher::~ROS_matcher()
@@ -113,7 +118,7 @@ void ROS_matcher::cameraCallback(const sensor_msgs::Image::ConstPtr& image_msg, 
 			// geometry_msgs::PointStamped center_msg;
 			rviz_interface::NamedPoint center_msg;
 			matcher.distFilter(_filter_coeff);
-
+			ROS_INFO("Filtered points : %d", matcher.getNbMatch());
 			if(matcher.computeCenter(cx, cy))
 			{
 				//Conversions des donnée d'entrée en PCL

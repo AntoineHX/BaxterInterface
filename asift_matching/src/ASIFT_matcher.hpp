@@ -55,7 +55,7 @@ public:
 	unsigned int match(const vector<float>& image, unsigned int w, unsigned int h, unsigned int num_tilts =1); //Perform matching between an image and the references.
 	bool computeROI(int& x, int& y, unsigned int& h, unsigned int& w) const; //Compute the bounding rectangle of the mathcing keypoints.
 	bool computeCenter(int& cx, int& cy) const; //Compute the centroid of the matching keypoints.
-	bool distFilter(int threshold =2); //Perform a standard deviation filtering on the matching keypoints.
+	bool distFilter(float threshold =2); //Perform a standard deviation filtering on the matching keypoints.
 
 	bool saveReferences(const char* ref_path) const; //Save reference data necessary for the matching.
 	bool loadReferences(const char* ref_path); //Load reference data necessary for the matching.
