@@ -134,7 +134,7 @@ int main (int argc, char** argv)
   // Create a ROS publisher for the output point cloud
   pub = nh.advertise<sensor_msgs::PointCloud2> ("/plane_output", 1);
   // pubc = nh.advertise<geometry_msgs::PointStamped> ("/object_center", 1);
-  pubc = nh.advertise<rviz_interface::NamedPoint> ("/object_center", 1);
+  pubc = nh.advertise<rviz_interface::NamedPoint> ("/RvizInterface/object_center", 1);
 
   // printinfo();
   // Spin
