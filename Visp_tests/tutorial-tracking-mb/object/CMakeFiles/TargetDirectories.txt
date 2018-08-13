@@ -1,4 +1,0 @@
-/home/harle/catkin_ws/src/BaxterInterface/Visp_tests/tutorial-tracking-mb/object/CMakeFiles/tutorial-detection-object-mbt.dir
-/home/harle/catkin_ws/src/BaxterInterface/Visp_tests/tutorial-tracking-mb/object/CMakeFiles/tutorial-detection-object-mbt-deprecated.dir
-/home/harle/catkin_ws/src/BaxterInterface/Visp_tests/tutorial-tracking-mb/object/CMakeFiles/tutorial-detection-object-mbt2.dir
-/home/harle/catkin_ws/src/BaxterInterface/Visp_tests/tutorial-tracking-mb/object/CMakeFiles/tutorial-detection-object-mbt2-deprecated.dir

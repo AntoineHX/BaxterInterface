@@ -1,2 +1,0 @@
-/home/harle/catkin_ws/src/BaxterInterface/Visp_tests/tutorial-tracking-mb/generic/CMakeFiles/tutorial-mb-generic-tracker.dir
-/home/harle/catkin_ws/src/BaxterInterface/Visp_tests/tutorial-tracking-mb/generic/CMakeFiles/tutorial-mb-generic-tracker-full.dir

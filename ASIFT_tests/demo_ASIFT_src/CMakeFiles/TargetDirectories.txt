@@ -1,6 +1,0 @@
-/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libMatch/CMakeFiles/Match.dir
-/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/libNumerics/CMakeFiles/Numerics.dir
-/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles/demo_ASIFT.dir
-/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/png/CMakeFiles/png.dir
-/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/CMakeFiles/test_ASIFT.dir
-/home/harle/catkin_ws/src/BaxterInterface/ASIFT_tests/demo_ASIFT_src/io_png/libs/zlib/CMakeFiles/zlib.dir

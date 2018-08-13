@@ -13,15 +13,26 @@ This ROS modules implements markers and a panel for Rviz for sending StateSpace 
 
 ### asift_matching
 
+This ROS modules implements a wrapper for a SIFT based algorithm (Affine SIFT). It publish the position of a desired object, defined by its references, on a topic.
+Thus refrences are required for the module to work properly. It can be loaded through a text file or a series of images (which paths are defined in the launch file).
 
-* texte reference generation :
+* texte reference generation (BaxterInterface/asift_gen folder):
+ - Add the images used for reference in the "references" folder.
+ - open asift_match.cpp
+ - Search at the beggining of the file the "REFERENCE DEFINITION"
+ - In refData, enter the path/name of your reference images.
+ - In nb_ref, enter the number of images.
+ - cmake . && make
+ - You can now run the program which is going to build the references and try to match with an image given in input : asift_match input.png
+ - The generated text file will be located in the results folder.
 
 ## Status 
 ### Done
 
 ### Todo
 REGLER LE PROBLEME DE FRAME ...
-Problème dans le filtrage ?
+Problème dans le filtrage : nombre de points _> probleme de reset du nombre
+ROS wrapper can't load images
 
 ## How to use it ?
 
