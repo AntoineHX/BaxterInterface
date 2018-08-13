@@ -30,9 +30,10 @@ Thus refrences are required for the module to work properly. It can be loaded th
 ### Done
 
 ### Todo
-REGLER LE PROBLEME DE FRAME ...
-Problème dans le filtrage : nombre de points _> probleme de reset du nombre
-ROS wrapper can't load images
+ASIFT_matcher : Issue on total number of match (after filtering ?).
+ROS_matcher : Working loader of images for reference.
+ROS_matcher : Improve reactivity. Slow process due to the message queue length ?
+ROS_matcher : Swap the callback function to a service called for matching.
 
 ## How to use it ?
 
