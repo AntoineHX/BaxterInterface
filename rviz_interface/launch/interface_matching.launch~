@@ -3,6 +3,8 @@
 
 	<!--Interface/-->
 		<!--Objects/-->
+	<!--param name="frame_id" value="/map"/-->
+	<param name="frame_id" value="/camera_rgb_optical_frame"/>
 	<rosparam param="object_names"> ["Foo", "KungFoo", "Panda", "Boo"]</rosparam>
 	<rosparam param="object_types"> [3, 2, 1, 0]</rosparam>
 
@@ -17,7 +19,7 @@
 		<!--Matcher Parameters/-->
 	<param name="tracked_object" value="Foo"/>
 	<param name="num_tilt" type="int" value="8"/>
-	<param name="std_dev_filter_coeff" type="double" value="0.5"/>
+	<param name="std_dev_filter_coeff" type="double" value="2"/>
 		<!--Matcher References/-->
 	<param name="reference_path" value="$(find asift_matching)/reference_data/"/>
 	<param name="reference_txt_path" value="$(find asift_matching)/reference_data/book_references.txt"/>

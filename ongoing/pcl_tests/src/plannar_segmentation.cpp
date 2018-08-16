@@ -92,7 +92,7 @@ cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
 
   // geometry_msgs::PointStamped center_msg;
   rviz_interface::NamedPoint center_msg;
-  center_msg.name = "6DOF";
+  center_msg.name = "foo";
   // for (size_t i = 0; i < pcl_output->size (); ++i)
   // {
   //   if( pcl_output->points[i].x)
@@ -134,7 +134,7 @@ int main (int argc, char** argv)
   // Create a ROS publisher for the output point cloud
   pub = nh.advertise<sensor_msgs::PointCloud2> ("/plane_output", 1);
   // pubc = nh.advertise<geometry_msgs::PointStamped> ("/object_center", 1);
-  pubc = nh.advertise<rviz_interface::NamedPoint> ("/RvizInterface/object_center", 1);
+  pubc = nh.advertise<rviz_interface::NamedPoint> ("/object_center", 1);
 
   // printinfo();
   // Spin

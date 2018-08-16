@@ -3,6 +3,7 @@
 
 	<!--Interface/-->
 		<!--Objects/-->
+	<param name="frame_id" value="/camera_rgb_optical_frame"/>
 	<rosparam param="object_names"> ["Foo", "KungFoo", "Panda", "Boo"]</rosparam>
 	<rosparam param="object_types"> [3, 2, 1, 0]</rosparam>
 

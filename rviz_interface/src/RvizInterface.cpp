@@ -54,19 +54,19 @@ RvizInterface::RvizInterface(): _server("RvizInterface")
 		switch(object_types[i])
 		{
 			case 0:
-				_objects.push_back(new InteractiveObject(&_server, object_names[i], (int) rviz_interface::StateSpace::ORDINARY, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
+				_objects.push_back(new InteractiveObject(&_server, object_names[i], frame_id, (int) rviz_interface::StateSpace::ORDINARY, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
 				_objects[i]->add6DOFcontrol();
 				break;
 			case 1:
-				_objects.push_back(new InteractiveObject(&_server, object_names[i], (int) rviz_interface::StateSpace::STATE_BOOL, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
+				_objects.push_back(new InteractiveObject(&_server, object_names[i], frame_id, (int) rviz_interface::StateSpace::STATE_BOOL, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
 				// _objects[i]->addButtoncontrol();
 				break;
 			case 2:
-				_objects.push_back(new InteractiveObject(&_server, object_names[i], (int) rviz_interface::StateSpace::STATE_2D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
+				_objects.push_back(new InteractiveObject(&_server, object_names[i], frame_id, (int) rviz_interface::StateSpace::STATE_2D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
 				_objects[i]->add3DOFcontrol();
 				break;
 			case 3:
-				_objects.push_back(new InteractiveObject(&_server, object_names[i], (int) rviz_interface::StateSpace::STATE_3D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
+				_objects.push_back(new InteractiveObject(&_server, object_names[i], frame_id, (int) rviz_interface::StateSpace::STATE_3D, (int) visualization_msgs::Marker::SPHERE, tf::Vector3(0,0,0)));
 				_objects[i]->add6DOFcontrol();
 				break;
 		}

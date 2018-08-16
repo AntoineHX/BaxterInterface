@@ -2,9 +2,10 @@
 	<node name="rviz" pkg="rviz" type="rviz"/>
 	
 	<!--Interface/-->
-	<rosparam param="tracked_object_names"> ["6DOF"]</rosparam>
-	<rosparam param="tracked_object_types"> [0]</rosparam>
+	<rosparam param="object_names"> ["foo"]</rosparam>
+	<rosparam param="object_types"> [0]</rosparam>
 	<node name="RvizInterface" pkg="rviz_interface" type="RvizInterface"/>
+	<param name="object_center_topic" value="/object_center"/>
 
 	
 	<node name="plannar_seg" pkg="pcl_tests" type="plannar_seg"/>

@@ -36,10 +36,10 @@ protected:
 	ros::Publisher* _visual_pub;
 
 public:
-	InteractiveObject(interactive_markers::InteractiveMarkerServer* server, const std::string& name, unsigned int type, unsigned int shape, const tf::Vector3& position = tf::Vector3(0,0,0));
+	InteractiveObject(interactive_markers::InteractiveMarkerServer* server, const std::string& name, const std::string& frame_id, unsigned int type, unsigned int shape, const tf::Vector3& position = tf::Vector3(0,0,0));
 
 	//Construit un InteractiveMarker
-	void createInteractiveMarker(Marker& marker, const tf::Vector3& position = tf::Vector3(0,0,0));
+	void createInteractiveMarker(Marker& marker, const std::string& frame_id, const tf::Vector3& position = tf::Vector3(0,0,0));
 
 	//Fonction callback du serveur d' InteractiveMarker
 	void processFeedback( const InteractiveMarkerFeedbackConstPtr &feedback );

@@ -30,10 +30,11 @@ Thus refrences are required for the module to work properly. It can be loaded th
 ### Done
 
 ### Todo
-ASIFT_matcher : Issue on total number of match (after filtering ?).
-ROS_matcher : Working loader of images for reference.
-ROS_matcher : Improve reactivity. Slow process due to the message queue length ?
-ROS_matcher : Swap the callback function to a service called for matching.
+rviz_interface - InteractiveObject : Solve the issue with the frame_id, so it could be chosen in the launch file.
+asift_matching - ASIFT_matcher : Issue on total number of match (after filtering ?).
+asift_matching - ROS_matcher : Working loader of images for reference.
+asift_matching - ROS_matcher : Improve reactivity. Slow process due to the message queue length ?
+asift_matching - ROS_matcher : Swap the callback function to a service called for matching.
 
 ## How to use it ?
 

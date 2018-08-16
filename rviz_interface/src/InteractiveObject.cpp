@@ -9,7 +9,7 @@
 unsigned int InteractiveObject::nextObjectID = 1;
 
 //Constructeur
-InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServer* server, const std::string& name, unsigned int type, unsigned int shape = Marker::CUBE, const tf::Vector3& position) : _name(name), _type(type), _server(server), _showVisuals(true), _followObject(true)
+InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServer* server, const std::string& name, const std::string& frame_id, unsigned int type, unsigned int shape = Marker::CUBE, const tf::Vector3& position) : _name(name), _type(type), _server(server), _showVisuals(true), _followObject(true)
 {
 	_objectID = nextObjectID++;
 	_state.name = name;
@@ -26,16 +26,16 @@ InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServe
 	marker.color.b = 0.5;
 	marker.color.a = 1.0;
 
-	createInteractiveMarker(marker, position);
+	createInteractiveMarker(marker, frame_id, position);
 	addButtoncontrol();
 }
 
  //Construit un InteractiveMarker
-void InteractiveObject::createInteractiveMarker(Marker& marker, const tf::Vector3& position)
+void InteractiveObject::createInteractiveMarker(Marker& marker, const std::string& frame_id, const tf::Vector3& position)
 {
 	//// Création d'un marker interactif ////
 	// _int_marker.header.frame_id = "/map"; //Par défaut
-	_int_marker.header.frame_id = "/camera_rgb_optical_frame";
+	_int_marker.header.frame_id = frame_id;
 	_int_marker.header.stamp= ros::Time::now();
 	_int_marker.name = _name; //ATTENTION !
 	_int_marker.description = _name;

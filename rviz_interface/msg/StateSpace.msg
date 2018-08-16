@@ -11,7 +11,7 @@ string name
 # ORDINARY : General display / compute of the state space without any assumption.
 # STATE_2D : Expect a 2D position and orientation (Dimension = 3).
 # STATE_3D : Expect a 3D position and orientation (quaternion) (Dimension = 7).
-# STATE_BOOL : Expect a single boolean information (ie bouton on/off) (Dimension = 1).
+# STATE_BOOL : Expect a single boolean information (ie on/off button) (Dimension = 1).
 uint8 ORDINARY=0
 uint8 STATE_BOOL=1
 uint8 STATE_2D=2
@@ -19,7 +19,7 @@ uint8 STATE_3D=3
 
 uint8 state_type
 
-#Objective type: boolean (true : Juste bouger l'objet)
+#Objective type: boolean (true : Just interact with the object without taking in account State Space data)
 uint8 objective_type
 
 #Maximum distance error allowed arround the objective
