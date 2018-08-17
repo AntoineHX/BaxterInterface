@@ -39,14 +39,11 @@ protected:
 	std::vector<InteractiveObject*> _objects;
 
 public: 
-	RvizInterface(const std::string & server_topic);
-	~RvizInterface();
+	RvizInterface(const std::string & server_topic); //Constructor
+	~RvizInterface(); //Destructor
 
-	//Fonction Callback du panel Rviz gérant les configurations
-	void configCallback(const rviz_interface::InterfaceConfig & new_config);
-
-	//Fonction callback gérant la position des objets
-	void positionCallback(const rviz_interface::NamedPoint & new_center);
+	void configCallback(const rviz_interface::InterfaceConfig & new_config); //Callback function for the Rviz panel handling configuration changes.
+	void positionCallback(const rviz_interface::NamedPoint & new_center); //Callback function handling the position updates of markers.
 };
 
 #endif

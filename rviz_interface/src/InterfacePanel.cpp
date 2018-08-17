@@ -9,6 +9,9 @@
 namespace rviz_interface
 {
 
+/* Constructor
+ * parent : QT widget parent.
+ */
 InterfacePanel::InterfacePanel( QWidget* parent ): rviz::Panel( parent )
 {
   QHBoxLayout* error_layout = new QHBoxLayout;
@@ -40,13 +43,16 @@ InterfacePanel::InterfacePanel( QWidget* parent ): rviz::Panel( parent )
   _config_publisher = _nh.advertise<rviz_interface::InterfaceConfig>( "/RvizInterface/interface_config", 1 );
 }
 
+/* Destructor
+ */
 InterfacePanel::~InterfacePanel()
 {
   delete _max_error_editor;
   delete _objective_type_editor;
 }
 
-//Update the error in the current_configuration & publish the configuration.
+/* Update the error in the current_configuration & publish the configuration.
+ */
 void InterfacePanel::updateError()
 {
   current_config.max_error = _max_error_editor->text().toDouble();
@@ -57,7 +63,9 @@ void InterfacePanel::updateError()
   }
 }
 
-//Update the objective type (ie Precise or not) in the current_configuration & publish the configuration.
+/* Update the objective type (ie Precise or not) in the current_configuration & publish the configuration.
+ * state : New objective type (1 : Precise).
+ */
 void InterfacePanel::updateType(int state)
 {
   current_config.objective_type = state;
@@ -76,7 +84,9 @@ void InterfacePanel::updateType(int state)
   }
 }
 
-//Update the visual flag (ie Show visuals or not) in the current_configuration & publish the configuration.
+/* Update the visual flag (ie Show visuals or not) in the current_configuration & publish the configuration.
+ * state : Visual flag (1 : Show visuals).
+ */
 void InterfacePanel::updateVisuals(int state)
 {
   current_config.show_visuals = state;
@@ -86,7 +96,8 @@ void InterfacePanel::updateVisuals(int state)
   }
 }
 
-//Send a signal through the configuration telling the subscriber to follow the object it's linked to.
+/* Send a signal through the configuration telling the subscriber to follow the object it's linked to.
+*/
 void InterfacePanel::handleResetButton()
 {
   current_config.follow_object = true;

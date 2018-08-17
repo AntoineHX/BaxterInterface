@@ -8,9 +8,13 @@
 
 unsigned int InteractiveObject::nextObjectID = 1;
 
-/*
- * Constructor.
- * 
+/* Interactive object Constructor.
+ * server : interactiveMarkers server. 
+ * name : name of the object.
+ * frame_id : frame associated to the marker.
+ * type : marker type (Ordinary, Bool, 2D, 3D).
+ * shape : shape of the marker.
+ * position : intial position.
  */
 InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServer* server, const std::string& name, const std::string& frame_id, unsigned int type, unsigned int shape = Marker::CUBE, const tf::Vector3& position) : _name(name), _type(type), _server(server), _showVisuals(true), _followObject(true)
 {
@@ -33,7 +37,11 @@ InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServe
 	addButtoncontrol();
 }
 
- //Construit un InteractiveMarker
+/* Interactive marker Constructor.
+ * marker : marker on which interaction will be possible.
+ * frame_id : frame associated to the marker.
+ * position : intial position.
+ */
 void InteractiveObject::createInteractiveMarker(Marker& marker, const std::string& frame_id, const tf::Vector3& position)
 {
 	//// Création d'un marker interactif ////
@@ -62,7 +70,10 @@ void InteractiveObject::createInteractiveMarker(Marker& marker, const std::strin
 	_server->applyChanges();
 }
 
-//Fonction callback du serveur d' InteractiveMarker
+/* Callback function used by the InteractiveMarkerServer to update markers.
+ * Handle objective publishing.
+ * feedback : feedback containing the interaction with the marker.
+ */
 void InteractiveObject::processFeedback( const InteractiveMarkerFeedbackConstPtr &feedback )
 {
 	_followObject = false; //Objet manipulé -> on les libèrent
@@ -106,7 +117,8 @@ void InteractiveObject::processFeedback( const InteractiveMarkerFeedbackConstPtr
 	updateVisuals();
 }
 
-//Ajoute une fonction bouton
+/* Add a Button interaction to the marker.
+ */
 void InteractiveObject::addButtoncontrol()
 {
 	//// Ajout d'interactions ////
@@ -123,7 +135,8 @@ void InteractiveObject::addButtoncontrol()
 	_server->applyChanges();
 }
 
-//Ajoute des controle pour 6DOF (Déplacement dans l'espace)
+/* Add a 6 Degrees of Freedom control to the marker allowing it to be moved in 3D.
+ */
 void InteractiveObject::add6DOFcontrol()
 {
 	//// Ajout d'interactions ////
@@ -179,7 +192,9 @@ void InteractiveObject::add6DOFcontrol()
 	_server->applyChanges();
 }
 
-//Ajoute des controle pour 3DOF (Déplacement dans le plan x/z)
+
+/* Add a 3 Degrees of Freedom control to the marker allowing it to be moved in the X/Z plan.
+ */
 void InteractiveObject::add3DOFcontrol()
 {
 	//// Ajout d'interactions ////
@@ -226,7 +241,9 @@ void InteractiveObject::add3DOFcontrol()
 	_server->applyChanges();
 }
 
-//Ajoute des controle pour 3DOF (Déplacement dans le plan)
+/* Add a 3 Degrees of Freedom control to the marker allowing it to be moved in a plan.
+ * normal : normal vector defining a plan.
+ */
 void InteractiveObject::add3DOFcontrol(const tf::Vector3& normal)
 {
 	//// Ajout d'interactions ////
@@ -254,7 +271,9 @@ void InteractiveObject::add3DOFcontrol(const tf::Vector3& normal)
 	_server->applyChanges();
 }
 
-//Met à jour la zone d'erreur
+/* Set the error area.
+ * error : new error margin.
+ */
 void InteractiveObject::setErrorArea(double error)
 {
 	_showVisuals = true;
@@ -264,7 +283,9 @@ void InteractiveObject::setErrorArea(double error)
 	updateVisuals();
 }
 
-//Déplace le marker à une position donnée
+/* Move the marker to a new position.
+ * new_pos : new position of the marker. 
+ */
 void InteractiveObject::moveTo(const tf::Vector3& new_pos)
 {
 	tf::pointTFToMsg(new_pos, _int_marker.pose.position);
@@ -274,7 +295,8 @@ void InteractiveObject::moveTo(const tf::Vector3& new_pos)
 	updateVisuals();
 }
 
-//Ajoute des infos visuelles (Zone d'erreur)
+/* Add visualization informations (Error Margin).
+ */
 void InteractiveObject::addVisuals()
 {
 	// Set the frame ID and timestamp.  See the TF tutorials for information on these.
@@ -302,7 +324,8 @@ void InteractiveObject::addVisuals()
 	}
 }
 
-//Rafraichis les infos visuelles
+/* Update the visualization informations.
+ */
 void InteractiveObject::updateVisuals()
 {
 	// ROS_INFO_STREAM("Update visuals");

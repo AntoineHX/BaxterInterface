@@ -36,35 +36,29 @@ protected:
 	ros::Publisher* _visual_pub;
 
 public:
+	//Interactive object Constructor.
 	InteractiveObject(interactive_markers::InteractiveMarkerServer* server, const std::string& name, const std::string& frame_id, unsigned int type, unsigned int shape, const tf::Vector3& position = tf::Vector3(0,0,0));
 
-	//Construit un InteractiveMarker
+	//Interactive marker Constructor.
 	void createInteractiveMarker(Marker& marker, const std::string& frame_id, const tf::Vector3& position = tf::Vector3(0,0,0));
 
-	//Fonction callback du serveur d' InteractiveMarker
+	//Callback function used by the InteractiveMarkerServer to update markers.
 	void processFeedback( const InteractiveMarkerFeedbackConstPtr &feedback );
 	
-	//Ajoute une fonction bouton
-	void addButtoncontrol();
-	//Ajoute des controle pour 6DOF (Déplacement dans l'espace)
-	void add6DOFcontrol();
-	//Ajoute des controle pour 3DOF (Déplacement dans le plan x/z)
-	void add3DOFcontrol();
-	//Ajoute des controle pour 3DOF (Déplacement dans le plan)
-	void add3DOFcontrol(const tf::Vector3& normal);
+	//Controls
+	void addButtoncontrol(); //Add a Button interaction to the marker.
+	void add3DOFcontrol(); //Add a 3 Degrees of Freedom control to the marker allowing it to be moved in the X/Z plan.
+	void add3DOFcontrol(const tf::Vector3& normal); //Add a 3 Degrees of Freedom control to the marker allowing it to be moved in a plan.
+	void add6DOFcontrol(); //Add a 6 Degrees of Freedom control to the marker allowing it to be moved in 3D.
 
-	//Ajoute des infos visuelles (Zone d'erreur)
-	void addVisuals();
-	//Rafraichis les infos visuelles
-	void updateVisuals();
-
-	//Met à jour la zone d'erreur
-	void setErrorArea(double error);
-
-	//Déplace le marker à une position donnée
-	void moveTo(const tf::Vector3& new_pos);
+	//Visuals
+	void addVisuals(); //Add visualization informations (Error Margin).
+	void updateVisuals(); //Update the visualization informations.
 
 	//Accesseurs
+	void setErrorArea(double error); //Set the error area.
+	void moveTo(const tf::Vector3& new_pos); //Move the marker to a new position.
+
 	const std::string& name() const{ return _name;}
 	void setObjectivePublisher(ros::Publisher* objective_pub){ _objective_pub=objective_pub;}
 	void setVisualizationPublisher(ros::Publisher* visualization_pub){ _visual_pub=visualization_pub;}

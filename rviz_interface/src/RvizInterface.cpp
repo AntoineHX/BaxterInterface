@@ -7,8 +7,7 @@
 
 #include "RvizInterface.hpp"
 
-/*
- * Constructor.
+/* Constructor.
  * Launch the Rviz Interface with on the parameters from the launch file.
  * server_topic : Topic name of the interactive markers server.
  */
@@ -88,7 +87,7 @@ RvizInterface::RvizInterface(const std::string & server_topic): _server(server_t
 	}
 }
 
-//Destructeur
+//Destructor
 RvizInterface::~RvizInterface()
 {
 	for(unsigned int i=0;i<_objects.size();i++)
@@ -97,7 +96,11 @@ RvizInterface::~RvizInterface()
 	}
 }
 
-//Fonction Callback du panel Rviz gérant les configurations
+
+/* Callback function for the Rviz panel handling configuration changes.
+ * new_config : ROS message containing the new configuration.
+ * @see InterfaceConfig.msg
+ */
 void RvizInterface::configCallback(const rviz_interface::InterfaceConfig & new_config)
 {
 	for(unsigned int i=0;i<_objects.size();i++)
@@ -113,23 +116,10 @@ void RvizInterface::configCallback(const rviz_interface::InterfaceConfig & new_c
 	}
 }
 
-//Fonction callback gérant la position de l'objet
-//PROVISOIRE : Pour un seul objet avec test PCL
-// void RvizInterface::positionCallback(const geometry_msgs::PointStamped & new_center)
-// {
-// 	//Synchro des frames
-// 	_objects[0]->int_marker().header.frame_id = new_center.header.frame_id;
-// 	_objects[0]->err_marker().header.frame_id = new_center.header.frame_id;
-
-// 	if(_objects[0]->isFollowing()) //Le marqueur suit l'objet
-// 	{
-// 		//Deplacement du marqueur
-// 		tf::Vector3 position = tf::Vector3(new_center.point.x,new_center.point.y,new_center.point.z);
-// 		_objects[0]->moveTo(position);
-// 	}
-// }
-
-//Fonction callback gérant la position des objets
+/* Callback function handling the position updates of markers.
+ * new_center : ROS message containing the current position of an object.
+ * @see : NamedPoint.msg
+ */
 void RvizInterface::positionCallback(const rviz_interface::NamedPoint & new_center)
 {
 	for(unsigned int i=0;i<_objects.size();i++)
