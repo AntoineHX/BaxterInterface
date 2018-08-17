@@ -39,7 +39,7 @@ protected:
 	std::vector<InteractiveObject*> _objects;
 
 public: 
-	RvizInterface();
+	RvizInterface(const std::string & server_topic);
 	~RvizInterface();
 
 	//Fonction Callback du panel Rviz gérant les configurations

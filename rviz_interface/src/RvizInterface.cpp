@@ -7,8 +7,12 @@
 
 #include "RvizInterface.hpp"
 
-//Constructeur
-RvizInterface::RvizInterface(): _server("RvizInterface")
+/*
+ * Constructor.
+ * Launch the Rviz Interface with on the parameters from the launch file.
+ * server_topic : Topic name of the interactive markers server.
+ */
+RvizInterface::RvizInterface(const std::string & server_topic): _server(server_topic)
 {
 	std::string objective_topic, vizualization_topic, config_topic, position_topic;
 	std::vector<std::string> object_names;
@@ -153,7 +157,11 @@ int main(int argc, char **argv)
   //Initiate ROS
   ros::init(argc, argv, "Rviz_Interface");
 
-  RvizInterface Interface;
+  ros::NodeHandle nh;
+  std::string server_topic;
+  nh.param<std::string>("server_topic", server_topic,"RvizInterface");
+
+  RvizInterface Interface(server_topic);
 
   ros::spin();
 

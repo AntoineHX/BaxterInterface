@@ -9,6 +9,7 @@
 	<rosparam param="object_types"> [3, 2, 1, 0]</rosparam>
 
 		<!--Topics/-->
+	<param name="server_topic" value="/RvizInterface"/>
 	<param name="objective_topic" value="/RvizInterface/state_objective"/>
 	<param name="vizualization_topic" value="/RvizInterface/visual_marker"/>
 	<param name="config_topic" value="/RvizInterface/interface_config"/>

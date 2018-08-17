@@ -53,7 +53,7 @@ asift_matching - ROS_matcher : Swap the callback function to a service called fo
 * Run : roslaunch rviz_interface interface.launch
 * Setup rviz :
  - set fixed frame to camera_rgb_optical_frame.
- - add an InteractiveMarker and set topic to /RvizInterface/update.
+ - add an InteractiveMarker and set topic to (server_topic parameter)/update.
  - add a Marker and set topic to vizualization_topic parameter.
  - add the Rviz interface panel.
 
@@ -63,7 +63,7 @@ asift_matching - ROS_matcher : Swap the callback function to a service called fo
  - roslaunch rviz_interface interface_plannar_seg.launch
 * Setup rviz :
  - set fixed frame to camera_rgb_optical_frame.
- - add an InteractiveMarker and set topic to /RvizInterface/update.
+ - add an InteractiveMarker and set topic to (server_topic parameter)/update.
  - add a Marker and set topic to vizualization_topic parameter.
  - add the Rviz interface panel.
  - add a PointCloud2 and set topic to /camera/depth_registered/points.
@@ -80,7 +80,7 @@ asift_matching - ROS_matcher : Swap the callback function to a service called fo
  - roslaunch rviz_interface interface_matching.launch
 * Setup rviz :
  - set fixed frame to camera_rgb_optical_frame.
- - add an InteractiveMarker and set topic to /RvizInterface/update.
+ - add an InteractiveMarker and set topic to (server_topic parameter)/update.
  - add a Marker and set topic to vizualization_topic parameter.
  - add the Rviz interface panel.
  - add a PointCloud2 and set topic to /camera/depth_registered/points.

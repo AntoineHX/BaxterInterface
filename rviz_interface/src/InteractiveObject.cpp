@@ -8,7 +8,10 @@
 
 unsigned int InteractiveObject::nextObjectID = 1;
 
-//Constructeur
+/*
+ * Constructor.
+ * 
+ */
 InteractiveObject::InteractiveObject(interactive_markers::InteractiveMarkerServer* server, const std::string& name, const std::string& frame_id, unsigned int type, unsigned int shape = Marker::CUBE, const tf::Vector3& position) : _name(name), _type(type), _server(server), _showVisuals(true), _followObject(true)
 {
 	_objectID = nextObjectID++;
