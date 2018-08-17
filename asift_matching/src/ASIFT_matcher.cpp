@@ -371,6 +371,8 @@ unsigned int ASIFT_matcher::match(const vector<float>& image, unsigned int w, un
 
 	//// Match ASIFT keypoints
 	_total_num_matchings=0;
+	_num_matchings.clear();
+	_matchings.clear();
 
 	for(unsigned int i = 0; i<_nb_refs;i++)
 	{

@@ -30,7 +30,6 @@ Thus refrences are required for the module to work properly. It can be loaded th
 ### Done
 
 ### Todo
-asift_matching - ASIFT_matcher : Issue on total number of match (after filtering ?).
 asift_matching - ROS_matcher : Working loader of images for reference.
 asift_matching - ROS_matcher : Improve reactivity. Slow process due to the message queue length ?
 asift_matching - ROS_matcher : Swap the callback function to a service called for matching.
